@@ -1,0 +1,18 @@
+routes:
+  /essays/:
+    template: essays
+  /notes/:
+    template: notes
+  /links/:
+    template: links
+  /media/:
+    template: media
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

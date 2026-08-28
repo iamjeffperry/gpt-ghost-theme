@@ -1,0 +1,3166 @@
+/*
+ * JeffPerry.me stream layer
+ * Kottke-inspired in philosophy: compact, chronological, mixed-format,
+ * and content-first. This intentionally sits on top of Ghost Source's
+ * built CSS so post pages, Portal, navigation, search, and other Ghost
+ * features continue to use Source's established styling.
+ */
+
+/* ---------- Global rhythm ---------- */
+
+.home-template .gh-viewport {
+    background: var(--background-color);
+}
+
+.home-template .gh-navigation {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.home-template .gh-navigation-inner {
+    min-height: 62px;
+}
+
+.home-template .gh-navigation-logo img {
+    max-height: 34px;
+}
+
+/* ---------- Compact homepage introduction ---------- */
+
+.jp-home-intro {
+    padding-top: clamp(2.4rem, 5vw, 5.2rem);
+    padding-bottom: clamp(2rem, 4vw, 3.8rem);
+}
+
+.jp-home-intro-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2.4rem;
+    max-width: 1040px;
+}
+
+.jp-home-title {
+    margin: 0;
+    font-size: clamp(3.2rem, 5.5vw, 6.4rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+}
+
+.jp-home-description {
+    max-width: 680px;
+    margin: 1.2rem 0 0;
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    line-height: 1.45;
+    opacity: 0.72;
+}
+
+.jp-home-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.8rem 1.6rem;
+    padding-bottom: 0.2rem;
+    font-size: 1.35rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.jp-home-tools a {
+    text-decoration: none;
+}
+
+.jp-home-tools a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* ---------- Stream ---------- */
+
+.jp-stream-container {
+    margin-top: 0;
+}
+
+.jp-stream-container .gh-container-inner {
+    display: block;
+    max-width: 1040px;
+}
+
+.jp-stream-main {
+    width: 100%;
+    max-width: none;
+}
+
+.jp-stream {
+    display: block !important;
+    border-top: 2px solid currentColor;
+}
+
+.jp-entry {
+    --jp-meta-width: 145px;
+    display: grid !important;
+    grid-template-columns: var(--jp-meta-width) minmax(0, 1fr);
+    gap: clamp(1.8rem, 3vw, 3.6rem);
+    margin: 0 !important;
+    padding: clamp(2.4rem, 4vw, 4rem) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.jp-entry + .jp-entry {
+    margin-top: 0 !important;
+}
+
+.jp-entry-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding-top: 0.35rem;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+.jp-entry-time {
+    color: inherit;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.58;
+    text-decoration: none;
+}
+
+.jp-entry-time:hover {
+    opacity: 1;
+}
+
+.jp-entry-kind {
+    margin-top: 0.45rem;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--post-type-color, currentColor);
+    font-weight: 750;
+}
+
+.jp-entry-topic {
+    opacity: 0.55;
+}
+
+.jp-entry-body {
+    min-width: 0;
+    max-width: 760px;
+}
+
+.jp-entry-title {
+    margin: 0;
+    font-size: clamp(2.5rem, 3.4vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
+}
+
+.jp-entry-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.jp-entry-title a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.1em;
+}
+
+.jp-entry-excerpt,
+.jp-entry-note {
+    margin: 1.2rem 0 0;
+    font-size: clamp(1.7rem, 2vw, 2rem);
+    line-height: 1.55;
+}
+
+.jp-entry.is-short .jp-entry-note {
+    margin-top: 0;
+    font-size: clamp(1.9rem, 2.5vw, 2.35rem);
+    line-height: 1.48;
+}
+
+/* Micro posts render their real Ghost content in the feed, so preserve
+   paragraph and list structure instead of flattening everything to an excerpt. */
+.jp-entry.is-short .jp-entry-note > :first-child {
+    margin-top: 0;
+}
+
+.jp-entry.is-short .jp-entry-note > :last-child {
+    margin-bottom: 0;
+}
+
+.jp-entry.is-short .jp-entry-note ol,
+.jp-entry.is-short .jp-entry-note ul {
+    margin: 0 0 1em;
+    padding-left: 1.55em;
+}
+
+.jp-entry.is-short .jp-entry-note ol {
+    list-style: decimal;
+}
+
+.jp-entry.is-short .jp-entry-note ul {
+    list-style: disc;
+}
+
+.jp-entry.is-short .jp-entry-note li + li {
+    margin-top: 0.35em;
+}
+
+.jp-entry.is-short .jp-entry-note li > ol,
+.jp-entry.is-short .jp-entry-note li > ul {
+    margin-top: 0.35em;
+    margin-bottom: 0;
+}
+
+.jp-entry-read-more {
+    display: inline-block;
+    margin-top: 1.4rem;
+    font-size: 1.35rem;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.jp-entry-read-more:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* ---------- Images ---------- */
+
+.jp-entry-image-link {
+    display: block;
+    margin-bottom: 1.8rem;
+}
+
+.jp-entry-image {
+    margin: 0;
+}
+
+.jp-entry-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 560px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.jp-entry.is-image .jp-entry-image img {
+    max-height: none;
+}
+
+/* ---------- Rich Ghost content in link/media/photo entries ---------- */
+
+.jp-entry-content {
+    font-size: 1.75rem;
+    line-height: 1.55;
+}
+
+.jp-entry-title + .jp-entry-content {
+    margin-top: 1.4rem;
+}
+
+.jp-entry-content > :first-child {
+    margin-top: 0;
+}
+
+.jp-entry-content > :last-child {
+    margin-bottom: 0;
+}
+
+.jp-entry-content p {
+    margin: 0 0 1.1em;
+}
+
+.jp-entry-content a {
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.14em;
+}
+
+.jp-entry-content figure,
+.jp-entry-content .kg-card {
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+/* Bookmark cards should feel like a compact outward-link unit. */
+.jp-entry-link-content .kg-bookmark-card {
+    margin: 0;
+}
+
+.jp-entry-link-content .kg-bookmark-container {
+    min-height: 0;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.jp-entry-link-content .kg-bookmark-content {
+    padding: 1.6rem 1.8rem;
+}
+
+.jp-entry-link-content .kg-bookmark-title {
+    font-size: clamp(1.9rem, 2.5vw, 2.6rem);
+    line-height: 1.15;
+}
+
+.jp-entry-link-content .kg-bookmark-description {
+    margin-top: 0.6rem;
+    font-size: 1.45rem;
+    line-height: 1.45;
+}
+
+.jp-entry-link-content .kg-bookmark-thumbnail {
+    min-width: 180px;
+    max-width: 240px;
+}
+
+/* Embedded media is allowed to be the visual focus. */
+.jp-entry-media-content iframe,
+.jp-entry-media-content video,
+.jp-entry-media-content audio {
+    max-width: 100%;
+}
+
+/* ---------- Density by post type ---------- */
+
+.jp-entry.is-short,
+.jp-entry.is-link {
+    padding-top: clamp(1.9rem, 3vw, 2.8rem);
+    padding-bottom: clamp(1.9rem, 3vw, 2.8rem);
+}
+
+.jp-entry.is-link .jp-entry-body,
+.jp-entry.is-short .jp-entry-body {
+    max-width: 720px;
+}
+
+/* ---------- Pagination ---------- */
+
+.jp-more-posts {
+    margin: 3.2rem 0 0;
+    padding: 2rem 0 0;
+    border-top: 2px solid currentColor;
+    text-align: left;
+}
+
+.jp-more-posts a {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* ---------- Dark backgrounds ---------- */
+
+.has-light-text .home-template .gh-navigation,
+.has-light-text .jp-entry,
+.has-light-text .jp-entry-link-content .kg-bookmark-container {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Tablet / phone ---------- */
+
+@media (max-width: 767px) {
+    .home-template .gh-navigation-inner {
+        min-height: 56px;
+    }
+
+    .jp-home-intro {
+        padding-top: 2.4rem;
+        padding-bottom: 2.2rem;
+    }
+
+    .jp-home-intro-inner {
+        display: block;
+    }
+
+    .jp-home-title {
+        font-size: clamp(3.6rem, 12vw, 5rem);
+    }
+
+    .jp-home-description {
+        margin-top: 0.9rem;
+    }
+
+    .jp-home-tools {
+        justify-content: flex-start;
+        margin-top: 1.6rem;
+        padding: 0;
+        font-size: 1.2rem;
+    }
+
+    .jp-entry {
+        display: block !important;
+        padding: 2.4rem 0;
+    }
+
+    .jp-entry-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.55rem 0.9rem;
+        margin-bottom: 1.15rem;
+    }
+
+    .jp-entry-kind {
+        margin-top: 0;
+    }
+
+    .jp-entry-title {
+        font-size: clamp(2.5rem, 8vw, 3.4rem);
+    }
+
+    .jp-entry-link-content .kg-bookmark-container {
+        flex-direction: column;
+    }
+
+    .jp-entry-link-content .kg-bookmark-thumbnail {
+        width: 100%;
+        min-width: 100%;
+        max-width: none;
+        aspect-ratio: 16 / 9;
+        order: -1;
+    }
+}
+
+
+/* ==========================================================
+   JeffPerry.me visual direction v2 — warm personal-web shell
+   ========================================================== */
+
+@font-face {
+    font-family: "EB Garamond";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("../fonts/eb-garamond-roman.woff2") format("woff2");
+}
+
+:root {
+    --jp-paper: #fbf8f1;
+    --jp-paper-deep: #f6f0e5;
+    --jp-ink: #181818;
+    --jp-muted: #6f716f;
+    --jp-line: rgba(24, 24, 24, 0.10);
+    --jp-radius: 18px;
+}
+
+body,
+.gh-viewport,
+.home-template .gh-viewport,
+.gh-navigation,
+.gh-navigation-actions {
+    background: var(--jp-paper) !important;
+    color: var(--jp-ink);
+}
+
+/* Header */
+.home-template .gh-navigation {
+    height: auto;
+    border-bottom: 0;
+}
+
+.home-template .gh-navigation-inner {
+    min-height: 86px;
+    max-width: 1180px;
+    column-gap: 28px;
+}
+
+.jp-navigation-identity {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 20px;
+}
+
+.home-template .gh-navigation-logo {
+    top: 0 !important;
+    font-family: var(--font-sans);
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+}
+
+.jp-navigation-description {
+    display: block;
+    max-width: 310px;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 450;
+    line-height: 1.45;
+    color: var(--jp-ink);
+}
+
+.home-template .gh-navigation .nav {
+    gap: 30px;
+    font-size: 1.45rem;
+    font-weight: 600;
+}
+
+.home-template .gh-navigation-menu {
+    justify-content: flex-end;
+    margin: 0 !important;
+}
+
+.home-template .gh-navigation-actions {
+    gap: 14px;
+}
+
+/* The personal site does not need member sign-in competing with Subscribe. */
+.home-template .gh-navigation-members > a[data-portal="signin"] {
+    display: none;
+}
+
+.home-template .gh-navigation-members .gh-button {
+    padding: 1.05rem 1.45rem;
+    color: #fff;
+    background: #1e2328;
+    border-radius: 9px;
+    font-size: 1.35rem;
+    font-weight: 650;
+}
+
+/* Search can return later; for this first-pass header it stays visually quiet. */
+.home-template .gh-navigation-actions > .gh-search {
+    display: none;
+}
+
+/* Homepage */
+.home-template .jp-stream-container {
+    padding-top: 18px;
+}
+
+.home-template .jp-stream-container .gh-container-inner {
+    max-width: 1040px;
+}
+
+.home-template .jp-stream {
+    border-top: 0;
+}
+
+.home-template .jp-entry {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--jp-line);
+}
+
+.home-template .jp-entry-meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-top: 0;
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+}
+
+.home-template .jp-entry-time {
+    order: 3;
+    margin-left: auto;
+    color: var(--jp-muted);
+    text-transform: none;
+}
+
+.home-template .jp-entry-kind {
+    order: 1;
+    margin: 0;
+    color: var(--post-type-color, #3c7349);
+}
+
+.home-template .jp-entry-topic {
+    order: 2;
+    display: none;
+}
+
+.home-template .jp-entry-body {
+    max-width: none;
+}
+
+.home-template .jp-entry-title {
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(2.6rem, 3.5vw, 3.8rem);
+    font-weight: 650;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+}
+
+.home-template .jp-entry-excerpt,
+.home-template .jp-entry-note,
+.home-template .jp-entry-content {
+    font-family: var(--font-sans);
+    color: #303233;
+}
+
+.home-template .jp-entry-excerpt {
+    max-width: 720px;
+    margin-top: 10px;
+    font-size: 1.7rem;
+    line-height: 1.55;
+}
+
+.home-template .jp-entry.is-short .jp-entry-note {
+    max-width: 790px;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(2.0rem, 2.8vw, 2.55rem);
+    line-height: 1.4;
+}
+
+.home-template .jp-entry-image img,
+.home-template .jp-entry-link-content .kg-bookmark-container {
+    border-radius: 14px;
+}
+
+/* Featured post becomes the single prominent card at the top. */
+.home-template .jp-entry.is-featured {
+    margin-bottom: 12px !important;
+    padding: clamp(28px, 4vw, 42px);
+    border: 1px solid rgba(24, 24, 24, 0.10);
+    border-radius: var(--jp-radius);
+    background: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 10px 30px rgba(65, 49, 26, 0.05);
+}
+
+.home-template .jp-entry.is-featured .jp-entry-title {
+    font-size: clamp(3.4rem, 5vw, 5.5rem);
+}
+
+.home-template .jp-entry.is-featured .jp-entry-image img {
+    border-radius: 14px;
+}
+
+.home-template .jp-entry-read-more {
+    color: var(--jp-muted);
+}
+
+/* Phone */
+@media (max-width: 900px) {
+    .jp-navigation-description {
+        display: none;
+    }
+
+    .home-template .gh-navigation-inner {
+        min-height: 68px;
+    }
+}
+
+@media (max-width: 767px) {
+    .home-template .gh-navigation-logo {
+        font-size: 2rem;
+    }
+
+    .home-template .jp-stream-container {
+        padding-top: 8px;
+    }
+
+    .home-template .jp-entry {
+        padding: 24px 0;
+    }
+
+    .home-template .jp-entry-meta {
+        margin-bottom: 10px;
+    }
+
+    .home-template .jp-entry-time {
+        margin-left: 0;
+    }
+
+    .home-template .jp-entry.is-featured {
+        padding: 22px;
+        border-radius: 14px;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me post-type presentation v3
+   ========================================================== */
+
+.home-template .jp-entry {
+    --post-type-color: #3f744a;
+}
+
+.home-template .jp-entry.is-link {
+    --post-type-color: #2469b2;
+}
+
+.home-template .jp-entry.is-media {
+    --post-type-color: #6946ad;
+}
+
+.home-template .jp-entry:not(.is-short):not(.is-link):not(.is-media):not(.is-image) {
+    --post-type-color: #C85A2A;
+}
+
+.home-template .jp-entry-meta {
+    justify-content: flex-start;
+    margin-bottom: 14px;
+}
+
+.home-template .jp-entry-kind {
+    gap: 8px;
+    font-size: 1.2rem;
+    font-weight: 750;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+}
+
+.home-template .jp-entry-kind-icon {
+    width: 1.45rem;
+    height: 1.45rem;
+    flex-basis: 1.45rem;
+}
+
+.home-template .jp-entry-kind-icon svg {
+    stroke-width: 2;
+}
+
+.jp-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: .45rem .8rem;
+    border: 1px solid rgba(120, 93, 33, .12);
+    border-radius: 999px;
+    color: #755b20;
+    background: #f3ead2;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    text-transform: none;
+}
+
+.home-template .jp-entry-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    align-items: center;
+}
+
+.home-template .jp-entry.has-feature-image.is-featured .jp-entry-layout,
+.home-template .jp-entry.has-feature-image.is-media .jp-entry-layout {
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
+}
+
+.home-template .jp-entry-copy {
+    min-width: 0;
+}
+
+.home-template .jp-entry-title {
+    max-width: 760px;
+    margin: 0;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-title {
+    max-width: 620px;
+}
+
+.home-template .jp-entry.is-link .jp-entry-title {
+    font-size: clamp(2.35rem, 3vw, 3.25rem);
+}
+
+.home-template .jp-entry.is-media .jp-entry-title {
+    font-size: clamp(2.45rem, 3.2vw, 3.45rem);
+}
+
+.home-template .jp-entry-title a:hover {
+    text-decoration-thickness: .045em;
+    text-underline-offset: .12em;
+}
+
+.home-template .jp-entry-excerpt {
+    margin-top: 12px;
+    max-width: 680px;
+    color: #343536;
+}
+
+.home-template .jp-entry-time {
+    display: inline-block;
+    margin-top: 18px;
+    color: #666a6d;
+    font-family: var(--font-sans);
+    font-size: 1.35rem;
+    line-height: 1.4;
+    text-decoration: none;
+    text-transform: none;
+}
+
+.home-template .jp-entry-time:hover {
+    color: var(--jp-ink);
+    text-decoration: underline;
+    text-underline-offset: .18em;
+}
+
+.home-template .jp-entry-reading-time {
+    white-space: nowrap;
+}
+
+/* Notes: read like thoughts dropped directly into the stream. */
+.home-template .jp-entry.is-short {
+    padding-top: 28px;
+    padding-bottom: 28px;
+}
+
+.home-template .jp-entry.is-short .jp-entry-note {
+    max-width: 830px;
+    margin: 0;
+    color: #202122;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(2.15rem, 2.9vw, 2.75rem);
+    line-height: 1.42;
+}
+
+.home-template .jp-entry.is-short .jp-entry-time {
+    margin-top: 14px;
+}
+
+/* Link posts: headline points out; date remains the local permalink. */
+.home-template .jp-entry.is-link {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.home-template .jp-entry-link-source {
+    display: none;
+    margin-top: 7px;
+    color: var(--post-type-color);
+    font-family: var(--font-sans);
+    font-size: 1.35rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.home-template .jp-entry.has-external-target .jp-entry-link-source {
+    display: inline-block;
+}
+
+.home-template .jp-entry-link-source:hover {
+    text-decoration: underline;
+    text-underline-offset: .15em;
+}
+
+.home-template .jp-entry-link-content {
+    max-width: 760px;
+    margin-top: 10px;
+    color: #343536;
+    font-size: 1.55rem;
+    line-height: 1.55;
+}
+
+.home-template .jp-entry-link-content .kg-bookmark-card {
+    margin-top: 16px;
+}
+
+.home-template .jp-entry-link-content .kg-bookmark-container {
+    overflow: hidden;
+    border-color: var(--jp-line);
+    border-radius: 14px;
+    background: rgba(255,255,255,.22);
+}
+
+.home-template .jp-entry-link-content .kg-bookmark-title {
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 2rem;
+}
+
+/* Media: title/commentary left, art or feature image right. */
+.home-template .jp-entry.is-media {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.home-template .jp-entry-media-content {
+    max-width: 650px;
+    margin-top: 10px;
+    color: #343536;
+    font-size: 1.55rem;
+    line-height: 1.5;
+}
+
+.home-template .jp-entry-media-content .kg-card,
+.home-template .jp-entry-media-content figure {
+    margin-top: 14px;
+}
+
+/* Images across feature/media/photo cards. */
+.home-template .jp-entry-image-link {
+    display: block;
+    margin: 0;
+}
+
+.home-template .jp-entry-image {
+    margin: 0;
+}
+
+.home-template .jp-entry-image img {
+    width: 100%;
+    max-height: 360px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-image img {
+    max-height: 390px;
+}
+
+.home-template .jp-entry.is-image .jp-entry-image img {
+    max-height: none;
+    aspect-ratio: auto;
+}
+
+/* Featured entry gets the strongest hierarchy without breaking the stream. */
+.home-template .jp-entry.is-featured {
+    padding: clamp(30px, 4vw, 42px);
+}
+
+.home-template .jp-entry.is-featured .jp-entry-meta {
+    gap: 10px;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-title {
+    font-size: clamp(3.8rem, 5.2vw, 5.8rem);
+    line-height: 1.02;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-excerpt {
+    font-size: 1.75rem;
+    line-height: 1.55;
+}
+
+/* On a normal essay with an image, keep the image quieter than the featured card. */
+.home-template .jp-entry.has-feature-image:not(.is-featured):not(.is-media):not(.is-image) .jp-entry-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+}
+
+@media (max-width: 767px) {
+    .home-template .jp-entry.has-feature-image.is-featured .jp-entry-layout,
+    .home-template .jp-entry.has-feature-image.is-media .jp-entry-layout,
+    .home-template .jp-entry.has-feature-image:not(.is-featured):not(.is-media):not(.is-image) .jp-entry-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .home-template .jp-entry-image-link {
+        order: -1;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-image-link {
+        order: 0;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-title {
+        font-size: clamp(3.2rem, 11vw, 4.4rem);
+    }
+
+    .home-template .jp-entry.is-short .jp-entry-note {
+        font-size: clamp(2.05rem, 7vw, 2.55rem);
+    }
+
+    .home-template .jp-entry-time {
+        margin-top: 14px;
+        font-size: 1.25rem;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me visual refinement v4
+   Wide, warm, calm personal stream matching the approved mockup.
+   ========================================================== */
+
+:root {
+    --jp-paper: #fbf8f1;
+    --jp-paper-deep: #f3ecdf;
+    --jp-ink: #1d2022;
+    --jp-muted: #70736f;
+    --jp-line: rgba(29, 32, 34, 0.10);
+    --jp-orange: #C85A2A;
+    --jp-green: #46895b;
+    --jp-blue: #3576b8;
+    --jp-purple: #7652b6;
+    --jp-radius: 16px;
+}
+
+body,
+.gh-viewport,
+.gh-navigation,
+.gh-navigation-actions,
+.jp-footer {
+    background: var(--jp-paper) !important;
+    color: var(--jp-ink);
+}
+
+/* ----- Header ----- */
+
+.gh-navigation,
+.home-template .gh-navigation {
+    height: auto;
+    border: 0;
+    background: var(--jp-paper) !important;
+}
+
+.gh-navigation-inner,
+.home-template .gh-navigation-inner {
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    min-height: 82px;
+    max-width: 1120px;
+    column-gap: 36px;
+}
+
+.gh-navigation-brand {
+    min-width: 0;
+}
+
+.jp-navigation-identity {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    min-width: 0;
+}
+
+.gh-navigation-logo,
+.home-template .gh-navigation-logo {
+    position: static !important;
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.jp-navigation-description {
+    display: block;
+    max-width: 270px;
+    color: #404347;
+    font-size: 1.2rem;
+    font-weight: 450;
+    line-height: 1.35;
+}
+
+.gh-navigation-menu,
+.home-template .gh-navigation-menu {
+    justify-content: flex-end;
+    margin: 0 !important;
+}
+
+.gh-navigation .nav,
+.home-template .gh-navigation .nav {
+    gap: 26px;
+    font-size: 1.38rem;
+    font-weight: 600;
+}
+
+.gh-navigation .nav a {
+    color: #3e4143;
+}
+
+.gh-navigation-actions,
+.home-template .gh-navigation-actions {
+    gap: 12px;
+}
+
+.gh-navigation-actions > .gh-search {
+    display: none;
+}
+
+.gh-navigation-members .gh-button,
+.home-template .gh-navigation-members .gh-button {
+    padding: 1rem 1.35rem;
+    color: #fff;
+    background: #24292d;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: 650;
+}
+
+/* ----- Stream width + rhythm ----- */
+
+.home-template .jp-stream-container {
+    margin-top: 0;
+    padding-top: 28px;
+}
+
+.home-template .jp-stream-container .gh-container-inner {
+    display: grid;
+    max-width: 1120px;
+    overflow: visible;
+}
+
+.home-template .jp-stream-container:not(.has-sidebar) .jp-stream-main,
+.home-template .jp-stream-main {
+    grid-column: 1 / -1 !important;
+    width: 100%;
+    max-width: none;
+}
+
+.home-template .jp-stream {
+    width: 100%;
+    border-top: 0;
+}
+
+.home-template .jp-entry {
+    --post-type-color: var(--jp-orange) !important;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--jp-line);
+}
+
+.home-template .jp-entry.is-short {
+    --post-type-color: var(--jp-green) !important;
+}
+
+.home-template .jp-entry.is-link {
+    --post-type-color: var(--jp-blue) !important;
+}
+
+.home-template .jp-entry.is-media {
+    --post-type-color: var(--jp-purple) !important;
+}
+
+.home-template .jp-entry-meta {
+    margin-bottom: 13px;
+}
+
+.home-template .jp-entry-kind {
+    color: var(--post-type-color);
+    font-size: 1.12rem;
+    font-weight: 750;
+    letter-spacing: .035em;
+}
+
+.home-template .jp-entry-kind-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    flex-basis: 1.35rem;
+}
+
+.home-template .jp-entry-layout {
+    gap: 32px;
+}
+
+.home-template .jp-entry-title {
+    max-width: 820px;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(2.65rem, 3vw, 3.55rem);
+    font-weight: 650;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+}
+
+.home-template .jp-entry-excerpt {
+    max-width: 760px;
+    margin-top: 10px;
+    font-size: 1.62rem;
+    line-height: 1.55;
+}
+
+.home-template .jp-entry-time {
+    margin-top: 14px;
+    color: var(--jp-muted);
+    font-size: 1.25rem;
+}
+
+/* Notes should feel like a thought, not a billboard. */
+.home-template .jp-entry.is-short {
+    padding-top: 28px;
+    padding-bottom: 28px;
+}
+
+.home-template .jp-entry.is-short .jp-entry-note {
+    max-width: 820px;
+    color: #292b2c;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(1.8rem, 1.7vw, 2.05rem);
+    line-height: 1.5;
+}
+
+/* Links: Daring Fireball behavior without a giant duplicate preview card. */
+.home-template .jp-entry.is-link .jp-entry-title {
+    max-width: 820px;
+    font-size: clamp(2.45rem, 2.8vw, 3.25rem);
+}
+
+.home-template .jp-entry-link-source {
+    margin-top: 5px;
+    font-size: 1.25rem;
+}
+
+.home-template .jp-entry-link-content {
+    max-width: 800px;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    line-height: 1.55;
+}
+
+.home-template .jp-entry-link-content .kg-bookmark-card {
+    display: none !important;
+}
+
+/* Media stays visual, but contained. */
+.home-template .jp-entry.is-media .jp-entry-title {
+    font-size: clamp(2.55rem, 2.9vw, 3.35rem);
+}
+
+.home-template .jp-entry-media-content {
+    font-size: 1.5rem;
+}
+
+.home-template .jp-entry-image img {
+    border-radius: 14px;
+    box-shadow: 0 2px 0 rgba(29, 32, 34, 0.02);
+}
+
+/* Featured: only the selected featured post gets the warm card treatment. */
+.home-template .jp-entry.is-featured {
+    margin-bottom: 18px !important;
+    padding: clamp(30px, 4vw, 44px);
+    border: 1px solid rgba(29, 32, 34, 0.09);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.32);
+    box-shadow: 0 12px 34px rgba(82, 61, 29, 0.055);
+}
+
+.home-template .jp-entry.is-featured .jp-entry-title {
+    max-width: 660px;
+    font-size: clamp(3.7rem, 4.8vw, 5.4rem);
+}
+
+/* ----- Footer inspired by Maggie Appleton's friendly RSS/social treatment ----- */
+
+.jp-footer {
+    margin-top: 72px;
+    padding-bottom: 34px;
+}
+
+.jp-footer .gh-footer-inner {
+    max-width: 1120px;
+}
+
+.jp-footer-subscribe {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, .85fr);
+    gap: 42px;
+    align-items: center;
+    padding: 38px 0;
+    border-top: 1px solid var(--jp-line);
+    border-bottom: 1px solid var(--jp-line);
+}
+
+.jp-footer-subscribe-title {
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(2.8rem, 3vw, 3.8rem);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+}
+
+.jp-footer-subscribe-text {
+    max-width: 520px;
+    margin-top: 6px;
+    color: var(--jp-muted);
+    font-size: 1.45rem;
+    line-height: 1.5;
+}
+
+.jp-footer-subscribe-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.jp-footer-subscribe-actions .gh-form {
+    width: 100%;
+    max-width: none;
+    height: 50px;
+    border: 1px solid rgba(29, 32, 34, 0.10);
+    background: rgba(255, 255, 255, .46);
+}
+
+.jp-footer-subscribe-actions .gh-form .gh-button {
+    height: 40px;
+    color: #fff;
+    background: #24292d;
+}
+
+.jp-rss-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    gap: 8px;
+    min-height: 40px;
+    padding: 9px 14px;
+    border: 1px solid rgba(29, 32, 34, .12);
+    border-radius: 999px;
+    color: #474a4c;
+    background: rgba(255, 255, 255, .28);
+    font-size: 1.3rem;
+    font-weight: 650;
+}
+
+.jp-rss-pill svg {
+    width: 16px;
+    height: 16px;
+}
+
+.jp-footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr .8fr;
+    gap: 56px;
+    padding: 38px 0 30px;
+}
+
+.jp-footer-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+}
+
+.jp-footer-description {
+    max-width: 360px;
+    margin-top: 8px;
+    color: var(--jp-muted);
+    font-size: 1.3rem;
+    line-height: 1.5;
+}
+
+.jp-footer-menu .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.35rem;
+}
+
+.jp-footer-follow-label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--jp-muted);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.jp-footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.jp-footer-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(29, 32, 34, .11);
+    border-radius: 10px;
+    background: rgba(255,255,255,.28);
+    transition: transform .15s ease, background-color .15s ease;
+}
+
+.jp-footer-socials a:hover {
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.65);
+    opacity: 1;
+}
+
+.jp-footer-socials svg {
+    width: 17px;
+    height: 17px;
+}
+
+.jp-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--jp-line);
+    color: #898b88;
+    font-size: 1.15rem;
+}
+
+@media (max-width: 900px) {
+    .jp-navigation-description {
+        display: none;
+    }
+
+    .gh-navigation-inner,
+    .home-template .gh-navigation-inner {
+        min-height: 70px;
+        column-gap: 20px;
+    }
+
+    .jp-footer-subscribe {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    .gh-navigation-inner,
+    .home-template .gh-navigation-inner {
+        min-height: 64px;
+    }
+
+    .gh-navigation-logo,
+    .home-template .gh-navigation-logo {
+        font-size: 1.85rem;
+    }
+
+    .home-template .jp-stream-container {
+        padding-top: 10px;
+    }
+
+    .home-template .jp-entry {
+        padding: 26px 0;
+    }
+
+    .home-template .jp-entry.is-short .jp-entry-note {
+        font-size: 1.85rem;
+    }
+
+    .home-template .jp-entry.is-featured {
+        padding: 22px;
+    }
+
+    .jp-footer {
+        margin-top: 48px;
+    }
+
+    .jp-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .jp-footer-bottom {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me visual refinement v5
+   Scale and proportion pass based on the live-site screenshot.
+   ========================================================== */
+
+/* Give the design enough presence on large desktop displays. */
+.home-template .gh-navigation-inner,
+.jp-footer .gh-footer-inner {
+    width: min(1280px, calc(100% - 64px));
+    max-width: 1280px;
+}
+
+.home-template .jp-stream-container .gh-container-inner {
+    width: min(1180px, calc(100% - 64px));
+    max-width: 1180px;
+}
+
+.home-template .gh-navigation-inner {
+    min-height: 96px;
+    column-gap: 42px;
+}
+
+.home-template .gh-navigation-logo {
+    font-size: 2.45rem;
+}
+
+.home-template .jp-navigation-description {
+    max-width: 340px;
+    font-size: 1.34rem;
+    line-height: 1.4;
+}
+
+.home-template .gh-navigation .nav {
+    gap: 32px;
+    font-size: 1.5rem;
+}
+
+.home-template .gh-navigation-members .gh-button {
+    padding: 1.1rem 1.55rem;
+    border-radius: 9px;
+    font-size: 1.4rem;
+}
+
+.home-template .jp-stream-container {
+    padding-top: 32px;
+}
+
+.home-template .jp-entry {
+    padding-top: 38px;
+    padding-bottom: 38px;
+}
+
+.home-template .jp-entry-kind {
+    font-size: 1.18rem;
+}
+
+.home-template .jp-entry-title {
+    max-width: 900px;
+    font-size: clamp(2.9rem, 3.1vw, 3.8rem);
+}
+
+.home-template .jp-entry.is-link .jp-entry-title {
+    max-width: 900px;
+    font-size: clamp(2.75rem, 3vw, 3.55rem);
+}
+
+.home-template .jp-entry.is-media .jp-entry-title {
+    font-size: clamp(2.8rem, 3vw, 3.6rem);
+}
+
+.home-template .jp-entry-excerpt {
+    max-width: 820px;
+    font-size: 1.72rem;
+}
+
+.home-template .jp-entry.is-short .jp-entry-note {
+    max-width: 920px;
+    font-size: clamp(2.05rem, 1.8vw, 2.3rem);
+    line-height: 1.48;
+}
+
+.home-template .jp-entry-link-content,
+.home-template .jp-entry-media-content {
+    max-width: 860px;
+    font-size: 1.6rem;
+}
+
+.home-template .jp-entry-time {
+    font-size: 1.3rem;
+}
+
+.home-template .jp-entry.is-featured {
+    padding: clamp(34px, 4vw, 50px);
+    border-radius: 20px;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-layout {
+    gap: 42px;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-title {
+    max-width: 700px;
+    font-size: clamp(4rem, 4.8vw, 5.8rem);
+}
+
+.home-template .jp-entry.has-feature-image.is-featured .jp-entry-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+}
+
+/* Keep quoted/source material in Link posts attractive but quieter. */
+.home-template .jp-entry.is-link blockquote {
+    margin-top: 14px;
+    padding-left: 18px;
+    border-left-width: 3px;
+    border-left-color: var(--jp-blue);
+    color: #4a4d50;
+}
+
+/* Footer should span the same visual field as the header. */
+.jp-footer-subscribe {
+    padding-top: 42px;
+    padding-bottom: 42px;
+}
+
+@media (max-width: 900px) {
+    .home-template .gh-navigation-inner,
+    .home-template .jp-stream-container .gh-container-inner,
+    .jp-footer .gh-footer-inner {
+        width: min(100% - 40px, 1180px);
+    }
+
+    .home-template .gh-navigation-inner {
+        min-height: 72px;
+    }
+}
+
+@media (max-width: 767px) {
+    .home-template .gh-navigation-inner,
+    .home-template .jp-stream-container .gh-container-inner,
+    .jp-footer .gh-footer-inner {
+        width: min(100% - 32px, 1180px);
+    }
+
+    .home-template .gh-navigation-logo {
+        font-size: 2rem;
+    }
+
+    .home-template .jp-entry {
+        padding-top: 28px;
+        padding-bottom: 28px;
+    }
+
+    .home-template .jp-entry.is-short .jp-entry-note {
+        font-size: 2rem;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me visual refinement v6
+   Approved mockup pass: softer shell, newsletter card, stronger footer.
+   ========================================================== */
+
+:root {
+    --jp-paper: #fbf8f1;
+    --jp-paper-deep: #f5efe4;
+    --jp-card: rgba(255, 255, 255, 0.34);
+    --jp-ink: #1c1f21;
+    --jp-muted: #72756f;
+    --jp-line: rgba(28, 31, 33, 0.105);
+    --jp-shadow: 0 14px 42px rgba(82, 61, 29, 0.055);
+}
+
+body,
+.gh-viewport {
+    background: var(--jp-paper) !important;
+}
+
+/* Header feels like a compact identity bar, not a publication masthead. */
+.home-template .gh-navigation-inner {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.home-template .gh-navigation-logo {
+    color: var(--jp-ink);
+    text-decoration: none;
+}
+
+.home-template .gh-navigation .nav a {
+    position: relative;
+    color: var(--jp-ink);
+    opacity: .9;
+    transition: opacity .15s ease;
+}
+
+.home-template .gh-navigation .nav a:hover {
+    opacity: .58;
+}
+
+.home-template .gh-navigation-members .gh-button {
+    min-height: 42px;
+    padding-inline: 1.7rem;
+    border: 0;
+    box-shadow: 0 2px 8px rgba(21, 24, 27, .08);
+}
+
+/* The stream should read as one calm surface. */
+.home-template .jp-stream-container {
+    padding-top: 24px;
+}
+
+.home-template .jp-entry {
+    padding-top: 36px;
+    padding-bottom: 36px;
+}
+
+.home-template .jp-entry:first-child:not(.is-featured) {
+    padding-top: 26px;
+}
+
+.home-template .jp-entry-kind {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border-left: 0;
+}
+
+.home-template .jp-entry-kind-label {
+    line-height: 1;
+}
+
+.home-template .jp-entry-kind-icon {
+    margin-right: 2px;
+}
+
+.home-template .jp-entry-title {
+    text-wrap: balance;
+}
+
+.home-template .jp-entry-note,
+.home-template .jp-entry-excerpt,
+.home-template .jp-entry-link-content,
+.home-template .jp-entry-media-content {
+    text-wrap: pretty;
+}
+
+.home-template .jp-entry-time {
+    opacity: .82;
+}
+
+/* Featured card: warm, quiet, tactile. */
+.home-template .jp-entry.is-featured {
+    margin-top: 6px !important;
+    margin-bottom: 22px !important;
+    padding: clamp(34px, 4vw, 50px);
+    border: 1px solid rgba(74, 63, 45, .12);
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(255,255,255,.44), rgba(255,255,255,.18));
+    box-shadow: var(--jp-shadow);
+}
+
+.home-template .jp-entry.is-featured .jp-entry-meta {
+    margin-bottom: 18px;
+}
+
+.jp-featured-badge {
+    gap: 5px;
+    padding: .52rem .9rem;
+    border-color: rgba(118, 91, 35, .10);
+    background: #f4ead0;
+    color: #6f5622;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
+}
+
+.home-template .jp-entry.is-featured .jp-entry-excerpt {
+    max-width: 620px;
+    margin-top: 16px;
+    color: #343638;
+    font-size: clamp(1.7rem, 1.8vw, 1.9rem);
+}
+
+.home-template .jp-entry.is-featured .jp-entry-time {
+    margin-top: 24px;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-image {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-image img {
+    border-radius: 16px;
+    box-shadow: none;
+    transition: transform .3s ease;
+}
+
+.home-template .jp-entry.is-featured .jp-entry-image-link:hover img {
+    transform: scale(1.012);
+}
+
+/* Notes are direct and readable, but visually quieter than essays. */
+.home-template .jp-entry.is-short .jp-entry-note {
+    max-width: 900px;
+    color: #252729;
+    font-size: clamp(1.95rem, 1.8vw, 2.25rem);
+}
+
+.home-template .jp-entry.is-short .jp-entry-note p + p {
+    margin-top: .85em;
+}
+
+/* Link entries keep commentary but clearly point outward. */
+.home-template .jp-entry.is-link .jp-entry-title a::after {
+    content: " ↗";
+    display: inline;
+    font-family: var(--font-sans);
+    font-size: .55em;
+    font-weight: 650;
+    vertical-align: .18em;
+    color: var(--jp-blue);
+}
+
+.home-template .jp-entry.is-link .jp-entry-link-source {
+    color: var(--jp-blue);
+}
+
+.home-template .jp-entry.is-link blockquote {
+    max-width: 790px;
+    margin-bottom: 0;
+    padding: 2px 0 2px 18px;
+    border-left: 3px solid var(--jp-blue);
+    color: #4d5153;
+    font-size: .94em;
+}
+
+/* Media/images stay rounded and polished without taking over the stream. */
+.home-template .jp-entry-image img {
+    border: 1px solid rgba(28,31,33,.06);
+}
+
+/* Newsletter card — intentionally separate from the footer band. */
+.jp-footer {
+    margin-top: 58px;
+    padding: 0;
+    background: transparent !important;
+}
+
+.jp-footer-subscribe-wrap {
+    padding-bottom: 38px;
+    background: var(--jp-paper);
+}
+
+.jp-footer-subscribe {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) minmax(360px, .9fr);
+    align-items: center;
+    gap: 20px;
+    width: min(1180px, calc(100% - 64px));
+    max-width: 1180px;
+    padding: 22px 24px;
+    border: 1px solid rgba(74,63,45,.11);
+    border-radius: 16px;
+    background: rgba(255,255,255,.30);
+    box-shadow: 0 8px 26px rgba(82,61,29,.035);
+}
+
+.jp-footer-subscribe-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: #5d7f6c;
+    background: #eee9d6;
+}
+
+.jp-footer-subscribe-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.jp-footer-subscribe-title {
+    margin: 0;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 2.45rem;
+    font-weight: 650;
+    line-height: 1;
+    letter-spacing: -.02em;
+}
+
+.jp-footer-subscribe-text {
+    max-width: 520px;
+    margin: 5px 0 0;
+    color: #54585a;
+    font-size: 1.32rem;
+    line-height: 1.42;
+}
+
+.jp-footer-subscribe-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.jp-footer-subscribe-actions .gh-form {
+    display: flex;
+    width: 100%;
+    max-width: 430px;
+    height: 46px;
+    padding: 4px;
+    border: 1px solid rgba(28,31,33,.10);
+    border-radius: 9px;
+    background: rgba(255,255,255,.55);
+    box-shadow: none;
+}
+
+.jp-footer-subscribe-actions .gh-form-input {
+    min-width: 0;
+    padding-left: 13px;
+    font-size: 1.25rem;
+}
+
+.jp-footer-subscribe-actions .gh-form .gh-button {
+    flex: 0 0 auto;
+    height: 36px;
+    padding-inline: 15px;
+    border-radius: 7px;
+    background: #24292d;
+    font-size: 1.2rem;
+}
+
+.jp-footer-subscribe-actions .gh-form .gh-button svg {
+    display: none;
+}
+
+.jp-rss-pill {
+    min-height: 42px;
+    padding: 9px 14px;
+    background: rgba(255,255,255,.48);
+}
+
+/* Footer band — slightly deeper paper, like a physical page ending. */
+.jp-footer-band {
+    background: var(--jp-paper-deep);
+    border-top: 1px solid rgba(74,63,45,.06);
+}
+
+.jp-footer-inner {
+    width: min(1280px, calc(100% - 64px));
+    max-width: 1280px;
+    padding-top: 34px;
+    padding-bottom: 26px;
+}
+
+.jp-footer-grid {
+    grid-template-columns: 1.2fr .72fr .72fr;
+    gap: 64px;
+    padding: 0 0 30px;
+}
+
+.jp-footer-title {
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 2.1rem;
+    font-weight: 650;
+    letter-spacing: -.02em;
+    text-transform: none;
+}
+
+.jp-footer-description {
+    max-width: 350px;
+    margin-top: 9px;
+    color: #4f5354;
+    font-size: 1.3rem;
+}
+
+.jp-footer-philosophy {
+    max-width: 350px;
+    margin-top: 14px;
+    color: #4f5354;
+    font-size: 1.3rem;
+    line-height: 1.5;
+}
+
+.jp-footer-heading {
+    display: block;
+    margin-bottom: 12px;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 1.85rem;
+    font-weight: 650;
+}
+
+.jp-footer-menu .nav {
+    gap: 6px;
+    font-size: 1.28rem;
+}
+
+.jp-footer-menu .nav a {
+    color: #45494b;
+}
+
+.jp-footer-socials {
+    gap: 10px;
+}
+
+.jp-footer-socials a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    color: #575b5d;
+    background: rgba(255,255,255,.55);
+    box-shadow: 0 2px 8px rgba(82,61,29,.035);
+}
+
+.jp-footer-socials a.is-rss {
+    color: #d86f2c;
+}
+
+.jp-footer-socials a:hover {
+    transform: translateY(-2px);
+    background: #fff;
+}
+
+.jp-footer-bottom {
+    padding-top: 18px;
+    color: #777a77;
+}
+
+@media (max-width: 900px) {
+    .jp-footer-subscribe {
+        grid-template-columns: 48px minmax(0, 1fr);
+        width: min(100% - 40px, 1180px);
+    }
+
+    .jp-footer-subscribe-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+
+    .jp-footer-subscribe-actions .gh-form {
+        max-width: none;
+    }
+
+    .jp-footer-inner {
+        width: min(100% - 40px, 1280px);
+    }
+}
+
+@media (max-width: 767px) {
+    .jp-footer {
+        margin-top: 42px;
+    }
+
+    .jp-footer-subscribe-wrap {
+        padding-bottom: 28px;
+    }
+
+    .jp-footer-subscribe {
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 14px;
+        width: min(100% - 32px, 1180px);
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .jp-footer-subscribe-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .jp-footer-subscribe-title {
+        font-size: 2.15rem;
+    }
+
+    .jp-footer-subscribe-actions {
+        width: 100%;
+    }
+
+    .jp-footer-subscribe-actions .gh-form {
+        height: auto;
+        min-height: 46px;
+    }
+
+    .jp-footer-inner {
+        width: min(100% - 32px, 1280px);
+        padding-top: 28px;
+    }
+
+    .jp-footer-grid {
+        gap: 26px;
+    }
+
+    .jp-footer-bottom {
+        padding-top: 16px;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me visual refinement v7
+   Header wordmark: quieter, less logo-like, more cohesive.
+   ========================================================== */
+.home-template .gh-navigation-logo,
+.gh-navigation-logo {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 2.25rem;
+    font-weight: 680;
+    letter-spacing: 0.015em;
+    line-height: 1;
+    text-transform: uppercase;
+    font-variation-settings: "wght" 680;
+}
+
+@media (max-width: 767px) {
+    .home-template .gh-navigation-logo,
+    .gh-navigation-logo {
+        font-size: 2rem;
+        letter-spacing: 0.012em;
+    }
+}
+
+
+/* ==========================================================
+   JeffPerry.me visual refinement v8
+   Header typography + permanent content-type navigation.
+   ========================================================== */
+.jp-navigation-identity {
+    gap: 14px;
+}
+
+.home-template .gh-navigation-logo,
+.gh-navigation-logo {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 2.35rem;
+    font-weight: 600;
+    letter-spacing: 0.028em;
+    line-height: 1;
+    text-transform: uppercase;
+    font-variation-settings: "wght" 600;
+}
+
+.jp-navigation-description {
+    max-width: 330px;
+    font-size: 1.3rem;
+    font-weight: 430;
+    line-height: 1.4;
+    color: var(--jp-muted);
+}
+
+.home-template .gh-navigation .nav,
+.gh-navigation .nav {
+    gap: 28px;
+    font-size: 1.45rem;
+    font-weight: 550;
+}
+
+@media (max-width: 767px) {
+    .home-template .gh-navigation-logo,
+    .gh-navigation-logo {
+        font-size: 2.05rem;
+        letter-spacing: 0.024em;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me visual refinement v8
+   Featured card uses the same deeper cream as the footer band.
+   ========================================================== */
+.home-template .jp-entry.is-featured {
+    background: var(--jp-paper-deep);
+    border-color: rgba(74, 63, 45, .10);
+    box-shadow: 0 12px 34px rgba(82, 61, 29, .045);
+}
+
+/* ==========================================================
+   JeffPerry.me responsive refinement v9
+   iPad + phone pass. Desktop rules above remain unchanged.
+   ========================================================== */
+
+/* iPad landscape / smaller laptops */
+@media (max-width: 1100px) {
+    .jp-navigation-description {
+        display: none;
+    }
+
+    .home-template .gh-navigation-inner,
+    .gh-navigation-inner {
+        width: min(100% - 48px, 1040px);
+        max-width: 1040px;
+        min-height: 78px;
+        column-gap: 22px;
+    }
+
+    .home-template .gh-navigation-logo,
+    .gh-navigation-logo {
+        font-size: 2.15rem;
+    }
+
+    .home-template .gh-navigation .nav,
+    .gh-navigation .nav {
+        gap: 20px;
+        font-size: 1.34rem;
+    }
+
+    .home-template .gh-navigation-members .gh-button,
+    .gh-navigation-members .gh-button {
+        padding: .95rem 1.3rem;
+        font-size: 1.28rem;
+    }
+
+    .home-template .jp-stream-container .gh-container-inner {
+        width: min(100% - 48px, 1040px);
+        max-width: 1040px;
+    }
+
+    .jp-footer-subscribe,
+    .jp-footer-inner {
+        width: min(100% - 48px, 1040px);
+    }
+}
+
+/* iPad portrait: give content room instead of squeezing two-column cards. */
+@media (max-width: 900px) {
+    .home-template .gh-navigation-inner,
+    .gh-navigation-inner {
+        width: min(100% - 40px, 860px);
+        min-height: 72px;
+        column-gap: 16px;
+    }
+
+    .home-template .gh-navigation-logo,
+    .gh-navigation-logo {
+        font-size: 2rem;
+    }
+
+    .home-template .gh-navigation .nav,
+    .gh-navigation .nav {
+        gap: 15px;
+        font-size: 1.25rem;
+    }
+
+    .home-template .jp-stream-container {
+        padding-top: 18px;
+    }
+
+    .home-template .jp-stream-container .gh-container-inner {
+        width: min(100% - 40px, 860px);
+    }
+
+    .home-template .jp-entry.has-feature-image.is-featured .jp-entry-layout,
+    .home-template .jp-entry.has-feature-image.is-media .jp-entry-layout,
+    .home-template .jp-entry.has-feature-image:not(.is-featured):not(.is-media):not(.is-image) .jp-entry-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-title {
+        max-width: 720px;
+        font-size: clamp(3.7rem, 7vw, 5rem);
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-image img {
+        max-height: 440px;
+        aspect-ratio: 16 / 9;
+    }
+
+    .home-template .jp-entry.is-short .jp-entry-note {
+        max-width: 100%;
+        font-size: 2.05rem;
+    }
+
+    .jp-footer-subscribe {
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 16px;
+        width: min(100% - 40px, 860px);
+    }
+
+    .jp-footer-subscribe-actions {
+        grid-column: 1 / -1;
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .jp-footer-subscribe-actions .gh-form {
+        max-width: none;
+    }
+
+    .jp-footer-inner {
+        width: min(100% - 40px, 860px);
+    }
+
+    .jp-footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 34px 48px;
+    }
+
+    .jp-footer-about {
+        grid-column: 1 / -1;
+    }
+
+    .jp-footer-description,
+    .jp-footer-philosophy {
+        max-width: 560px;
+    }
+}
+
+/* Phones and narrow split-screen tablet views. */
+@media (max-width: 767px) {
+    /* Let Source's burger menu take over cleanly. */
+    #gh-navigation .gh-navigation-inner,
+    .home-template #gh-navigation .gh-navigation-inner {
+        width: 100%;
+        min-height: 64px;
+        padding-inline: 20px;
+    }
+
+    #gh-navigation .gh-navigation-brand {
+        min-height: 64px;
+    }
+
+    .home-template .gh-navigation-logo,
+    .gh-navigation-logo {
+        font-size: 1.88rem;
+        font-weight: 600;
+        letter-spacing: .025em;
+    }
+
+    #gh-navigation.is-open .gh-navigation-menu {
+        padding-top: 26px;
+    }
+
+    #gh-navigation.is-open .nav {
+        gap: 0;
+    }
+
+    #gh-navigation.is-open .nav a {
+        padding-block: 10px;
+        font-family: "EB Garamond", Georgia, serif;
+        font-size: 2.65rem;
+        font-weight: 600;
+        letter-spacing: -.02em;
+    }
+
+    #gh-navigation.is-open .gh-navigation-actions {
+        padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+
+    #gh-navigation.is-open .gh-navigation-members .gh-button {
+        min-height: 46px;
+        border-radius: 10px;
+        font-size: 1.45rem;
+    }
+
+    .home-template .jp-stream-container {
+        padding-top: 8px;
+    }
+
+    .home-template .jp-stream-container .gh-container-inner {
+        width: calc(100% - 32px);
+    }
+
+    .home-template .jp-entry {
+        padding: 26px 0;
+    }
+
+    .home-template .jp-entry-meta {
+        gap: 8px;
+        margin-bottom: 11px;
+    }
+
+    .home-template .jp-entry-kind {
+        font-size: 1.08rem;
+    }
+
+    .home-template .jp-entry-title,
+    .home-template .jp-entry.is-link .jp-entry-title,
+    .home-template .jp-entry.is-media .jp-entry-title {
+        max-width: 100%;
+        font-size: clamp(2.55rem, 8.7vw, 3.25rem);
+        line-height: 1.08;
+    }
+
+    .home-template .jp-entry-excerpt {
+        max-width: 100%;
+        margin-top: 10px;
+        font-size: 1.58rem;
+        line-height: 1.52;
+    }
+
+    .home-template .jp-entry.is-short .jp-entry-note {
+        max-width: 100%;
+        font-size: 1.92rem;
+        line-height: 1.5;
+    }
+
+    .home-template .jp-entry-link-content,
+    .home-template .jp-entry-media-content {
+        max-width: 100%;
+        font-size: 1.48rem;
+        line-height: 1.55;
+    }
+
+    .home-template .jp-entry.is-link blockquote {
+        padding-left: 14px;
+        font-size: .96em;
+    }
+
+    .home-template .jp-entry-time {
+        margin-top: 13px;
+        font-size: 1.2rem;
+    }
+
+    .home-template .jp-entry-image img,
+    .home-template .jp-entry.is-featured .jp-entry-image img {
+        width: 100%;
+        max-height: none;
+        aspect-ratio: 16 / 10;
+        border-radius: 12px;
+    }
+
+    .home-template .jp-entry.is-featured {
+        margin: 4px 0 14px !important;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(82, 61, 29, .04);
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-meta {
+        margin-bottom: 13px;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-title {
+        max-width: 100%;
+        font-size: clamp(3.25rem, 10.8vw, 4.2rem);
+        line-height: 1.02;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-excerpt {
+        margin-top: 12px;
+        font-size: 1.58rem;
+        line-height: 1.5;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-time {
+        margin-top: 18px;
+    }
+
+    .jp-featured-badge {
+        padding: .46rem .72rem;
+        font-size: 1rem;
+    }
+
+    /* Individual posts/pages: keep reading comfortable on small screens. */
+    .gh-article-header {
+        margin-top: 34px;
+        margin-bottom: 28px;
+    }
+
+    .gh-article-title {
+        font-size: clamp(3.2rem, 10vw, 4.2rem);
+        line-height: 1.06;
+    }
+
+    .gh-article-excerpt {
+        font-size: 1.65rem;
+        line-height: 1.5;
+    }
+
+    .gh-content {
+        --content-font-size: 1.7rem;
+        --content-spacing-factor: .9;
+        line-height: 1.6;
+    }
+
+    .gh-content :is(pre, .gh-table) {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    /* Newsletter/footer become touch-friendly and single-column. */
+    .jp-footer {
+        margin-top: 38px;
+    }
+
+    .jp-footer-subscribe-wrap {
+        padding-bottom: 24px;
+    }
+
+    .jp-footer-subscribe {
+        grid-template-columns: 40px minmax(0, 1fr);
+        width: calc(100% - 32px);
+        gap: 12px;
+        padding: 17px;
+        border-radius: 14px;
+    }
+
+    .jp-footer-subscribe-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .jp-footer-subscribe-title {
+        font-size: 2.05rem;
+    }
+
+    .jp-footer-subscribe-text {
+        font-size: 1.26rem;
+    }
+
+    .jp-footer-subscribe-actions {
+        grid-column: 1 / -1;
+    }
+
+    .jp-footer-subscribe-actions .gh-form {
+        width: 100%;
+        min-height: 48px;
+        border-radius: 10px;
+    }
+
+    .jp-footer-subscribe-actions .gh-form .gh-button {
+        min-width: 104px;
+        min-height: 38px;
+    }
+
+    .jp-footer-inner {
+        width: calc(100% - 32px);
+        padding-top: 26px;
+        padding-bottom: max(22px, env(safe-area-inset-bottom));
+    }
+
+    .jp-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .jp-footer-about {
+        grid-column: auto;
+    }
+
+    .jp-footer-title {
+        font-size: 2rem;
+    }
+
+    .jp-footer-heading {
+        margin-bottom: 10px;
+        font-size: 1.75rem;
+    }
+
+    .jp-footer-menu .nav {
+        gap: 3px;
+    }
+
+    .jp-footer-menu .nav a {
+        display: inline-block;
+        padding-block: 4px;
+    }
+
+    .jp-footer-socials a {
+        width: 44px;
+        height: 44px;
+    }
+
+    .jp-footer-bottom {
+        flex-direction: column;
+        gap: 3px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Extra-small phones. */
+@media (max-width: 420px) {
+    #gh-navigation .gh-navigation-inner,
+    .home-template #gh-navigation .gh-navigation-inner {
+        padding-inline: 16px;
+    }
+
+    .home-template .jp-stream-container .gh-container-inner,
+    .jp-footer-subscribe,
+    .jp-footer-inner {
+        width: calc(100% - 28px);
+    }
+
+    .home-template .jp-entry.is-featured {
+        padding: 17px;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-title {
+        font-size: clamp(3rem, 10.5vw, 3.75rem);
+    }
+
+    .jp-footer-subscribe-actions .gh-form {
+        padding: 4px;
+    }
+
+    .jp-footer-subscribe-actions .gh-form-input {
+        padding-left: 10px;
+        font-size: 1.2rem;
+    }
+
+    .jp-footer-subscribe-actions .gh-form .gh-button {
+        min-width: 94px;
+        padding-inline: 10px;
+        font-size: 1.15rem;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me responsive refinement v10
+   iPhone overflow fix + tighter phone typography.
+   ========================================================== */
+@media (max-width: 767px) {
+    html,
+    body,
+    .gh-viewport {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .home-template .jp-stream-container,
+    .home-template .jp-stream-container .gh-container-inner,
+    .home-template .jp-stream-main,
+    .home-template .jp-stream,
+    .home-template .jp-entry,
+    .home-template .jp-entry-layout,
+    .home-template .jp-entry-copy {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .home-template .jp-stream-container .gh-container-inner {
+        width: 100%;
+        padding-inline: 20px;
+        margin-inline: auto;
+        overflow: visible;
+    }
+
+    .home-template .jp-entry-title,
+    .home-template .jp-entry-note,
+    .home-template .jp-entry-excerpt,
+    .home-template .jp-entry-link-content,
+    .home-template .jp-entry-media-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .home-template .jp-entry-title,
+    .home-template .jp-entry.is-link .jp-entry-title,
+    .home-template .jp-entry.is-media .jp-entry-title {
+        font-size: clamp(2.35rem, 7.4vw, 2.95rem);
+        line-height: 1.08;
+    }
+
+    .home-template .jp-entry.is-short .jp-entry-note {
+        font-size: 1.78rem;
+        line-height: 1.48;
+    }
+
+    .home-template .jp-entry.is-featured {
+        width: 100%;
+        max-width: 100%;
+        padding: 18px;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-title {
+        font-size: clamp(2.95rem, 9vw, 3.65rem);
+        line-height: 1.02;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-excerpt {
+        font-size: 1.48rem;
+        line-height: 1.48;
+    }
+}
+
+@media (max-width: 420px) {
+    .home-template .jp-stream-container .gh-container-inner {
+        width: 100%;
+        padding-inline: 16px;
+    }
+
+    .home-template .jp-entry.is-featured {
+        padding: 16px;
+    }
+
+    .home-template .jp-entry.is-featured .jp-entry-title {
+        font-size: clamp(2.8rem, 8.8vw, 3.35rem);
+    }
+
+    .home-template .jp-entry.is-short .jp-entry-note {
+        font-size: 1.72rem;
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me responsive refinement v11
+   True mobile-width fix: let the outer shell own horizontal padding.
+   ========================================================== */
+@media (max-width: 767px) {
+    .home-template .jp-stream-container.gh-outer {
+        width: 100%;
+        max-width: 100%;
+        padding-inline: 20px;
+    }
+
+    .home-template .jp-stream-container .gh-container-inner {
+        display: block !important;
+        width: auto !important;
+        max-width: none !important;
+        margin-inline: 0 !important;
+        padding-inline: 0 !important;
+        overflow: visible !important;
+    }
+
+    .home-template .jp-stream-main,
+    .home-template .jp-stream,
+    .home-template .jp-entry,
+    .home-template .jp-entry-layout,
+    .home-template .jp-entry-copy {
+        display: block;
+        width: auto !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin-inline: 0;
+    }
+
+    .home-template .jp-entry.is-featured {
+        width: auto !important;
+        margin-inline: 0 !important;
+    }
+
+    .home-template .jp-entry-title,
+    .home-template .jp-entry-title a,
+    .home-template .jp-entry-note,
+    .home-template .jp-entry-note > *,
+    .home-template .jp-entry-excerpt,
+    .home-template .jp-entry-link-content,
+    .home-template .jp-entry-media-content {
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+}
+
+@media (max-width: 420px) {
+    .home-template .jp-stream-container.gh-outer {
+        padding-inline: 16px;
+    }
+}
+
+
+/* ==========================================================
+   JeffPerry.me responsive refinement v11
+   Pin mobile controls to the far-right edge of the header.
+   ========================================================== */
+@media (max-width: 767px) {
+    #gh-navigation .gh-navigation-inner,
+    .home-template #gh-navigation .gh-navigation-inner {
+        position: relative;
+        display: block !important;
+        width: 100%;
+        max-width: none;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #gh-navigation .gh-navigation-brand {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 64px;
+        padding-right: 88px;
+    }
+
+    #gh-navigation .jp-navigation-identity {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    #gh-navigation .gh-navigation-brand > .gh-search {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        margin: 0;
+        transform: translateY(-50%);
+    }
+
+    #gh-navigation .gh-navigation-brand > .gh-burger {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin: 0;
+        transform: translateY(-50%);
+    }
+}
+
+/* ==========================================================
+   JeffPerry.me About page — final production styles
+   ========================================================== */
+.jp-about-page {
+    --about-card: var(--jp-paper-deep);
+}
+
+.page-template .jp-about-page .gh-article-header,
+.page-template .jp-about-page .gh-content {
+    width: min(100% - 48px, 760px) !important;
+    max-width: 760px !important;
+    margin-inline: auto !important;
+}
+
+.jp-about-page .gh-article-header {
+    padding-top: 54px;
+}
+
+.page-template .jp-about-page .gh-content {
+    padding-top: 0 !important;
+    padding-bottom: 28px;
+    color: #343638;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1.72rem;
+    line-height: 1.72 !important;
+}
+
+.page-template .jp-about-page .gh-content:only-child > *:first-child:not(.kg-width-full) {
+    margin-top: 22px !important;
+}
+
+.jp-about-page .gh-content > :first-child,
+.jp-about-page .gh-content > p:first-of-type,
+.page-template .jp-about-page .gh-content h1:first-child + p {
+    margin-top: 0 !important;
+}
+
+.jp-about-page .gh-content h1,
+.jp-about-page .gh-content h2,
+.jp-about-page .gh-content h3 {
+    color: var(--jp-ink);
+    font-family: "EB Garamond", Georgia, serif;
+    letter-spacing: -.025em;
+}
+
+.page-template .jp-about-page .gh-content h1:first-child {
+    margin-bottom: 22px !important;
+}
+
+.jp-about-page .gh-content h1 {
+    font-size: clamp(4rem, 6vw, 5.6rem);
+    font-weight: 650;
+    line-height: 1.02;
+}
+
+.jp-about-page .gh-content h2 {
+    margin-top: 36px;
+    margin-bottom: 10px;
+    font-size: clamp(2.8rem, 4vw, 3.6rem);
+    font-weight: 650;
+    line-height: 1.08;
+}
+
+.jp-about-page .gh-content h3 {
+    margin-top: 38px;
+    margin-bottom: 12px;
+    font-size: 2.5rem;
+}
+
+.page-template .jp-about-page .gh-content p,
+.page-template .jp-about-page .gh-content li {
+    line-height: 1.72 !important;
+}
+
+.jp-about-page .gh-content p {
+    max-width: 760px;
+}
+
+.jp-about-page .gh-content p + p {
+    margin-top: 16px;
+}
+
+.jp-about-page .gh-content a {
+    color: var(--jp-blue);
+    text-decoration-thickness: 1px;
+    text-underline-offset: .16em;
+}
+
+/* Broad editor cards keep the same warm surface language. */
+.jp-about-page .gh-content .kg-card:not(.kg-image-card):not(.kg-gallery-card):not(.kg-video-card):not(.kg-audio-card):not(.kg-file-card):not(.kg-bookmark-card):not(.kg-signup-card),
+.jp-about-page .gh-content .kg-callout-card {
+    overflow: hidden;
+    margin-top: 42px;
+    margin-bottom: 42px;
+    padding: clamp(26px, 5vw, 52px) !important;
+    background: var(--about-card) !important;
+    border: 1px solid rgba(74, 63, 45, .10);
+    border-radius: 18px;
+    box-shadow: 0 12px 34px rgba(82, 61, 29, .04);
+}
+
+.jp-about-page + .jp-footer,
+.page-template .jp-footer {
+    margin-top: 68px;
+}
+
+/* The editor's native signup card is replaced at DOMContentLoaded by the
+   purpose-built Weeklyish card in page.hbs. Hide it during that tiny handoff
+   so the old Ghost layout never flashes on screen. */
+.page-template .jp-about-page .gh-content .kg-signup-card {
+    visibility: hidden;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) minmax(300px, 360px);
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    margin: 30px 0 38px;
+    padding: 20px 22px;
+    background: var(--jp-paper-deep);
+    border: 1px solid rgba(74, 63, 45, .10);
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(82, 61, 29, .04);
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    color: #6f8c78;
+    background: #eee6d3;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-copy {
+    min-width: 0;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-copy h2 {
+    margin: 0 0 3px !important;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 2.35rem !important;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -.02em;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-copy p {
+    margin: 0 !important;
+    max-width: 34ch;
+    color: var(--jp-muted);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1.22rem;
+    line-height: 1.4 !important;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-form {
+    min-width: 0;
+    width: 100%;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-form .kg-signup-card-form,
+.page-template .jp-about-page .jp-about-weeklyish-form form {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    text-align: left !important;
+    visibility: visible !important;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-form .kg-signup-card-fields,
+.page-template .jp-about-page .jp-about-weeklyish-form form > div:first-child {
+    display: flex !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, .58) !important;
+    border: 1px solid rgba(29, 32, 34, .10) !important;
+    border-radius: 10px !important;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-form input[type="email"] {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: 44px !important;
+    padding: 0 14px !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-size: 1.3rem !important;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-form button,
+.page-template .jp-about-page .jp-about-weeklyish-form .kg-signup-card-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    min-width: 104px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    margin: 0 !important;
+    padding: 0 16px !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    background: #24292d !important;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-size: 1.23rem !important;
+    font-weight: 650 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+.page-template .jp-about-page .jp-about-weeklyish-form p,
+.page-template .jp-about-page .jp-about-weeklyish-form small,
+.page-template .jp-about-page .jp-about-weeklyish-form [data-members-error] {
+    margin: 5px 0 0 !important;
+    color: var(--jp-muted) !important;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+    text-align: left !important;
+}
+
+@media (max-width: 900px) {
+    .page-template .jp-about-page .jp-about-weeklyish {
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 12px 14px;
+    }
+
+    .page-template .jp-about-page .jp-about-weeklyish-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .page-template .jp-about-page .jp-about-weeklyish-form {
+        grid-column: 1 / -1;
+        margin-top: 2px;
+    }
+
+    .page-template .jp-about-page .jp-about-weeklyish-copy p {
+        max-width: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .page-template .jp-about-page .gh-article-header,
+    .page-template .jp-about-page .gh-content {
+        width: calc(100% - 32px) !important;
+    }
+
+    .page-template .jp-about-page .gh-content {
+        font-size: 1.58rem;
+        line-height: 1.66 !important;
+    }
+
+    .page-template .jp-about-page .gh-content p,
+    .page-template .jp-about-page .gh-content li {
+        line-height: 1.66 !important;
+    }
+
+    .page-template .jp-about-page .gh-content:only-child > *:first-child:not(.kg-width-full) {
+        margin-top: 14px !important;
+    }
+
+    .jp-about-page .gh-content h1 {
+        font-size: clamp(3.6rem, 11vw, 4.5rem);
+    }
+
+    .jp-about-page .gh-content h2 {
+        margin-top: 36px;
+        font-size: clamp(2.65rem, 8vw, 3.25rem);
+    }
+
+    .jp-about-page .gh-content .kg-card:not(.kg-image-card):not(.kg-gallery-card):not(.kg-video-card):not(.kg-audio-card):not(.kg-file-card):not(.kg-bookmark-card):not(.kg-signup-card),
+    .jp-about-page .gh-content .kg-callout-card {
+        margin-top: 32px;
+        margin-bottom: 32px;
+        padding: 24px 20px !important;
+        border-radius: 16px;
+    }
+
+    .page-template .jp-about-page .jp-about-weeklyish {
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 10px 12px;
+        margin: 24px 0 30px;
+        padding: 18px;
+    }
+
+    .page-template .jp-about-page .jp-about-weeklyish-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .page-template .jp-about-page .jp-about-weeklyish-copy h2 {
+        font-size: 2.05rem !important;
+    }
+
+    .page-template .jp-about-page .jp-about-weeklyish-copy p {
+        font-size: 1.16rem;
+    }
+}
+
+/* Compact post-type marker spacing. */
+.home-template .jp-entry-kind {
+    gap: 3px !important;
+}
+
+.home-template .jp-entry-kind-icon {
+    margin-right: 0 !important;
+}
+
+/* ==========================================================
+   JeffPerry.me post-type archives
+   Real public archive pages backed by internal post-type tags.
+   ========================================================== */
+.jp-type-archive-header {
+    width: min(100% - 64px, 1180px);
+    max-width: 1180px;
+    padding-top: 42px;
+    padding-bottom: 10px;
+}
+
+.jp-type-archive-header .gh-archive-inner {
+    max-width: 760px;
+}
+
+.jp-type-archive-header .gh-article-title {
+    margin: 0;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(4rem, 6vw, 5.8rem);
+    font-weight: 650;
+    line-height: 1;
+    letter-spacing: -.035em;
+}
+
+.jp-type-archive-header .gh-article-excerpt {
+    max-width: 620px;
+    margin-top: 10px;
+    color: var(--jp-muted);
+    font-size: 1.55rem;
+    line-height: 1.5;
+}
+
+.jp-type-archive .jp-stream-container {
+    padding-top: 0;
+}
+
+@media (max-width: 767px) {
+    .jp-type-archive-header {
+        width: calc(100% - 32px);
+        padding-top: 22px;
+        padding-bottom: 4px;
+    }
+
+    .jp-type-archive-header .gh-article-title {
+        font-size: clamp(3.6rem, 12vw, 4.8rem);
+    }
+
+    .jp-type-archive-header .gh-article-excerpt {
+        font-size: 1.45rem;
+    }
+}
+
+/* Link posts: the first external URL is routing metadata, not feed content. */
+.jp-entry.is-link .jp-link-target-row {
+    display: none !important;
+}
+
+/* Archive refinement: give Link and Media permalink metadata room to breathe. */
+.jp-type-archive .jp-entry.is-link .jp-entry-time,
+.jp-type-archive .jp-entry.is-media .jp-entry-time {
+    display: inline-block;
+    margin-top: 1.8rem;
+}
+
+@media (max-width: 767px) {
+    .jp-type-archive .jp-entry.is-link .jp-entry-time,
+    .jp-type-archive .jp-entry.is-media .jp-entry-time {
+        margin-top: 1.5rem;
+    }
+}

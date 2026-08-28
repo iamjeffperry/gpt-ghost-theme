@@ -1,0 +1,68 @@
+{{!--
+    JeffPerry.me chronological stream.
+
+    Parameters:
+    * feed (index, home, archive)
+    * showTitle (true, false)
+    * showSidebar (true, false)
+--}}
+
+<section class="gh-container jp-stream-container gh-outer">
+    <div class="gh-container-inner gh-inner">
+
+        <main class="gh-main jp-stream-main">
+            <div class="gh-feed jp-stream">
+
+                {{!-- Homepage:
+                      - If a Featured post exists, show the newest Featured post first.
+                      - Then show the remaining posts chronologically, skipping Featured posts.
+                      - If no Featured post exists, show the normal chronological feed. --}}
+                {{#match feed "home"}}
+                    {{#get "posts" filter="featured:true" include="authors,tags" limit="1" as |featuredPosts|}}
+                        {{#if featuredPosts}}
+                            {{#foreach featuredPosts}}
+                                {{> "post-card" lazyLoad=false featuredCard=true}}
+                            {{/foreach}}
+
+                            {{#get "posts" include="authors,tags" limit=@config.posts_per_page}}
+                                {{#foreach posts}}
+                                    {{#unless featured}}
+                                        {{> "post-card" lazyLoad=true}}
+                                    {{/unless}}
+                                {{/foreach}}
+                            {{/get}}
+                        {{else}}
+                            {{#get "posts" include="authors,tags" limit=@config.posts_per_page}}
+                                {{#foreach posts}}
+                                    {{> "post-card" lazyLoad=true}}
+                                {{/foreach}}
+                            {{/get}}
+                        {{/if}}
+                    {{/get}}
+                {{/match}}
+
+                {{!-- Main index / paginated archive. --}}
+                {{#match feed "index"}}
+                    {{#foreach posts}}
+                        {{> "post-card" lazyLoad=true}}
+                    {{/foreach}}
+                {{/match}}
+
+                {{!-- Tag and author pages. --}}
+                {{#match feed "archive"}}
+                    {{#foreach posts}}
+                        {{> "post-card" lazyLoad=true}}
+                    {{/foreach}}
+                {{/match}}
+
+            </div>
+
+            {{#match pagination.pages ">" 1}}
+                <div class="gh-more jp-more-posts is-title">
+                    <a href="{{@site.url}}/page/2/">Older posts {{> "icons/arrow"}}</a>
+                </div>
+            {{/match}}
+        </main>
+
+    </div>
+</section>

@@ -1,0 +1,60 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+{{#post}}
+
+<main class="gh-main">
+    <article class="gh-article {{post_class}}{{#match slug "about"}} jp-about-page{{/match}}">
+
+        {{#match @page.show_title_and_feature_image}}
+            <header class="gh-article-header gh-canvas">
+                <h1 class="gh-article-title is-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                    <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
+                {{/if}}
+                {{> "feature-image"}}
+            </header>
+        {{/match}}
+
+        <section class="gh-content gh-canvas is-body">
+            {{content}}
+        </section>
+
+        {{#match slug "about"}}
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const card = document.querySelector('.jp-about-page .kg-signup-card');
+            if (!card || card.dataset.jpRebuilt === 'true') return;
+
+            const nativeFormWrap = card.querySelector('.kg-signup-card-form');
+            const nativeForm = nativeFormWrap || card.querySelector('form');
+            if (!nativeForm) return;
+
+            const weeklyish = document.createElement('section');
+            weeklyish.className = 'jp-about-weeklyish';
+            weeklyish.setAttribute('aria-label', 'Subscribe to Weeklyish');
+            weeklyish.innerHTML = `
+                <div class="jp-about-weeklyish-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img">
+                        <path d="M4 6.5h16v11H4z"></path>
+                        <path d="m4.7 7.2 7.3 5.7 7.3-5.7"></path>
+                    </svg>
+                </div>
+                <div class="jp-about-weeklyish-copy">
+                    <h2>Weeklyish</h2>
+                    <p>A low-pressure newsletter about interesting things worth slowing down for.</p>
+                </div>
+                <div class="jp-about-weeklyish-form"></div>
+            `;
+
+            weeklyish.querySelector('.jp-about-weeklyish-form').appendChild(nativeForm);
+            card.dataset.jpRebuilt = 'true';
+            card.replaceWith(weeklyish);
+        });
+        </script>
+        {{/match}}
+
+    </article>
+</main>
+
+{{/post}}
