@@ -2924,6 +2924,16 @@ body,
     background: var(--ghost-accent-color) !important;
 }
 
+.mf-footer-subscribe-icon {
+    color: var(--ghost-accent-color);
+    background: color-mix(in srgb, var(--ghost-accent-color) 16%, var(--background-color, #fbf8f1));
+}
+
+.mf-footer-subscribe-actions .gh-form .gh-button {
+    color: #fff;
+    background: var(--ghost-accent-color) !important;
+}
+
 /* A Link headline is the only visible external destination affordance. */
 .home-template .mf-entry.is-link .mf-entry-title a::after,
 .mf-type-archive .mf-entry.is-link .mf-entry-title a::after {
