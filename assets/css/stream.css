@@ -479,7 +479,7 @@ body,
 
 .home-template .gh-navigation-logo {
     top: 0 !important;
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 2.25rem;
     font-weight: 800;
     letter-spacing: -0.035em;
@@ -489,7 +489,7 @@ body,
 .mf-navigation-description {
     display: block;
     max-width: 310px;
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: 1.25rem;
     font-weight: 450;
     line-height: 1.45;
@@ -556,7 +556,7 @@ body,
     gap: 10px;
     margin-bottom: 12px;
     padding-top: 0;
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: 1.15rem;
 }
 
@@ -583,7 +583,7 @@ body,
 }
 
 .home-template .mf-entry-title {
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: clamp(2.6rem, 3.5vw, 3.8rem);
     font-weight: 650;
     line-height: 1.08;
@@ -593,7 +593,7 @@ body,
 .home-template .mf-entry-excerpt,
 .home-template .mf-entry-note,
 .home-template .mf-entry-content {
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-body, var(--font-sans));
     color: #303233;
 }
 
@@ -606,7 +606,7 @@ body,
 
 .home-template .mf-entry.is-short .mf-entry-note {
     max-width: 790px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: clamp(2.0rem, 2.8vw, 2.55rem);
     line-height: 1.4;
 }
@@ -727,7 +727,7 @@ body,
     border-radius: 999px;
     color: #755b20;
     background: #f3ead2;
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: .01em;
@@ -782,7 +782,7 @@ body,
     display: inline-block;
     margin-top: 18px;
     color: #666a6d;
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: 1.35rem;
     line-height: 1.4;
     text-decoration: none;
@@ -809,7 +809,7 @@ body,
     max-width: 830px;
     margin: 0;
     color: #202122;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: clamp(2.15rem, 2.9vw, 2.75rem);
     line-height: 1.42;
 }
@@ -828,7 +828,7 @@ body,
     display: none;
     margin-top: 7px;
     color: var(--post-type-color);
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: 1.35rem;
     font-weight: 600;
     text-decoration: none;
@@ -863,7 +863,7 @@ body,
 }
 
 .home-template .mf-entry-link-content .kg-bookmark-title {
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 2rem;
 }
 
@@ -1025,7 +1025,7 @@ body,
 .gh-navigation-logo,
 .home-template .gh-navigation-logo {
     position: static !important;
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 2rem;
     font-weight: 800;
     letter-spacing: -0.04em;
@@ -1149,7 +1149,7 @@ body,
 
 .home-template .mf-entry-title {
     max-width: 820px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: clamp(2.65rem, 3vw, 3.55rem);
     font-weight: 650;
     line-height: 1.08;
@@ -1178,7 +1178,7 @@ body,
 .home-template .mf-entry.is-short .mf-entry-note {
     max-width: 820px;
     color: #292b2c;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: clamp(1.8rem, 1.7vw, 2.05rem);
     line-height: 1.5;
 }
@@ -1256,7 +1256,7 @@ body,
 }
 
 .mf-footer-subscribe-title {
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: clamp(2.8rem, 3vw, 3.8rem);
     font-weight: 650;
     letter-spacing: -0.025em;
@@ -1767,7 +1767,7 @@ body,
 .home-template .mf-entry.is-link .mf-entry-title a::after {
     content: " ↗";
     display: inline;
-    font-family: var(--font-sans);
+    font-family: var(--gh-font-body, var(--font-sans));
     font-size: .55em;
     font-weight: 650;
     vertical-align: .18em;
@@ -1841,7 +1841,7 @@ body,
 
 .mf-footer-subscribe-title {
     margin: 0;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 2.45rem;
     font-weight: 650;
     line-height: 1;
@@ -1920,7 +1920,7 @@ body,
 }
 
 .mf-footer-title {
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 2.1rem;
     font-weight: 650;
     letter-spacing: -.02em;
@@ -1945,7 +1945,7 @@ body,
 .mf-footer-heading {
     display: block;
     margin-bottom: 12px;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 1.85rem;
     font-weight: 650;
 }
@@ -2061,7 +2061,7 @@ body,
    ========================================================== */
 .home-template .gh-navigation-logo,
 .gh-navigation-logo {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 2.25rem;
     font-weight: 680;
     letter-spacing: 0.015em;
@@ -2089,7 +2089,7 @@ body,
 
 .home-template .gh-navigation-logo,
 .gh-navigation-logo {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: 2.35rem;
     font-weight: 600;
     letter-spacing: 0.028em;
@@ -2294,7 +2294,7 @@ body,
 
     #gh-navigation.is-open .nav a {
         padding-block: 10px;
-        font-family: "EB Garamond", Georgia, serif;
+        font-family: var(--gh-font-body, var(--font-sans));
         font-size: 2.65rem;
         font-weight: 600;
         letter-spacing: -.02em;
@@ -2784,7 +2784,7 @@ body,
 
 .mf-type-archive-header .gh-article-title {
     margin: 0;
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: var(--gh-font-heading, var(--font-sans));
     font-size: clamp(4rem, 6vw, 5.8rem);
     font-weight: 650;
     line-height: 1;
@@ -2922,6 +2922,7 @@ body,
 #gh-navigation .gh-navigation-members .gh-button {
     color: #fff;
     background: var(--ghost-accent-color) !important;
+    border-radius: 9px !important;
 }
 
 .mf-footer-subscribe-icon {
@@ -2932,6 +2933,7 @@ body,
 .mf-footer-subscribe-actions .gh-form .gh-button {
     color: #fff;
     background: var(--ghost-accent-color) !important;
+    border-radius: 9px !important;
 }
 
 /* A Link headline is the only visible external destination affordance. */
