@@ -22,7 +22,6 @@ function cleanBuilt(done) {
         'assets/built/theme.css.map',
         'assets/built/source.js',
         'assets/built/source.js.map',
-        'assets/built/lucide.svg',
         'assets/built/theme-ui.js',
         'assets/built/theme-ui.js.map'
     ].forEach((file) => {
@@ -67,14 +66,6 @@ function fullJs(done) {
     ], handleError(done));
 }
 
-function lucideIcons(done) {
-    pump([
-        src('node_modules/lucide-static/sprite.svg'),
-        concat('lucide.svg'),
-        dest('assets/built/')
-    ], handleError(done));
-}
-
 function zipper(done) {
     const filename = require('./package.json').name + '.zip';
     pump([
@@ -91,7 +82,7 @@ function zipper(done) {
     ], handleError(done));
 }
 
-const build = series(cleanBuilt, parallel(css, fullJs, lucideIcons));
+const build = series(cleanBuilt, css, fullJs);
 
 exports.build = build;
 exports.zip = series(build, zipper);
