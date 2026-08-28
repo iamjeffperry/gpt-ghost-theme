@@ -19,6 +19,8 @@ Assign one internal tag to a post to change its presentation:
 
 Use only one post-type tag on each post. Regular public tags can still be used for topics and organization.
 
+Posts without one of these internal post-type tags are treated as standard posts, not Essays. Their first public tag and its Ghost accent color appear in the feed. If a post has no public tag, the type/tag marker is omitted. Add `#essay` explicitly when you want the Essay label and color.
+
 For compatibility with the original personal theme, `#micro` is accepted as an alias for `#note`, and `#image` is accepted as an alias for `#photo`.
 
 ### Link posts

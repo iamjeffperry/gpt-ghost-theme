@@ -2839,9 +2839,11 @@ body,
 
 /* Quote posts make the quotation the primary feed content. */
 .mf-entry.is-quote .mf-entry-quote {
+    width: 100%;
+    max-width: 860px;
     margin-top: 0;
-    font-size: clamp(1.9rem, 2.5vw, 2.45rem);
-    line-height: 1.5;
+    font-size: 1.6rem;
+    line-height: 1.55;
 }
 
 .mf-entry.is-quote .mf-entry-quote > :first-child {
@@ -2853,12 +2855,24 @@ body,
 }
 
 .mf-entry.is-quote .mf-entry-quote blockquote {
+    width: 100%;
+    max-width: 790px;
     margin: 0;
     padding-left: 1.15em;
     border-left: 4px solid var(--post-type-color, currentColor);
 }
 
 @media (max-width: 767px) {
+    .home-template .mf-entry.is-quote .mf-entry-quote,
+    .mf-type-archive .mf-entry.is-quote .mf-entry-quote {
+        max-width: 100%;
+        font-size: 1.48rem;
+    }
+
+    .mf-entry.is-quote .mf-entry-quote blockquote {
+        max-width: 100%;
+    }
+
     .mf-type-archive .mf-entry.is-link .mf-entry-time,
     .mf-type-archive .mf-entry.is-media .mf-entry-time {
         margin-top: 1.5rem;
@@ -3049,6 +3063,12 @@ body,
 .home-template .mf-entry-content > blockquote:first-child,
 .mf-type-archive .mf-entry-content > blockquote:first-child {
     margin-top: 0;
+}
+
+/* Untagged standard posts should not reserve space for an absent marker. */
+.mf-entry-meta:not(:has(.mf-featured-badge, .mf-entry-kind)) {
+    display: none;
+    margin-bottom: 0;
 }
 
 @media (max-width: 767px) {
