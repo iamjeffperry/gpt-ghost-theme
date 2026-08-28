@@ -14,7 +14,7 @@
         <div class="gh-container-inner gh-inner">
             <main class="gh-main mf-stream-main">
                 <div class="gh-feed mf-stream">
-                    {{#get "posts" filter="tag:-hash-note+tag:-hash-micro+tag:-hash-link+tag:-hash-media+tag:-hash-photo+tag:-hash-image+tag:-hash-quote" include="authors,tags" limit="100"}}
+                    {{#get "posts" filter="tag:hash-essay" include="authors,tags" limit="100"}}
                         {{#foreach posts}}
                             {{> "post-card" lazyLoad=true}}
                         {{/foreach}}

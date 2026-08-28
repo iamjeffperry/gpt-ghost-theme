@@ -9,6 +9,10 @@
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
+            {{#match name "#essay"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+
             {{#match name "#note"}}
                 {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
             {{/match}}

@@ -1,8 +1,9 @@
 <article
-    class="gh-card mf-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}} {{post_class}}{{#has tag="#note,#micro"}} is-short is-note{{/has}}{{#has tag="#photo,#image"}} is-image is-photo{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#has tag="#quote"}} is-quote{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
+    class="gh-card mf-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}} {{post_class}}{{#has tag="#essay"}} is-essay{{/has}}{{#has tag="#note,#micro"}} is-short is-note{{/has}}{{#has tag="#photo,#image"}} is-image is-photo{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#has tag="#quote"}} is-quote{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
+            {{#match name "#essay"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
             {{#match name "#note"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
             {{#match name "#micro"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
             {{#match name "#photo"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}

@@ -1,4 +1,9 @@
 (function () {
+    function firstPlainUrl(text) {
+        var match = (text || '').match(/https?:\/\/[^\s<>"']+/i);
+        return match ? match[0].replace(/[),.;!?]+$/, '') : null;
+    }
+
     function isExternal(url) {
         try {
             var target = new URL(url, window.location.href);
@@ -18,10 +23,24 @@
         var external = (bookmark && isExternal(bookmark.href)) ? bookmark : candidates.find(function (link) {
             return isExternal(link.href);
         });
+        var plainUrl = null;
+        var plainUrlRow = null;
 
-        if (!external) return;
+        if (!external) {
+            Array.from(content.querySelectorAll('p, li, figcaption')).some(function (row) {
+                var candidate = firstPlainUrl(row.textContent);
+                if (!candidate || !isExternal(candidate)) return false;
 
-        title.href = external.href;
+                plainUrl = candidate;
+                plainUrlRow = row;
+                return true;
+            });
+        }
+
+        var destination = external ? external.href : plainUrl;
+        if (!destination) return;
+
+        title.href = destination;
 
         // The first external URL is metadata for a Link post, not feed content.
         // Hide only the row/card that contains that destination URL; keep the
@@ -29,22 +48,16 @@
         // unaffected because this script only targets .mf-entry feed cards.
         var targetRow = null;
 
-        if (bookmark && external === bookmark) {
+        if (plainUrlRow) {
+            targetRow = plainUrlRow;
+        } else if (bookmark && external === bookmark) {
             targetRow = bookmark.closest('.kg-bookmark-card') || bookmark.closest('figure');
         } else {
             var paragraph = external.closest('p');
             if (paragraph && content.contains(paragraph)) {
-                var copy = paragraph.cloneNode(true);
-                copy.querySelectorAll('a').forEach(function (link) {
-                    link.remove();
-                });
-
-                // Obsidian-style destination rows such as
-                // [https://example.com](https://example.com):
-                // leave only punctuation after the anchor.
-                if (/^[\s:;,.!?–—-]*$/.test(copy.textContent || '')) {
-                    targetRow = paragraph;
-                }
+                targetRow = paragraph;
+            } else {
+                targetRow = external.closest('li, figure, .kg-card');
             }
         }
 

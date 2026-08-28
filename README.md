@@ -10,7 +10,7 @@ Assign one internal tag to a post to change its presentation:
 
 | Internal tag | Default label | Intended use |
 | --- | --- | --- |
-| none | Essay | Standard articles and long-form writing |
+| `#essay` | Essay | Standard articles and long-form writing |
 | `#note` | Note | Short, title-free thoughts shown directly in the feed |
 | `#link` | Link | External links with optional commentary |
 | `#photo` | Photo | Photographs, illustrations, and galleries |
@@ -27,7 +27,7 @@ The visible label and icon for every post type can be changed under **Ghost Admi
 
 Icons are a curated subset of [Lucide](https://lucide.dev). They are bundled with the theme, so the published site does not depend on a third-party icon CDN.
 
-To set a post-type color, open its internal tag in Ghost Admin and choose the tag's accent color. The theme uses that color for the post-type marker and related accents. Essays use the primary public tag's accent color when available, with the publication accent color as the fallback.
+To set a post-type color, open its internal tag in Ghost Admin and choose the tag's accent color. The theme uses that color for the post-type marker and related accents, including the `#essay` color for Essays.
 
 ## Archive routes
 
