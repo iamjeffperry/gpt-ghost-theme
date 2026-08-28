@@ -31,9 +31,9 @@ An existing Ghost Bookmark keeps its rich preview. Raw URLs and linked text are 
 
 ## Labels, icons, and colors
 
-The visible label and icon for every post type can be changed under **Ghost Admin → Settings → Design & branding → Customize → Theme**.
+The visible label and icon for every post type can be changed under **Ghost Admin → Settings → Design & branding → Customize → Theme → Homepage**.
 
-Icons are a curated subset of [Lucide](https://lucide.dev). They are bundled with the theme, so the published site does not depend on a third-party icon CDN.
+Each icon setting accepts any lowercase, kebab-case name from the [Lucide icon directory](https://lucide.dev/icons/). For example, enter `check-check`, `camera`, or `notebook-pen`—only the icon name, without HTML or brackets. The complete Lucide icon set is bundled with the theme, so the published site does not depend on a third-party icon CDN.
 
 To set a post-type color, open its internal tag in Ghost Admin and choose the tag's accent color. The theme uses that color for the post-type marker and related accents, including the `#essay` color for Essays.
 

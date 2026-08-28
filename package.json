@@ -1,7 +1,7 @@
 {
     "name": "gpt-ghost-theme",
     "description": "A flexible mixed-format Ghost theme for essays, notes, links, photos, media, and quotes",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "engines": {
         "ghost": ">=5.0.0",
         "node": ">=22.12.0"
@@ -56,6 +56,7 @@
         "gulp-uglify": "3.0.2",
         "gulp-zip": "6.1.0",
         "inquirer": "14.0.2",
+        "lucide-static": "1.35.0",
         "postcss": "8.5.16",
         "postcss-easy-import": "4.0.0",
         "pump": "3.0.4"
@@ -127,10 +128,10 @@
                 "group": "homepage"
             },
             "essay_icon": {
-                "type": "select",
-                "options": ["File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Link", "Image", "Camera", "Play", "Headphones", "Quote", "Bookmark"],
-                "default": "File text",
-                "group": "homepage"
+                "type": "text",
+                "default": "file-text",
+                "group": "homepage",
+                "description": "Lucide icon name, such as file-text. Browse icons at lucide.dev/icons"
             },
             "note_label": {
                 "type": "text",
@@ -138,10 +139,10 @@
                 "group": "homepage"
             },
             "note_icon": {
-                "type": "select",
-                "options": ["Message circle", "Circle", "Pen line", "File text", "Star", "Book open", "Link", "Image", "Camera", "Play", "Headphones", "Quote", "Bookmark"],
-                "default": "Message circle",
-                "group": "homepage"
+                "type": "text",
+                "default": "message-circle",
+                "group": "homepage",
+                "description": "Lucide icon name, such as check-check. Browse icons at lucide.dev/icons"
             },
             "link_label": {
                 "type": "text",
@@ -149,10 +150,10 @@
                 "group": "homepage"
             },
             "link_icon": {
-                "type": "select",
-                "options": ["Link", "Bookmark", "File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Image", "Camera", "Play", "Headphones", "Quote"],
-                "default": "Link",
-                "group": "homepage"
+                "type": "text",
+                "default": "link",
+                "group": "homepage",
+                "description": "Lucide icon name, such as link. Browse icons at lucide.dev/icons"
             },
             "photo_label": {
                 "type": "text",
@@ -160,10 +161,10 @@
                 "group": "homepage"
             },
             "photo_icon": {
-                "type": "select",
-                "options": ["Image", "Camera", "File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Link", "Play", "Headphones", "Quote", "Bookmark"],
-                "default": "Image",
-                "group": "homepage"
+                "type": "text",
+                "default": "image",
+                "group": "homepage",
+                "description": "Lucide icon name, such as camera. Browse icons at lucide.dev/icons"
             },
             "media_label": {
                 "type": "text",
@@ -171,10 +172,10 @@
                 "group": "homepage"
             },
             "media_icon": {
-                "type": "select",
-                "options": ["Play", "Headphones", "File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Link", "Image", "Camera", "Quote", "Bookmark"],
-                "default": "Play",
-                "group": "homepage"
+                "type": "text",
+                "default": "play",
+                "group": "homepage",
+                "description": "Lucide icon name, such as headphones. Browse icons at lucide.dev/icons"
             },
             "quote_label": {
                 "type": "text",
@@ -182,10 +183,10 @@
                 "group": "homepage"
             },
             "quote_icon": {
-                "type": "select",
-                "options": ["Quote", "Message circle", "File text", "Pen line", "Star", "Book open", "Circle", "Link", "Image", "Camera", "Play", "Headphones", "Bookmark"],
-                "default": "Quote",
-                "group": "homepage"
+                "type": "text",
+                "default": "quote",
+                "group": "homepage",
+                "description": "Lucide icon name, such as quote. Browse icons at lucide.dev/icons"
             },
             "show_post_metadata": {
                 "type": "boolean",

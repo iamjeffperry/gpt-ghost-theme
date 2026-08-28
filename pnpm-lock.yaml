@@ -47,6 +47,9 @@ importers:
       inquirer:
         specifier: 14.0.2
         version: 14.0.2(@types/node@26.4.0)
+      lucide-static:
+        specifier: 1.35.0
+        version: 1.35.0
       postcss:
         specifier: 8.5.16
         version: 8.5.16
@@ -2329,6 +2332,9 @@ packages:
   lru-cache@11.5.2:
     resolution: {integrity: sha512-4pfM1Ff0x50o0tQwb5ucw/RzNyD0/YJME6IVcStalZuMWxdt3sR3huStTtxz4PUmvZfRguvDejasvQ2kifR11g==}
     engines: {node: 20 || >=22}
+
+  lucide-static@1.35.0:
+    resolution: {integrity: sha512-Mc0cSZXDF+JkVG5YCrTsiDE3jnUrhNE0HJxL/8JJAI6NBGBDuJQPCni4QBRtK1AXVAmU4SlD1DfQG66VStUNCg==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -5900,6 +5906,8 @@ snapshots:
   lowercase-keys@3.0.0: {}
 
   lru-cache@11.5.2: {}
+
+  lucide-static@1.35.0: {}
 
   magic-string@0.30.21:
     dependencies:
