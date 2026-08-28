@@ -114,13 +114,21 @@
                 {{/has}}
             {{/has}}
 
-            <a class="mf-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
-                <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
-                {{#unless featuredCard}}
-                    {{#has tag="#note,#micro,#link,#media,#photo,#image,#quote"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
+            {{#has tag="#photo,#image"}}
+                {{#unless feature_image}}
+                    <a class="mf-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                        <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                    </a>
                 {{/unless}}
-                {{#if featuredCard}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/if}}
-            </a>
+            {{else}}
+                <a class="mf-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                    <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                    {{#unless featuredCard}}
+                        {{#has tag="#note,#micro,#link,#media,#quote"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
+                    {{/unless}}
+                    {{#if featuredCard}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/if}}
+                </a>
+            {{/has}}
         </div>
 
         {{#if feature_image}}
@@ -139,6 +147,12 @@
                     >
                 </figure>
             </a>
+
+            {{#has tag="#photo,#image"}}
+                <a class="mf-entry-time mf-entry-photo-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                    <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                </a>
+            {{/has}}
         {{/if}}
     </div>
 </article>
