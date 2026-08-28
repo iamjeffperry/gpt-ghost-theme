@@ -2289,7 +2289,7 @@ body,
     }
 
     #gh-navigation.is-open .nav {
-        gap: 0;
+        gap: 14px;
     }
 
     #gh-navigation.is-open .nav a {
@@ -2301,10 +2301,21 @@ body,
     }
 
     #gh-navigation.is-open .gh-navigation-actions {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
         padding-bottom: max(24px, env(safe-area-inset-bottom));
     }
 
+    #gh-navigation.is-open .gh-navigation-members {
+        width: 100%;
+        align-items: center;
+    }
+
     #gh-navigation.is-open .gh-navigation-members .gh-button {
+        width: auto;
+        min-width: 112px;
         min-height: 46px;
         border-radius: 10px;
         font-size: 1.45rem;
