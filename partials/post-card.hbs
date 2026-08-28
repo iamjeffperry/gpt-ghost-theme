@@ -114,10 +114,14 @@
                 {{/has}}
             {{/has}}
 
-            {{#has tag="#photo,#image"}}
+            {{#has tag="#photo,#image,#essay"}}
                 {{#unless feature_image}}
                     <a class="mf-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
                         <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                        {{#unless featuredCard}}
+                            {{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
+                        {{/unless}}
+                        {{#if featuredCard}}{{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}{{/if}}
                     </a>
                 {{/unless}}
             {{else}}
@@ -152,6 +156,13 @@
                 <a class="mf-entry-time mf-entry-photo-time" href="{{url}}" aria-label="Permalink to {{title}}">
                     <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
                 </a>
+            {{else}}
+                {{#has tag="#essay"}}
+                    <a class="mf-entry-time mf-entry-essay-image-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                        <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                        {{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}
+                    </a>
+                {{/has}}
             {{/has}}
         {{/if}}
     </div>
