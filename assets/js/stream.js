@@ -13,14 +13,47 @@
         }
     }
 
-    function enhanceLinkPost(entry, titleSelector, contentSelector) {
-        var title = entry.querySelector(titleSelector);
-        var content = entry.querySelector(contentSelector);
-        if (!title || !content) return;
+    function bookmarkCardFor(link) {
+        var card = document.createElement('figure');
+        var anchor = document.createElement('a');
+        var content = document.createElement('div');
+        var title = document.createElement('div');
+        var description = document.createElement('div');
+        var metadata = document.createElement('div');
+        var publisher = document.createElement('span');
+        var parsed = new URL(link.destination, window.location.href);
 
-        var bookmark = content.querySelector('.kg-bookmark-container[href]');
+        card.className = 'kg-card kg-bookmark-card mf-generated-bookmark';
+        anchor.className = 'kg-bookmark-container';
+        anchor.href = link.destination;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        content.className = 'kg-bookmark-content';
+        title.className = 'kg-bookmark-title';
+        description.className = 'kg-bookmark-description';
+        metadata.className = 'kg-bookmark-metadata';
+        publisher.className = 'kg-bookmark-publisher';
+
+        title.textContent = link.label || parsed.hostname;
+        description.textContent = link.destination;
+        publisher.textContent = parsed.hostname.replace(/^www\./, '');
+
+        metadata.appendChild(publisher);
+        content.appendChild(title);
+        content.appendChild(description);
+        content.appendChild(metadata);
+        anchor.appendChild(content);
+        card.appendChild(anchor);
+
+        return card;
+    }
+
+    function findLinkDestination(content) {
+        var bookmark = Array.from(content.querySelectorAll('.kg-bookmark-container[href]')).find(function (link) {
+            return isExternal(link.href);
+        });
         var candidates = Array.from(content.querySelectorAll('a[href]'));
-        var external = (bookmark && isExternal(bookmark.href)) ? bookmark : candidates.find(function (link) {
+        var external = bookmark || candidates.find(function (link) {
             return isExternal(link.href);
         });
         var plainUrl = null;
@@ -38,12 +71,8 @@
         }
 
         var destination = external ? external.href : plainUrl;
-        if (!destination) return;
+        if (!destination) return null;
 
-        title.href = destination;
-
-        // The first external URL is routing metadata for the Link title. Hide
-        // its row/card while preserving quotations and commentary that follow.
         var targetRow = null;
 
         if (plainUrlRow) {
@@ -52,25 +81,53 @@
             targetRow = bookmark.closest('.kg-bookmark-card') || bookmark.closest('figure');
         } else {
             var paragraph = external.closest('p');
-            if (paragraph && content.contains(paragraph)) {
-                targetRow = paragraph;
-            } else {
-                targetRow = external.closest('li, figure, .kg-card');
-            }
+            targetRow = paragraph && content.contains(paragraph)
+                ? paragraph
+                : external.closest('li, figure, .kg-card');
         }
 
-        if (targetRow) {
-            targetRow.classList.add('mf-link-target-row');
+        var label = external ? external.textContent.trim() : '';
+        if (!label || firstPlainUrl(label) === label) {
+            label = new URL(destination, window.location.href).hostname.replace(/^www\./, '');
+        }
+
+        return {
+            bookmarkCard: bookmark ? targetRow : null,
+            destination: destination,
+            label: label,
+            targetRow: targetRow
+        };
+    }
+
+    function enhanceLinkPost(entry, titleSelector, contentSelector, showBookmark) {
+        var title = entry.querySelector(titleSelector);
+        var content = entry.querySelector(contentSelector);
+        if (!title || !content) return;
+
+        var link = findLinkDestination(content);
+        if (!link) return;
+
+        title.href = link.destination;
+
+        if (showBookmark) {
+            if (link.bookmarkCard) {
+                content.insertBefore(link.bookmarkCard, content.firstChild);
+            } else {
+                content.insertBefore(bookmarkCardFor(link), content.firstChild);
+                if (link.targetRow) link.targetRow.remove();
+            }
+        } else if (link.targetRow) {
+            link.targetRow.classList.add('mf-link-target-row');
         }
 
         entry.classList.add('has-external-target');
     }
 
     document.querySelectorAll('.mf-entry.is-link').forEach(function (entry) {
-        enhanceLinkPost(entry, '.mf-entry-external-title', '.mf-entry-link-content');
+        enhanceLinkPost(entry, '.mf-entry-external-title', '.mf-entry-link-content', false);
     });
 
     document.querySelectorAll('.gh-article.is-link-post').forEach(function (entry) {
-        enhanceLinkPost(entry, '.mf-post-external-title', '.mf-post-link-content');
+        enhanceLinkPost(entry, '.mf-post-external-title', '.mf-post-link-content', true);
     });
 })();

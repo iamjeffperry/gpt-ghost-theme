@@ -2819,12 +2819,8 @@ body,
     }
 }
 
-/* Link posts: the first external URL is routing metadata, not feed content. */
+/* Link posts: the destination card is routing metadata in the feed. */
 .mf-entry.is-link .mf-link-target-row {
-    display: none !important;
-}
-
-.gh-article.is-link-post .mf-link-target-row {
     display: none !important;
 }
 
@@ -3036,6 +3032,23 @@ body,
     .mf-entry-media-content
 ) {
     color: var(--mf-ink);
+}
+
+/* Use the individual-post blockquote treatment throughout the stream. */
+.home-template .mf-entry-content blockquote:not(.kg-blockquote-alt),
+.mf-type-archive .mf-entry-content blockquote:not(.kg-blockquote-alt),
+.post-template .gh-content > blockquote:not([class]) {
+    margin: 1.2em 0;
+    padding: 1.1em 1.25em;
+    border-left: 4px solid var(--post-type-color, var(--ghost-accent-color));
+    border-radius: 0 10px 10px 0;
+    color: inherit;
+    background: color-mix(in srgb, var(--background-color, #fbf8f1) 88%, var(--post-type-color, #777));
+}
+
+.home-template .mf-entry-content > blockquote:first-child,
+.mf-type-archive .mf-entry-content > blockquote:first-child {
+    margin-top: 0;
 }
 
 @media (max-width: 767px) {

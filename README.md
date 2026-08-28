@@ -21,6 +21,12 @@ Use only one post-type tag on each post. Regular public tags can still be used f
 
 For compatibility with the original personal theme, `#micro` is accepted as an alias for `#note`, and `#image` is accepted as an alias for `#photo`.
 
+### Link posts
+
+Add `#link`, then put the destination in the post as the first external raw URL, linked text, or Ghost Bookmark card. The theme makes the title point directly to that destination on both the feed and post page. It hides the destination card in feeds and moves it to the top of the individual post.
+
+An existing Ghost Bookmark keeps its rich preview. Raw URLs and linked text are converted in the browser to a simpler bookmark card containing the supplied label, hostname, and URL.
+
 ## Labels, icons, and colors
 
 The visible label and icon for every post type can be changed under **Ghost Admin → Settings → Design & branding → Customize → Theme**.
