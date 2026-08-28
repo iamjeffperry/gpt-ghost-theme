@@ -13,9 +13,9 @@
         }
     }
 
-    document.querySelectorAll('.mf-entry.is-link').forEach(function (entry) {
-        var title = entry.querySelector('.mf-entry-external-title');
-        var content = entry.querySelector('.mf-entry-link-content');
+    function enhanceLinkPost(entry, titleSelector, contentSelector) {
+        var title = entry.querySelector(titleSelector);
+        var content = entry.querySelector(contentSelector);
         if (!title || !content) return;
 
         var bookmark = content.querySelector('.kg-bookmark-container[href]');
@@ -42,10 +42,8 @@
 
         title.href = destination;
 
-        // The first external URL is metadata for a Link post, not feed content.
-        // Hide only the row/card that contains that destination URL; keep the
-        // quote and the author's commentary visible. Individual post pages are
-        // unaffected because this script only targets .mf-entry feed cards.
+        // The first external URL is routing metadata for the Link title. Hide
+        // its row/card while preserving quotations and commentary that follow.
         var targetRow = null;
 
         if (plainUrlRow) {
@@ -66,5 +64,13 @@
         }
 
         entry.classList.add('has-external-target');
+    }
+
+    document.querySelectorAll('.mf-entry.is-link').forEach(function (entry) {
+        enhanceLinkPost(entry, '.mf-entry-external-title', '.mf-entry-link-content');
+    });
+
+    document.querySelectorAll('.gh-article.is-link-post').forEach(function (entry) {
+        enhanceLinkPost(entry, '.mf-post-external-title', '.mf-post-link-content');
     });
 })();

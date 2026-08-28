@@ -2824,6 +2824,16 @@ body,
     display: none !important;
 }
 
+.gh-article.is-link-post .mf-link-target-row {
+    display: none !important;
+}
+
+.mf-post-external-title,
+.mf-post-external-title:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
 /* Archive refinement: give Link and Media permalink metadata room to breathe. */
 .mf-type-archive .mf-entry.is-link .mf-entry-time,
 .mf-type-archive .mf-entry.is-media .mf-entry-time {

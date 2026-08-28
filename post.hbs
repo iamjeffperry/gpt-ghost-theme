@@ -5,7 +5,7 @@
 
 <main class="gh-main">
 
-    <article class="gh-article {{post_class}}"
+    <article class="gh-article {{post_class}}{{#has tag="#link"}} is-link-post{{/has}}"
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
@@ -49,7 +49,13 @@
             {{#if primary_tag}}
                 <a class="gh-article-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
             {{/if}}
-            <h1 class="gh-article-title is-title">{{title}}</h1>
+            <h1 class="gh-article-title is-title">
+                {{#has tag="#link"}}
+                    <a class="mf-post-external-title" href="{{url}}" data-local-url="{{url}}">{{title}}</a>
+                {{else}}
+                    {{title}}
+                {{/has}}
+            </h1>
             {{#if custom_excerpt}}
                 <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
             {{/if}}
@@ -88,7 +94,7 @@
 
         </header>
 
-        <section class="gh-content gh-canvas is-body{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">
+        <section class="gh-content gh-canvas is-body{{#has tag="#link"}} mf-post-link-content{{/has}}{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">
             {{content}}
         </section>
 
