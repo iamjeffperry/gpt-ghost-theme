@@ -3003,6 +3003,10 @@ body,
     border-radius: 9px !important;
 }
 
+.mf-footer-subscribe-actions .gh-form {
+    border-radius: 14px !important;
+}
+
 /* A Link headline is the only visible external destination affordance. */
 .home-template .mf-entry.is-link .mf-entry-title a::after,
 .mf-type-archive .mf-entry.is-link .mf-entry-title a::after {
@@ -3061,6 +3065,7 @@ body,
     margin-inline: 0;
     object-fit: contain;
     aspect-ratio: auto;
+    border-radius: 14px;
 }
 
 .home-template .mf-entry.is-image .mf-entry-image-content :is(.kg-image-card, .kg-gallery-card),
