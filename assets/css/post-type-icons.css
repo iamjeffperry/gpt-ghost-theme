@@ -19,6 +19,7 @@
     height: 1.45rem;
     flex: 0 0 1.45rem;
     color: var(--post-type-color, currentColor);
+    transform: translateY(-1px);
 }
 
 .mf-entry-kind-icon svg {
