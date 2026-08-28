@@ -1,7 +1,7 @@
 {{!< default}}
 
-<main class="gh-main gh-outer jp-type-archive">
-    <section class="gh-archive gh-inner jp-type-archive-header">
+<main class="gh-main gh-outer mf-type-archive">
+    <section class="gh-archive gh-inner mf-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
                 <h1 class="gh-article-title is-title">{{#if @custom.essay_label}}{{@custom.essay_label}}{{else}}Essays{{/if}}</h1>
@@ -10,10 +10,10 @@
         </div>
     </section>
 
-    <section class="gh-container jp-stream-container gh-outer">
+    <section class="gh-container mf-stream-container gh-outer">
         <div class="gh-container-inner gh-inner">
-            <main class="gh-main jp-stream-main">
-                <div class="gh-feed jp-stream">
+            <main class="gh-main mf-stream-main">
+                <div class="gh-feed mf-stream">
                     {{#get "posts" filter="tag:-hash-note+tag:-hash-micro+tag:-hash-link+tag:-hash-media+tag:-hash-photo+tag:-hash-image+tag:-hash-quote" include="authors,tags" limit="100"}}
                         {{#foreach posts}}
                             {{> "post-card" lazyLoad=true}}

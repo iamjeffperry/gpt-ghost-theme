@@ -10,9 +10,9 @@
     {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
     {{> "typography/fonts"}}
 
-    {{!-- Production stylesheet: Source + JeffPerry.me overrides + post-type icons.
+    {{!-- Production stylesheet: Source + Mixed-format theme overrides + post-type icons.
           One request is noticeably kinder to slow mobile connections. --}}
-    <link rel="stylesheet" type="text/css" href="{{asset "built/jeffperry.css"}}">
+    <link rel="stylesheet" type="text/css" href="{{asset "built/theme.css"}}">
 
     {{!-- Custom background color --}}
     <style>
@@ -60,13 +60,8 @@
     {{> "lightbox"}}
 {{/is}}
 
-{{!-- Full Source JS is useful on individual posts/pages for lightbox and responsive embeds.
-      Stream/archive pages use a tiny purpose-built bundle instead. --}}
-{{#is "post, page"}}
-    <script src="{{asset "built/source.js"}}" defer></script>
-{{else}}
-    <script src="{{asset "built/jeffperry-ui.js"}}" defer></script>
-{{/is}}
+{{!-- Navigation, responsive media, pagination, and mixed-format link behavior --}}
+<script src="{{asset "built/source.js"}}" defer></script>
 
 {{!-- Ghost outputs required functional scripts with this tag --}}
 {{ghost_foot}}

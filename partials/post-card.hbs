@@ -1,5 +1,5 @@
 <article
-    class="gh-card jp-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}} {{post_class}}{{#has tag="#note,#micro"}} is-short is-note{{/has}}{{#has tag="#photo,#image"}} is-image is-photo{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#has tag="#quote"}} is-quote{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
+    class="gh-card mf-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}} {{post_class}}{{#has tag="#note,#micro"}} is-short is-note{{/has}}{{#has tag="#photo,#image"}} is-image is-photo{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#has tag="#quote"}} is-quote{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
@@ -13,13 +13,13 @@
         {{/foreach}}
     "
 >
-    <div class="jp-entry-meta">
+    <div class="mf-entry-meta">
         {{#if featuredCard}}
-            <span class="jp-featured-badge"><span aria-hidden="true">★</span> Featured</span>
+            <span class="mf-featured-badge"><span aria-hidden="true">★</span> Featured</span>
         {{/if}}
 
-        <span class="jp-entry-kind">
-            <span class="jp-entry-kind-icon" aria-hidden="true">
+        <span class="mf-entry-kind">
+            <span class="mf-entry-kind-icon" aria-hidden="true">
                 {{#has tag="#note,#micro"}}
                     {{> "post-type-icon" icon=@custom.note_icon}}
                 {{else}}
@@ -42,7 +42,7 @@
                     {{/has}}
                 {{/has}}
             </span>
-            <span class="jp-entry-kind-label">
+            <span class="mf-entry-kind-label">
                 {{#has tag="#note,#micro"}}{{#if @custom.note_label}}{{@custom.note_label}}{{else}}Note{{/if}}
                 {{else}}{{#has tag="#photo,#image"}}{{#if @custom.photo_label}}{{@custom.photo_label}}{{else}}Photo{{/if}}
                 {{else}}{{#has tag="#link"}}{{#if @custom.link_label}}{{@custom.link_label}}{{else}}Link{{/if}}
@@ -54,47 +54,47 @@
 
     </div>
 
-    <div class="jp-entry-layout">
-        <div class="jp-entry-copy">
+    <div class="mf-entry-layout">
+        <div class="mf-entry-copy">
             {{#has tag="#note,#micro"}}
-                <div class="jp-entry-note jp-entry-content is-body">
+                <div class="mf-entry-note mf-entry-content is-body">
                     {{content}}
                 </div>
 
             {{else}}
                 {{#has tag="#quote"}}
-                    <div class="jp-entry-quote jp-entry-content is-body">
+                    <div class="mf-entry-quote mf-entry-content is-body">
                         {{content}}
                     </div>
 
                 {{else}}
                     {{#has tag="#link"}}
-                    <h2 class="jp-entry-title is-title">
-                        <a class="jp-entry-external-title" href="{{url}}" data-local-url="{{url}}">{{title}}</a>
+                    <h2 class="mf-entry-title is-title">
+                        <a class="mf-entry-external-title" href="{{url}}" data-local-url="{{url}}">{{title}}</a>
                     </h2>
-                    <a class="jp-entry-link-source" href="{{url}}" data-local-url="{{url}}" aria-label="Open linked website"></a>
-                    <div class="jp-entry-content jp-entry-link-content is-body">
+                    <a class="mf-entry-link-source" href="{{url}}" data-local-url="{{url}}" aria-label="Open linked website"></a>
+                    <div class="mf-entry-content mf-entry-link-content is-body">
                         {{content}}
                     </div>
 
                 {{else}}
-                    <h2 class="jp-entry-title is-title"><a href="{{url}}">{{title}}</a></h2>
+                    <h2 class="mf-entry-title is-title"><a href="{{url}}">{{title}}</a></h2>
 
                     {{#has tag="#media"}}
-                        <div class="jp-entry-content jp-entry-media-content is-body">
+                        <div class="mf-entry-content mf-entry-media-content is-body">
                             {{content}}
                         </div>
                     {{else}}
                         {{#has tag="#photo,#image"}}
-                            <div class="jp-entry-content jp-entry-image-content is-body">
+                            <div class="mf-entry-content mf-entry-image-content is-body">
                                 {{content}}
                             </div>
                         {{else}}
                             {{#if custom_excerpt}}
-                                <p class="jp-entry-excerpt is-body">{{custom_excerpt}}</p>
+                                <p class="mf-entry-excerpt is-body">{{custom_excerpt}}</p>
                             {{else}}
                                 {{#if excerpt}}
-                                    <p class="jp-entry-excerpt is-body">{{excerpt words="45"}}</p>
+                                    <p class="mf-entry-excerpt is-body">{{excerpt words="45"}}</p>
                                 {{/if}}
                             {{/if}}
                     {{/has}}
@@ -103,18 +103,18 @@
                 {{/has}}
             {{/has}}
 
-            <a class="jp-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
+            <a class="mf-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
                 <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
                 {{#unless featuredCard}}
-                    {{#has tag="#note,#micro,#link,#media,#photo,#image,#quote"}}{{else}}{{#if reading_time}}<span class="jp-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
+                    {{#has tag="#note,#micro,#link,#media,#photo,#image,#quote"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
                 {{/unless}}
-                {{#if featuredCard}}{{#if reading_time}}<span class="jp-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/if}}
+                {{#if featuredCard}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/if}}
             </a>
         </div>
 
         {{#if feature_image}}
-            <a class="jp-entry-image-link" href="{{url}}">
-                <figure class="jp-entry-image">
+            <a class="mf-entry-image-link" href="{{url}}">
+                <figure class="mf-entry-image">
                     <img
                         srcset="{{img_url feature_image size="s" format="webp"}} 320w,
                                 {{img_url feature_image size="m" format="webp"}} 600w,

@@ -8,10 +8,10 @@
         }
     }
 
-    document.querySelectorAll('.jp-entry.is-link').forEach(function (entry) {
-        var title = entry.querySelector('.jp-entry-external-title');
-        var source = entry.querySelector('.jp-entry-link-source');
-        var content = entry.querySelector('.jp-entry-link-content');
+    document.querySelectorAll('.mf-entry.is-link').forEach(function (entry) {
+        var title = entry.querySelector('.mf-entry-external-title');
+        var source = entry.querySelector('.mf-entry-link-source');
+        var content = entry.querySelector('.mf-entry-link-content');
         if (!title || !content) return;
 
         var bookmark = content.querySelector('.kg-bookmark-container[href]');
@@ -36,7 +36,7 @@
         // The first external URL is metadata for a Link post, not feed content.
         // Hide only the row/card that contains that destination URL; keep the
         // quote and the author's commentary visible. Individual post pages are
-        // unaffected because this script only targets .jp-entry feed cards.
+        // unaffected because this script only targets .mf-entry feed cards.
         var targetRow = null;
 
         if (bookmark && external === bookmark) {
@@ -59,7 +59,7 @@
         }
 
         if (targetRow) {
-            targetRow.classList.add('jp-link-target-row');
+            targetRow.classList.add('mf-link-target-row');
         }
 
         entry.classList.add('has-external-target');

@@ -1,5 +1,5 @@
 {{!--
-    JeffPerry.me chronological stream.
+    Mixed-format theme chronological stream.
 
     Parameters:
     * feed (index, home, archive)
@@ -7,11 +7,11 @@
     * showSidebar (true, false)
 --}}
 
-<section class="gh-container jp-stream-container gh-outer">
+<section class="gh-container mf-stream-container gh-outer">
     <div class="gh-container-inner gh-inner">
 
-        <main class="gh-main jp-stream-main">
-            <div class="gh-feed jp-stream">
+        <main class="gh-main mf-stream-main">
+            <div class="gh-feed mf-stream">
 
                 {{!-- Homepage:
                       - If a Featured post exists, show the newest Featured post first.
@@ -58,7 +58,7 @@
             </div>
 
             {{#match pagination.pages ">" 1}}
-                <div class="gh-more jp-more-posts is-title">
+                <div class="gh-more mf-more-posts is-title">
                     <a href="{{@site.url}}/page/2/">Older posts {{> "icons/arrow"}}</a>
                 </div>
             {{/match}}

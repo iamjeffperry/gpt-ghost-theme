@@ -38,11 +38,11 @@
     /*
      * Archive-specific reset:
      * Source's default list-feed styles can add their own borders/spacing.
-     * The homepage stream already supplies the separator through .jp-entry,
+     * The homepage stream already supplies the separator through .mf-entry,
      * so disable any extra card borders here and then restore exactly one
      * bottom rule per entry.
      */
-    .gh-archive-page .jp-stream > .gh-card {
+    .gh-archive-page .mf-stream > .gh-card {
         border-top: 0 !important;
         border-right: 0 !important;
         border-left: 0 !important;
@@ -50,18 +50,18 @@
         box-shadow: none !important;
     }
 
-    .gh-archive-page .jp-stream > .gh-card + .gh-card {
+    .gh-archive-page .mf-stream > .gh-card + .gh-card {
         border-top: 0 !important;
         margin-top: 0 !important;
     }
 
-    .gh-archive-page .jp-stream > .gh-card::before,
-    .gh-archive-page .jp-stream > .gh-card::after {
+    .gh-archive-page .mf-stream > .gh-card::before,
+    .gh-archive-page .mf-stream > .gh-card::after {
         display: none !important;
         content: none !important;
     }
 
-    .has-light-text .gh-archive-page .jp-stream > .gh-card {
+    .has-light-text .gh-archive-page .mf-stream > .gh-card {
         border-bottom-color: rgba(255, 255, 255, 0.2) !important;
     }
 </style>
@@ -80,10 +80,10 @@
     </div>
 
     {{!-- Use the exact same stream structure/classes as the homepage. --}}
-    <section class="gh-container jp-stream-container gh-outer">
+    <section class="gh-container mf-stream-container gh-outer">
         <div class="gh-container-inner gh-inner">
-            <main class="gh-main jp-stream-main">
-                <div class="gh-feed jp-stream">
+            <main class="gh-main mf-stream-main">
+                <div class="gh-feed mf-stream">
                     {{#get "posts" include="authors,tags" limit="100" order="published_at desc"}}
                         {{#foreach posts}}
                             {{> "post-card" lazyLoad=true}}

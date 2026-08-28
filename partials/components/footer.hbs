@@ -1,30 +1,30 @@
-<footer class="gh-footer jp-footer{{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}}">
+<footer class="gh-footer mf-footer{{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}}">
 
-    <div class="jp-footer-subscribe-wrap gh-outer">
-        <section class="jp-footer-subscribe gh-inner">
-            <div class="jp-footer-subscribe-icon" aria-hidden="true">
+    <div class="mf-footer-subscribe-wrap gh-outer">
+        <section class="mf-footer-subscribe gh-inner">
+            <div class="mf-footer-subscribe-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" role="img"><path d="M4 6.5h16v11H4z"/><path d="m4.7 7.2 7.3 5.7 7.3-5.7"/></svg>
             </div>
 
-            <div class="jp-footer-subscribe-copy">
-                <h2 class="jp-footer-subscribe-title is-title">Stay up to date</h2>
-                <p class="jp-footer-subscribe-text is-body">
+            <div class="mf-footer-subscribe-copy">
+                <h2 class="mf-footer-subscribe-title is-title">Stay up to date</h2>
+                <p class="mf-footer-subscribe-text is-body">
                     {{#if @site.description}}{{@site.description}}{{else}}New posts delivered directly to your inbox.{{/if}}
                 </p>
             </div>
 
-            <div class="jp-footer-subscribe-actions">
+            <div class="mf-footer-subscribe-actions">
                 {{#if @site.members_enabled}}
                     {{#unless @member}}
                         {{> "email-subscription" email_field_id="footer-email"}}
                     {{else}}
-                        <a class="jp-rss-pill" href="{{@site.url}}/rss/" aria-label="Subscribe by RSS">
+                        <a class="mf-rss-pill" href="{{@site.url}}/rss/" aria-label="Subscribe by RSS">
                             {{> "icons/rss"}}
                             <span>RSS Feed</span>
                         </a>
                     {{/unless}}
                 {{else}}
-                    <a class="jp-rss-pill" href="{{@site.url}}/rss/" aria-label="Subscribe by RSS">
+                    <a class="mf-rss-pill" href="{{@site.url}}/rss/" aria-label="Subscribe by RSS">
                         {{> "icons/rss"}}
                         <span>RSS Feed</span>
                     </a>
@@ -33,27 +33,27 @@
         </section>
     </div>
 
-    <div class="jp-footer-band gh-outer">
-        <div class="jp-footer-inner gh-inner">
-            <div class="jp-footer-grid">
-                <div class="jp-footer-about">
-                    <a class="jp-footer-title is-title" href="{{@site.url}}">{{@site.title}}</a>
-                    <p class="jp-footer-description is-body">
+    <div class="mf-footer-band gh-outer">
+        <div class="mf-footer-inner gh-inner">
+            <div class="mf-footer-grid">
+                <div class="mf-footer-about">
+                    <a class="mf-footer-title is-title" href="{{@site.url}}">{{@site.title}}</a>
+                    <p class="mf-footer-description is-body">
                         {{#if @site.description}}{{@site.description}}{{else}}A personal stream of things I write, notice, watch, and find interesting.{{/if}}
                     </p>
-                    <p class="jp-footer-philosophy is-body">Independent publishing, delivered directly.</p>
+                    <p class="mf-footer-philosophy is-body">Independent publishing, delivered directly.</p>
                 </div>
 
-                <div class="jp-footer-explore">
-                    <span class="jp-footer-heading">Explore</span>
-                    <nav class="jp-footer-menu" aria-label="Footer navigation">
+                <div class="mf-footer-explore">
+                    <span class="mf-footer-heading">Explore</span>
+                    <nav class="mf-footer-menu" aria-label="Footer navigation">
                         {{navigation}}
                     </nav>
                 </div>
 
-                <div class="jp-footer-follow">
-                    <span class="jp-footer-heading">Follow</span>
-                    <div class="jp-footer-socials">
+                <div class="mf-footer-follow">
+                    <span class="mf-footer-heading">Follow</span>
+                    <div class="mf-footer-socials">
                         {{#social_accounts @site}}
                             <a href="{{href}}" target="_blank" rel="noopener" aria-label="{{name}}" title="{{name}}">
                                 {{#> (concat "icons/" type)}}
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="jp-footer-bottom">
+            <div class="mf-footer-bottom">
                 <span>© {{date format="YYYY"}} {{@site.title}}</span>
                 <span>Powered by Ghost.</span>
             </div>

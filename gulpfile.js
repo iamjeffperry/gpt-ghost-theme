@@ -1,4 +1,5 @@
 const {parallel, series, src, dest, watch} = require('gulp');
+const {existsSync, unlinkSync} = require('fs');
 const pump = require('pump');
 const livereload = require('gulp-livereload');
 const postcss = require('gulp-postcss');
@@ -15,6 +16,20 @@ const handleError = done => err => {
     return done(err);
 };
 
+function cleanBuilt(done) {
+    [
+        'assets/built/theme.css',
+        'assets/built/theme.css.map',
+        'assets/built/source.js',
+        'assets/built/source.js.map',
+        'assets/built/theme-ui.js',
+        'assets/built/theme-ui.js.map'
+    ].forEach((file) => {
+        if (existsSync(file)) unlinkSync(file);
+    });
+    done();
+}
+
 function serve(done) {
     livereload.listen();
     done();
@@ -28,7 +43,7 @@ function css(done) {
     pump([
         src('assets/css/theme.css', {sourcemaps: true}),
         postcss([easyimport, autoprefixer(), cssnano()]),
-        concat('jeffperry.css'),
+        concat('theme.css'),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
@@ -36,18 +51,15 @@ function css(done) {
 
 function fullJs(done) {
     pump([
-        src(['assets/js/lib/*.js', 'assets/js/*.js'], {sourcemaps: true}),
+        src([
+            'assets/js/lib/*.js',
+            'assets/js/dropdown.js',
+            'assets/js/lightbox.js',
+            'assets/js/main.js',
+            'assets/js/pagination.js',
+            'assets/js/stream.js'
+        ], {sourcemaps: true}),
         concat('source.js'),
-        uglify(),
-        dest('assets/built/', {sourcemaps: '.'}),
-        livereload()
-    ], handleError(done));
-}
-
-function streamJs(done) {
-    pump([
-        src(['assets/js/dropdown.js', 'assets/js/jeffperry-stream.js'], {sourcemaps: true}),
-        concat('jeffperry-ui.js'),
         uglify(),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
@@ -70,7 +82,7 @@ function zipper(done) {
     ], handleError(done));
 }
 
-const build = parallel(css, fullJs, streamJs);
+const build = series(cleanBuilt, css, fullJs);
 
 exports.build = build;
 exports.zip = series(build, zipper);
@@ -79,7 +91,7 @@ exports.default = series(
     serve,
     parallel(
         () => watch('assets/css/**', css),
-        () => watch('assets/js/**', parallel(fullJs, streamJs)),
+        () => watch('assets/js/**', fullJs),
         () => watch(['*.hbs', 'partials/**/*.hbs'], hbs)
     )
 );
