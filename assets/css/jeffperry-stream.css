@@ -1104,21 +1104,26 @@ body,
 }
 
 .home-template .jp-entry {
-    --post-type-color: var(--jp-orange) !important;
+    --post-type-color: var(--jp-orange);
     padding: 34px 0;
     border-bottom: 1px solid var(--jp-line);
 }
 
 .home-template .jp-entry.is-short {
-    --post-type-color: var(--jp-green) !important;
+    --post-type-color: var(--jp-green);
 }
 
 .home-template .jp-entry.is-link {
-    --post-type-color: var(--jp-blue) !important;
+    --post-type-color: var(--jp-blue);
 }
 
 .home-template .jp-entry.is-media {
-    --post-type-color: var(--jp-purple) !important;
+    --post-type-color: var(--jp-purple);
+}
+
+.home-template .jp-entry.is-image,
+.home-template .jp-entry.is-quote {
+    --post-type-color: var(--ghost-accent-color);
 }
 
 .home-template .jp-entry-meta {
@@ -3156,6 +3161,27 @@ body,
 .jp-type-archive .jp-entry.is-media .jp-entry-time {
     display: inline-block;
     margin-top: 1.8rem;
+}
+
+/* Quote posts make the quotation the primary feed content. */
+.jp-entry.is-quote .jp-entry-quote {
+    margin-top: 0;
+    font-size: clamp(1.9rem, 2.5vw, 2.45rem);
+    line-height: 1.5;
+}
+
+.jp-entry.is-quote .jp-entry-quote > :first-child {
+    margin-top: 0;
+}
+
+.jp-entry.is-quote .jp-entry-quote > :last-child {
+    margin-bottom: 0;
+}
+
+.jp-entry.is-quote .jp-entry-quote blockquote {
+    margin: 0;
+    padding-left: 1.15em;
+    border-left: 4px solid var(--post-type-color, currentColor);
 }
 
 @media (max-width: 767px) {

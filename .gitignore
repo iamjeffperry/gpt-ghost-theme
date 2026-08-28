@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.log
+assets/built/*.map
+pnpm-workspace.yaml

@@ -6,7 +6,7 @@
                 <a class="gh-navigation-logo is-title" href="{{@site.url}}">{{@site.title}}</a>
                 {{#is "home"}}
                     <span class="jp-navigation-description is-body">
-                        {{#if @site.description}}{{@site.description}}{{else}}Bits and pieces of technology, media, internet culture, games, and everyday life.{{/if}}
+                        {{#if @site.description}}{{@site.description}}{{else}}A personal publication on the open web.{{/if}}
                     </span>
                 {{/is}}
             </div>
@@ -18,13 +18,7 @@
         </div>
 
         <nav class="gh-navigation-menu" aria-label="Primary navigation">
-            <ul class="nav">
-                <li class="nav-essays"><a href="{{@site.url}}/essays/">Essays</a></li>
-                <li class="nav-notes"><a href="{{@site.url}}/notes/">Notes</a></li>
-                <li class="nav-links"><a href="{{@site.url}}/links/">Links</a></li>
-                <li class="nav-media"><a href="{{@site.url}}/media/">Media</a></li>
-                <li class="nav-about"><a href="{{@site.url}}/about/">About</a></li>
-            </ul>
+            {{navigation}}
         </nav>
 
         <div class="gh-navigation-actions">

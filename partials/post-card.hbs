@@ -1,12 +1,15 @@
 <article
-    class="gh-card jp-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}} {{post_class}}{{#has tag="#micro"}} is-short{{/has}}{{#has tag="#image"}} is-image{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
+    class="gh-card jp-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}} {{post_class}}{{#has tag="#note,#micro"}} is-short is-note{{/has}}{{#has tag="#photo,#image"}} is-image is-photo{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#has tag="#quote"}} is-quote{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
+            {{#match name "#note"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
             {{#match name "#micro"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
+            {{#match name "#photo"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
             {{#match name "#image"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
             {{#match name "#link"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
             {{#match name "#media"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
+            {{#match name "#quote"}}{{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}{{/match}}
         {{/foreach}}
     "
 >
@@ -17,30 +20,35 @@
 
         <span class="jp-entry-kind">
             <span class="jp-entry-kind-icon" aria-hidden="true">
-                {{#has tag="#micro"}}
-                    <svg viewBox="0 0 24 24" role="img"><circle class="jp-icon-fill" cx="12" cy="12" r="5"/></svg>
+                {{#has tag="#note,#micro"}}
+                    {{> "post-type-icon" icon=@custom.note_icon}}
                 {{else}}
                     {{#has tag="#link"}}
-                        <svg viewBox="0 0 24 24" role="img"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                        {{> "post-type-icon" icon=@custom.link_icon}}
                     {{else}}
                         {{#has tag="#media"}}
-                            <svg viewBox="0 0 24 24" role="img"><path class="jp-icon-fill" d="m8 5 11 7-11 7z"/></svg>
+                            {{> "post-type-icon" icon=@custom.media_icon}}
                         {{else}}
-                            {{#has tag="#image"}}
-                                <svg viewBox="0 0 24 24" role="img"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="m6 16 4-4 3 3 2-2 3 3"/><circle cx="9" cy="9" r="1"/></svg>
+                            {{#has tag="#photo,#image"}}
+                                {{> "post-type-icon" icon=@custom.photo_icon}}
                             {{else}}
-                                <svg viewBox="0 0 24 24" role="img"><path class="jp-icon-fill" d="m12 2.8 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+                                {{#has tag="#quote"}}
+                                    {{> "post-type-icon" icon=@custom.quote_icon}}
+                                {{else}}
+                                    {{> "post-type-icon" icon=@custom.essay_icon}}
+                                {{/has}}
                             {{/has}}
                         {{/has}}
                     {{/has}}
                 {{/has}}
             </span>
             <span class="jp-entry-kind-label">
-                {{#has tag="#micro"}}Note
-                {{else}}{{#has tag="#image"}}Photo
-                {{else}}{{#has tag="#link"}}Link
-                {{else}}{{#has tag="#media"}}Media
-                {{else}}Essay{{/has}}{{/has}}{{/has}}{{/has}}
+                {{#has tag="#note,#micro"}}{{#if @custom.note_label}}{{@custom.note_label}}{{else}}Note{{/if}}
+                {{else}}{{#has tag="#photo,#image"}}{{#if @custom.photo_label}}{{@custom.photo_label}}{{else}}Photo{{/if}}
+                {{else}}{{#has tag="#link"}}{{#if @custom.link_label}}{{@custom.link_label}}{{else}}Link{{/if}}
+                {{else}}{{#has tag="#media"}}{{#if @custom.media_label}}{{@custom.media_label}}{{else}}Media{{/if}}
+                {{else}}{{#has tag="#quote"}}{{#if @custom.quote_label}}{{@custom.quote_label}}{{else}}Quote{{/if}}
+                {{else}}{{#if @custom.essay_label}}{{@custom.essay_label}}{{else}}Essay{{/if}}{{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
             </span>
         </span>
 
@@ -48,13 +56,19 @@
 
     <div class="jp-entry-layout">
         <div class="jp-entry-copy">
-            {{#has tag="#micro"}}
+            {{#has tag="#note,#micro"}}
                 <div class="jp-entry-note jp-entry-content is-body">
                     {{content}}
                 </div>
 
             {{else}}
-                {{#has tag="#link"}}
+                {{#has tag="#quote"}}
+                    <div class="jp-entry-quote jp-entry-content is-body">
+                        {{content}}
+                    </div>
+
+                {{else}}
+                    {{#has tag="#link"}}
                     <h2 class="jp-entry-title is-title">
                         <a class="jp-entry-external-title" href="{{url}}" data-local-url="{{url}}">{{title}}</a>
                     </h2>
@@ -71,7 +85,7 @@
                             {{content}}
                         </div>
                     {{else}}
-                        {{#has tag="#image"}}
+                        {{#has tag="#photo,#image"}}
                             <div class="jp-entry-content jp-entry-image-content is-body">
                                 {{content}}
                             </div>
@@ -83,15 +97,16 @@
                                     <p class="jp-entry-excerpt is-body">{{excerpt words="45"}}</p>
                                 {{/if}}
                             {{/if}}
-                        {{/has}}
                     {{/has}}
+                {{/has}}
+            {{/has}}
                 {{/has}}
             {{/has}}
 
             <a class="jp-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
                 <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
                 {{#unless featuredCard}}
-                    {{#has tag="#micro,#link,#media,#image"}}{{else}}{{#if reading_time}}<span class="jp-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
+                    {{#has tag="#note,#micro,#link,#media,#photo,#image,#quote"}}{{else}}{{#if reading_time}}<span class="jp-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
                 {{/unless}}
                 {{#if featuredCard}}{{#if reading_time}}<span class="jp-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/if}}
             </a>

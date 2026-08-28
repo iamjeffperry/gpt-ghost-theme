@@ -4,8 +4,8 @@
     <section class="gh-archive gh-inner jp-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">{{#if @custom.essay_label}}{{@custom.essay_label}}{{else}}Essays{{/if}}</h1>
-                <p class="gh-article-excerpt is-body">Longer writing, ideas, and pieces worth spending a little more time with.</p>
+                <h1 class="gh-article-title is-title">{{#if @custom.photo_label}}{{@custom.photo_label}}{{else}}Photos{{/if}}</h1>
+                <p class="gh-article-excerpt is-body">Photographs, illustrations, and visual stories.</p>
             </header>
         </div>
     </section>
@@ -14,7 +14,7 @@
         <div class="gh-container-inner gh-inner">
             <main class="gh-main jp-stream-main">
                 <div class="gh-feed jp-stream">
-                    {{#get "posts" filter="tag:-hash-note+tag:-hash-micro+tag:-hash-link+tag:-hash-media+tag:-hash-photo+tag:-hash-image+tag:-hash-quote" include="authors,tags" limit="100"}}
+                    {{#get "posts" filter="tag:[hash-photo,hash-image]" include="authors,tags" limit="100"}}
                         {{#foreach posts}}
                             {{> "post-card" lazyLoad=true}}
                         {{/foreach}}

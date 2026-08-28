@@ -1,8 +1,7 @@
 {
-    "name": "source-jeffperry",
-    "description": "JeffPerry.me custom Ghost theme, built on Ghost Source",
-    "demo": "https://source.ghost.io",
-    "version": "1.7.1-jeff48",
+    "name": "gpt-ghost-theme",
+    "description": "A flexible mixed-format Ghost theme for essays, notes, links, photos, media, and quotes",
+    "version": "0.1.0",
     "engines": {
         "ghost": ">=5.0.0",
         "node": ">=22.12.0"
@@ -22,9 +21,9 @@
     },
     "packageManager": "pnpm@11.21.0",
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org/"
+        "name": "Jeff Perry",
+        "email": "jeff@jeffperry.me",
+        "url": "https://github.com/iamjeffperry"
     },
     "gpm": {
         "type": "theme",
@@ -40,10 +39,9 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/TryGhost/Source.git"
+        "url": "https://github.com/iamjeffperry/gpt-ghost-theme.git"
     },
-    "bugs": "https://github.com/TryGhost/Source/issues",
-    "contributors": "https://github.com/TryGhost/Source/graphs/contributors",
+    "bugs": "https://github.com/iamjeffperry/gpt-ghost-theme/issues",
     "devDependencies": {
         "@tryghost/release-utils": "0.9.1",
         "@tryghost/theme-translations": "0.0.22",
@@ -89,15 +87,6 @@
         },
         "card_assets": true,
         "custom": {
-            "navigation_layout": {
-                "type": "select",
-                "options": [
-                    "Logo in the middle",
-                    "Logo on the left",
-                    "Stacked"
-                ],
-                "default": "Logo in the middle"
-            },
             "site_background_color": {
                 "type": "color",
                 "default": "#fbf8f1"
@@ -127,28 +116,75 @@
                 ],
                 "default": "Modern sans-serif"
             },
-            "signup_subheading": {
-                "type": "text",
-                "description": "Defaults to site description when empty"
-            },
-            "post_feed_style": {
-                "type": "select",
-                "options": [
-                    "List",
-                    "Grid"
-                ],
-                "default": "List",
-                "group": "homepage"
-            },
             "show_images_in_feed": {
                 "type": "boolean",
                 "default": true,
-                "group": "homepage",
-                "visibility": "post_feed_style:List"
+                "group": "homepage"
             },
-            "show_publication_info_sidebar": {
-                "type": "boolean",
-                "default": false,
+            "essay_label": {
+                "type": "text",
+                "default": "Essay",
+                "group": "homepage"
+            },
+            "essay_icon": {
+                "type": "select",
+                "options": ["File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Link", "Image", "Camera", "Play", "Headphones", "Quote", "Bookmark"],
+                "default": "File text",
+                "group": "homepage"
+            },
+            "note_label": {
+                "type": "text",
+                "default": "Note",
+                "group": "homepage"
+            },
+            "note_icon": {
+                "type": "select",
+                "options": ["Message circle", "Circle", "Pen line", "File text", "Star", "Book open", "Link", "Image", "Camera", "Play", "Headphones", "Quote", "Bookmark"],
+                "default": "Message circle",
+                "group": "homepage"
+            },
+            "link_label": {
+                "type": "text",
+                "default": "Link",
+                "group": "homepage"
+            },
+            "link_icon": {
+                "type": "select",
+                "options": ["Link", "Bookmark", "File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Image", "Camera", "Play", "Headphones", "Quote"],
+                "default": "Link",
+                "group": "homepage"
+            },
+            "photo_label": {
+                "type": "text",
+                "default": "Photo",
+                "group": "homepage"
+            },
+            "photo_icon": {
+                "type": "select",
+                "options": ["Image", "Camera", "File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Link", "Play", "Headphones", "Quote", "Bookmark"],
+                "default": "Image",
+                "group": "homepage"
+            },
+            "media_label": {
+                "type": "text",
+                "default": "Media",
+                "group": "homepage"
+            },
+            "media_icon": {
+                "type": "select",
+                "options": ["Play", "Headphones", "File text", "Pen line", "Star", "Book open", "Message circle", "Circle", "Link", "Image", "Camera", "Quote", "Bookmark"],
+                "default": "Play",
+                "group": "homepage"
+            },
+            "quote_label": {
+                "type": "text",
+                "default": "Quote",
+                "group": "homepage"
+            },
+            "quote_icon": {
+                "type": "select",
+                "options": ["Quote", "Message circle", "File text", "Pen line", "Star", "Book open", "Circle", "Link", "Image", "Camera", "Play", "Headphones", "Bookmark"],
+                "default": "Quote",
                 "group": "homepage"
             },
             "show_post_metadata": {

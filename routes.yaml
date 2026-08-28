@@ -7,6 +7,10 @@ routes:
     template: links
   /media/:
     template: media
+  /photos/:
+    template: photos
+  /quotes/:
+    template: quotes
 
 collections:
   /:

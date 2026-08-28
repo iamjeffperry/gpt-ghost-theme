@@ -7,8 +7,17 @@
 
     <article class="gh-article {{post_class}}"
     style="
+        {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
+            {{#match name "#note"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+
             {{#match name "#micro"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+
+            {{#match name "#photo"}}
                 {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
             {{/match}}
 
@@ -21,6 +30,10 @@
             {{/match}}
 
             {{#match name "#media"}}
+                {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
+            {{/match}}
+
+            {{#match name "#quote"}}
                 {{#if accent_color}}--post-type-color: {{accent_color}};{{/if}}
             {{/match}}
         {{/foreach}}

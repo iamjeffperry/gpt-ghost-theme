@@ -11,7 +11,7 @@
                             {{#if @custom.signup_heading}}{{@custom.signup_heading}}{{else}}{{@site.title}}{{/if}}
                         </h2>
                         <p class="gh-cta-description is-body">
-                            {{#if @custom.signup_subheading}}{{@custom.signup_subheading}}{{else}}{{@site.description}}{{/if}}
+                            {{#if @site.description}}{{@site.description}}{{else}}New posts delivered directly to your inbox.{{/if}}
                         </p>
                     </div>
                     {{> "email-subscription" email_field_id="cta-email"}}

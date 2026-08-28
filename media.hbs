@@ -4,7 +4,7 @@
     <section class="gh-archive gh-inner jp-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">Media</h1>
+                <h1 class="gh-article-title is-title">{{#if @custom.media_label}}{{@custom.media_label}}{{else}}Media{{/if}}</h1>
                 <p class="gh-article-excerpt is-body">Podcasts, videos, and other things worth watching or listening to.</p>
             </header>
         </div>
@@ -14,7 +14,7 @@
         <div class="gh-container-inner gh-inner">
             <main class="gh-main jp-stream-main">
                 <div class="gh-feed jp-stream">
-                    {{#get "posts" filter="tag:hash-media" include="authors,tags" limit="all"}}
+                    {{#get "posts" filter="tag:hash-media" include="authors,tags" limit="100"}}
                         {{#foreach posts}}
                             {{> "post-card" lazyLoad=true}}
                         {{/foreach}}

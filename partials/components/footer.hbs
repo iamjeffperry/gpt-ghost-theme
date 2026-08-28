@@ -7,9 +7,9 @@
             </div>
 
             <div class="jp-footer-subscribe-copy">
-                <h2 class="jp-footer-subscribe-title is-title">Weeklyish</h2>
+                <h2 class="jp-footer-subscribe-title is-title">Stay up to date</h2>
                 <p class="jp-footer-subscribe-text is-body">
-                    {{#if @custom.signup_subheading}}{{@custom.signup_subheading}}{{else}}A low-pressure newsletter about interesting things worth slowing down for.{{/if}}
+                    {{#if @site.description}}{{@site.description}}{{else}}New posts delivered directly to your inbox.{{/if}}
                 </p>
             </div>
 
@@ -41,7 +41,7 @@
                     <p class="jp-footer-description is-body">
                         {{#if @site.description}}{{@site.description}}{{else}}A personal stream of things I write, notice, watch, and find interesting.{{/if}}
                     </p>
-                    <p class="jp-footer-philosophy is-body">No algorithm. No feed to beat. Just things I find interesting.</p>
+                    <p class="jp-footer-philosophy is-body">Independent publishing, delivered directly.</p>
                 </div>
 
                 <div class="jp-footer-explore">
@@ -68,7 +68,7 @@
 
             <div class="jp-footer-bottom">
                 <span>© {{date format="YYYY"}} {{@site.title}}</span>
-                <span>Thanks for being here.</span>
+                <span>Powered by Ghost.</span>
             </div>
         </div>
     </div>

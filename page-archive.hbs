@@ -84,7 +84,7 @@
         <div class="gh-container-inner gh-inner">
             <main class="gh-main jp-stream-main">
                 <div class="gh-feed jp-stream">
-                    {{#get "posts" include="authors,tags" limit="all" order="published_at desc"}}
+                    {{#get "posts" include="authors,tags" limit="100" order="published_at desc"}}
                         {{#foreach posts}}
                             {{> "post-card" lazyLoad=true}}
                         {{/foreach}}
