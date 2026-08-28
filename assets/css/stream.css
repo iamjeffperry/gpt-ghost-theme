@@ -2858,3 +2858,194 @@ body,
         margin-top: 1.5rem;
     }
 }
+
+/* ==========================================================
+   Mixed-format theme v0.1.1 usability fixes
+   Ghost brand colors/identity plus restrained media sizing.
+   ========================================================== */
+
+:root {
+    --mf-paper: var(--background-color, #fbf8f1);
+    --mf-paper-deep: color-mix(in srgb, var(--background-color, #fbf8f1) 94%, #8b7044);
+}
+
+body,
+.gh-viewport,
+.gh-navigation,
+.gh-navigation-actions,
+.home-template .gh-viewport,
+.home-template .gh-navigation,
+.mf-footer,
+.mf-footer-subscribe-wrap {
+    background-color: var(--background-color, #fbf8f1) !important;
+}
+
+.mf-navigation-identity {
+    gap: 12px;
+}
+
+.mf-navigation-icon {
+    display: inline-flex;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+    border-radius: 9px;
+}
+
+.mf-navigation-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#gh-navigation .gh-navigation-members .gh-button {
+    color: #fff;
+    background: var(--ghost-accent-color) !important;
+}
+
+/* A Link headline is the only visible external destination affordance. */
+.home-template .mf-entry.is-link .mf-entry-title a::after,
+.mf-type-archive .mf-entry.is-link .mf-entry-title a::after {
+    content: none !important;
+}
+
+.mf-entry-link-source {
+    display: none !important;
+}
+
+/* YouTube, Vimeo, and native video cards should be prominent but contained. */
+.home-template .mf-entry-media-content {
+    width: 100%;
+    max-width: 780px;
+}
+
+.home-template .mf-entry-media-content :is(.kg-embed-card, .kg-video-card, .kg-video-container) {
+    width: 100% !important;
+    max-width: 780px;
+}
+
+.home-template .mf-entry-media-content :is(
+    iframe[src*="youtube.com"],
+    iframe[src*="youtube-nocookie.com"],
+    iframe[src*="vimeo.com"]
+) {
+    display: block;
+    width: 100% !important;
+    max-width: 780px;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 12px;
+}
+
+/* Photo posts retain the complete image without dominating the whole stream. */
+.home-template .mf-entry.is-image .mf-entry-image-link,
+.home-template .mf-entry.is-image .mf-entry-image,
+.home-template .mf-entry.is-image .mf-entry-image-content,
+.mf-type-archive .mf-entry.is-image .mf-entry-image-link,
+.mf-type-archive .mf-entry.is-image .mf-entry-image,
+.mf-type-archive .mf-entry.is-image .mf-entry-image-content {
+    width: 100%;
+    max-width: 760px;
+}
+
+.home-template .mf-entry.is-image .mf-entry-image img,
+.mf-type-archive .mf-entry.is-image .mf-entry-image img,
+.home-template .mf-entry.is-image .mf-entry-image-content .kg-image,
+.mf-type-archive .mf-entry.is-image .mf-entry-image-content .kg-image {
+    display: block;
+    width: auto !important;
+    max-width: 100%;
+    height: auto !important;
+    max-height: 560px;
+    margin-inline: 0;
+    object-fit: contain;
+    aspect-ratio: auto;
+}
+
+.home-template .mf-entry.is-image .mf-entry-image-content :is(.kg-image-card, .kg-gallery-card),
+.mf-type-archive .mf-entry.is-image .mf-entry-image-content :is(.kg-image-card, .kg-gallery-card) {
+    width: fit-content;
+    max-width: 100%;
+}
+
+/* Make non-text Essay content feel intentional on individual post pages. */
+.post-template .gh-content {
+    line-height: 1.72;
+}
+
+.post-template .gh-content > :is(ul, ol) {
+    margin-top: 1.6em;
+    padding-left: 1.6em;
+}
+
+.post-template .gh-content :is(ul, ol) li {
+    padding-left: .3em;
+}
+
+.post-template .gh-content :is(ul, ol) li + li {
+    margin-top: .65em;
+}
+
+.post-template .gh-content :is(ul, ol) li::marker {
+    color: var(--post-type-color, var(--ghost-accent-color));
+    font-weight: 700;
+}
+
+.post-template .gh-content > blockquote:not([class]) {
+    padding: 1.1em 1.25em;
+    border-left: 4px solid var(--post-type-color, var(--ghost-accent-color));
+    border-radius: 0 10px 10px 0;
+    background: color-mix(in srgb, var(--background-color, #fbf8f1) 88%, var(--post-type-color, #777));
+}
+
+.post-template .gh-content :is(.kg-image-card, .kg-gallery-card, .kg-video-card, .kg-embed-card) {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.post-template .gh-content pre,
+.post-template .gh-content .gh-table {
+    border: 1px solid var(--mf-line);
+    border-radius: 10px;
+}
+
+:root.has-light-text {
+    --mf-ink: #fff;
+    --mf-muted: rgba(255, 255, 255, .68);
+    --mf-line: rgba(255, 255, 255, .15);
+}
+
+.has-light-text :is(
+    .mf-navigation-description,
+    .gh-navigation .nav a,
+    .mf-entry-excerpt,
+    .mf-entry-note,
+    .mf-entry-link-content,
+    .mf-entry-media-content
+) {
+    color: var(--mf-ink);
+}
+
+@media (max-width: 767px) {
+    .mf-navigation-icon {
+        flex-basis: 30px;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+    }
+
+    .home-template .mf-entry-media-content,
+    .home-template .mf-entry-media-content :is(.kg-embed-card, .kg-video-card, .kg-video-container),
+    .home-template .mf-entry.is-image .mf-entry-image-link,
+    .home-template .mf-entry.is-image .mf-entry-image,
+    .home-template .mf-entry.is-image .mf-entry-image-content {
+        max-width: 100%;
+    }
+
+    .home-template .mf-entry.is-image .mf-entry-image img,
+    .home-template .mf-entry.is-image .mf-entry-image-content .kg-image {
+        max-height: min(520px, 72vh);
+    }
+}

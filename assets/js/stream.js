@@ -10,7 +10,6 @@
 
     document.querySelectorAll('.mf-entry.is-link').forEach(function (entry) {
         var title = entry.querySelector('.mf-entry-external-title');
-        var source = entry.querySelector('.mf-entry-link-source');
         var content = entry.querySelector('.mf-entry-link-content');
         if (!title || !content) return;
 
@@ -23,15 +22,6 @@
         if (!external) return;
 
         title.href = external.href;
-        if (source) {
-            source.href = external.href;
-            try {
-                var hostname = new URL(external.href).hostname.replace(/^www\./, '');
-                source.textContent = hostname;
-            } catch (e) {
-                source.textContent = 'Open link';
-            }
-        }
 
         // The first external URL is metadata for a Link post, not feed content.
         // Hide only the row/card that contains that destination URL; keep the
