@@ -5,7 +5,7 @@
 
 <main class="gh-main">
 
-    <article class="gh-article {{post_class}}{{#has tag="#link"}} is-link-post{{/has}}"
+    <article class="gh-article {{post_class}}{{#has tag="#link"}} is-link-post{{/has}}{{#has tag="#photo,#image"}} is-photo-post{{/has}}"
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}

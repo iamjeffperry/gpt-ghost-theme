@@ -3109,6 +3109,30 @@ body,
     border-radius: 12px;
 }
 
+/* Individual post controls and Photo presentation. */
+.post-template .gh-button-share {
+    border-radius: 10px !important;
+}
+
+.post-template .gh-article.is-photo-post .gh-article-image {
+    grid-column: main;
+    justify-self: center;
+    width: 100%;
+}
+
+.post-template .gh-article.is-photo-post .gh-article-image img {
+    width: auto;
+    max-width: 100%;
+    max-height: min(720px, 70vh);
+    margin-inline: auto;
+    object-fit: contain;
+    border-radius: 14px;
+}
+
+.post-template .gh-article.is-photo-post .gh-content .kg-image-card .kg-image {
+    border-radius: 12px;
+}
+
 .post-template .gh-content pre,
 .post-template .gh-content .gh-table {
     border: 1px solid var(--mf-line);
