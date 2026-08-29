@@ -278,6 +278,23 @@ The footer includes:
 
 Ghost Portal powers subscription and membership flows. The theme does not implement a separate mailing-list backend.
 
+### Members-only and paid posts
+
+Ghost's **Post access** setting is supported across every post format, including featured posts and related-post cards.
+
+| Post access | Visitor without access | Visitor with access |
+| --- | --- | --- |
+| Public | The normal card and full post | The normal card and full post |
+| Members only | A lock badge, safe feed teaser, and membership prompt | The normal card and full post |
+| Paid members only | A paid-member badge, safe feed teaser, and plan prompt | The normal card and full post |
+| Specific tiers | A selected-member badge, safe feed teaser, and plan prompt | The normal card and full post |
+
+Locked feed cards may show the title, public tag, date, custom excerpt, and featured image, but they do not render the protected body. This is especially important for Note, Quote, Link, Photo, and Media posts, whose body content normally appears directly in the feed. Locked Link titles continue to open the local post instead of being rewritten to an external destination.
+
+On the individual post URL, Ghost remains responsible for calculating `access`. Any public preview created in the editor appears above the theme's membership card. Signed-out visitors can subscribe or sign in through Portal; signed-in visitors without the required access can open the plan selector.
+
+To restrict a post, open it in Ghost Admin, expand **Post settings**, and choose the desired value under **Post access**. No internal tag is required.
+
 ## Archive routes
 
 The included `routes.yaml` defines:

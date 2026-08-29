@@ -1,5 +1,5 @@
 <article
-    class="gh-card mf-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}} {{post_class}}{{#has tag="#essay"}} is-essay{{/has}}{{#has tag="#note,#micro"}} is-short is-note{{/has}}{{#has tag="#photo,#image"}} is-image is-photo{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#has tag="#quote"}} is-quote{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
+    class="gh-card mf-entry{{#if featuredCard}} is-featured{{/if}}{{#if feature_image}} has-feature-image{{/if}}{{#unless access}} is-locked{{/unless}} access-{{visibility}} {{post_class}}{{#has tag="#essay"}} is-essay{{/has}}{{#has tag="#note,#micro"}} is-short is-note{{/has}}{{#has tag="#photo,#image"}} is-image is-photo{{/has}}{{#has tag="#link"}} is-link{{/has}}{{#has tag="#media"}} is-media{{/has}}{{#has tag="#quote"}} is-quote{{/has}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}"
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
@@ -64,10 +64,13 @@
             {{/if}}
         {{/has}}
 
+        {{> "access-badge"}}
+
     </div>
 
     <div class="mf-entry-layout">
         <div class="mf-entry-copy">
+            {{#if access}}
             {{#has tag="#note,#micro"}}
                 <div class="mf-entry-note mf-entry-content is-body">
                     {{content}}
@@ -113,6 +116,13 @@
             {{/has}}
                 {{/has}}
             {{/has}}
+            {{else}}
+                <h2 class="mf-entry-title is-title"><a href="{{url}}">{{title}}</a></h2>
+                {{#if custom_excerpt}}
+                    <p class="mf-entry-excerpt is-body">{{custom_excerpt}}</p>
+                {{/if}}
+                {{> "feed-access-cta"}}
+            {{/if}}
 
             {{#has tag="#photo,#image,#essay"}}
                 {{#unless feature_image}}

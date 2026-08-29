@@ -5,7 +5,7 @@
 
 <main class="gh-main">
 
-    <article class="gh-article {{post_class}}{{#has tag="#link"}} is-link-post{{/has}}{{#has tag="#photo,#image"}} is-photo-post{{/has}}"
+    <article class="gh-article access-{{visibility}}{{#unless access}} is-locked{{/unless}} {{post_class}}{{#has tag="#link"}} is-link-post{{/has}}{{#has tag="#photo,#image"}} is-photo-post{{/has}}"
     style="
         {{#if primary_tag.accent_color}}--post-type-color: {{primary_tag.accent_color}};{{/if}}
         {{#foreach tags visibility="all"}}
@@ -46,12 +46,19 @@
 
         <header class="gh-article-header gh-canvas">
 
-            {{#if primary_tag}}
-                <a class="gh-article-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
-            {{/if}}
+            <div class="mf-post-labels">
+                {{#if primary_tag}}
+                    <a class="gh-article-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+                {{/if}}
+                {{> "access-badge"}}
+            </div>
             <h1 class="gh-article-title is-title">
                 {{#has tag="#link"}}
-                    <a class="mf-post-external-title" href="{{url}}" data-local-url="{{url}}">{{title}}</a>
+                    {{#if access}}
+                        <a class="mf-post-external-title" href="{{url}}" data-local-url="{{url}}">{{title}}</a>
+                    {{else}}
+                        {{title}}
+                    {{/if}}
                 {{else}}
                     {{title}}
                 {{/has}}
