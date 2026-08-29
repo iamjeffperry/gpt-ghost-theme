@@ -3133,6 +3133,12 @@ body,
     border-radius: 12px;
 }
 
+/* Use one corner treatment for every featured image, regardless of post type. */
+.mf-entry-image img,
+.gh-article-image img {
+    border-radius: 14px;
+}
+
 .post-template .gh-content pre,
 .post-template .gh-content .gh-table {
     border: 1px solid var(--mf-line);
