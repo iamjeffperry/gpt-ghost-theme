@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - .github/workflows/release-beta.yml
+  schedule:
+    - cron: "30 23 29 8 *"
   workflow_dispatch:
 
 permissions:
@@ -13,7 +15,7 @@ permissions:
 
 jobs:
   release:
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[release beta]')
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[release beta]')
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
