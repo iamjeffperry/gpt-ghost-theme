@@ -1,0 +1,53 @@
+name: Publish beta release
+
+on:
+  push:
+    tags:
+      - "v*-beta.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.21.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.12.0
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and validate source and ZIP
+        run: pnpm verify
+
+      - name: Create checksum
+        run: sha256sum dist/gpt-ghost-theme.zip > dist/gpt-ghost-theme.zip.sha256
+
+      - name: Publish GitHub prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME"
+          dist/gpt-ghost-theme.zip
+          dist/gpt-ghost-theme.zip.sha256
+          routes.yaml
+          --prerelease
+          --verify-tag
+          --title "GPT Ghost Theme $GITHUB_REF_NAME"
+          --notes-file docs/RELEASE_NOTES.md

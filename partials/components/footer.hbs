@@ -7,9 +7,9 @@
             </div>
 
             <div class="mf-footer-subscribe-copy">
-                <h2 class="mf-footer-subscribe-title is-title">Stay up to date</h2>
+                <h2 class="mf-footer-subscribe-title is-title">{{t "Stay up to date"}}</h2>
                 <p class="mf-footer-subscribe-text is-body">
-                    {{#if @site.description}}{{@site.description}}{{else}}New posts delivered directly to your inbox.{{/if}}
+                    {{#if @site.description}}{{@site.description}}{{else}}{{t "New posts delivered directly to your inbox."}}{{/if}}
                 </p>
             </div>
 
@@ -18,15 +18,15 @@
                     {{#unless @member}}
                         {{> "email-subscription" email_field_id="footer-email"}}
                     {{else}}
-                        <a class="mf-rss-pill" href="{{@site.url}}/rss/" aria-label="Subscribe by RSS">
+                        <a class="mf-rss-pill" href="{{@site.url}}/rss/" aria-label="{{t "Subscribe by RSS"}}">
                             {{> "icons/rss"}}
-                            <span>RSS Feed</span>
+                            <span>{{t "RSS Feed"}}</span>
                         </a>
                     {{/unless}}
                 {{else}}
-                    <a class="mf-rss-pill" href="{{@site.url}}/rss/" aria-label="Subscribe by RSS">
+                    <a class="mf-rss-pill" href="{{@site.url}}/rss/" aria-label="{{t "Subscribe by RSS"}}">
                         {{> "icons/rss"}}
-                        <span>RSS Feed</span>
+                        <span>{{t "RSS Feed"}}</span>
                     </a>
                 {{/if}}
             </div>
@@ -39,20 +39,20 @@
                 <div class="mf-footer-about">
                     <a class="mf-footer-title is-title" href="{{@site.url}}">{{@site.title}}</a>
                     <p class="mf-footer-description is-body">
-                        {{#if @site.description}}{{@site.description}}{{else}}A personal stream of things I write, notice, watch, and find interesting.{{/if}}
+                        {{#if @site.description}}{{@site.description}}{{else}}{{t "An independent stream of writing, links, notes, photos, and media."}}{{/if}}
                     </p>
-                    <p class="mf-footer-philosophy is-body">Independent publishing, delivered directly.</p>
+                    <p class="mf-footer-philosophy is-body">{{t "Independent publishing, delivered directly."}}</p>
                 </div>
 
                 <div class="mf-footer-explore">
-                    <span class="mf-footer-heading">Explore</span>
-                    <nav class="mf-footer-menu" aria-label="Footer navigation">
+                    <span class="mf-footer-heading">{{t "Explore"}}</span>
+                    <nav class="mf-footer-menu" aria-label="{{t "Footer navigation"}}">
                         {{navigation}}
                     </nav>
                 </div>
 
                 <div class="mf-footer-follow">
-                    <span class="mf-footer-heading">Follow</span>
+                    <span class="mf-footer-heading">{{t "Follow"}}</span>
                     <div class="mf-footer-socials">
                         {{#social_accounts @site}}
                             <a href="{{href}}" target="_blank" rel="noopener" aria-label="{{name}}" title="{{name}}">
@@ -61,14 +61,14 @@
                                 {{/undefined}}
                             </a>
                         {{/social_accounts}}
-                        <a class="is-rss" href="{{@site.url}}/rss/" aria-label="RSS" title="RSS">{{> "icons/rss"}}</a>
+                        <a class="is-rss" href="{{@site.url}}/rss/" aria-label="{{t "RSS"}}" title="{{t "RSS"}}">{{> "icons/rss"}}</a>
                     </div>
                 </div>
             </div>
 
             <div class="mf-footer-bottom">
                 <span>© {{date format="YYYY"}} {{@site.title}}</span>
-                <span>Powered by Ghost.</span>
+                <span>{{t "Powered by Ghost"}}</span>
             </div>
         </div>
     </div>

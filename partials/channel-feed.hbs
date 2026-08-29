@@ -1,0 +1,17 @@
+<section class="gh-container mf-stream-container gh-outer">
+    <div class="gh-container-inner gh-inner">
+        <div class="gh-main mf-stream-main">
+            <div class="gh-feed mf-stream">
+                {{#foreach posts}}
+                    {{> "post-card" lazyLoad=true}}
+                {{else}}
+                    <p class="mf-empty-state is-body">{{t "No posts have been published here yet."}}</p>
+                {{/foreach}}
+            </div>
+
+            {{#match pagination.pages ">" 1}}
+                {{pagination}}
+            {{/match}}
+        </div>
+    </div>
+</section>

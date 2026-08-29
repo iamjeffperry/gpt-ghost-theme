@@ -1,0 +1,89 @@
+name: Beta bug report
+description: Report a reproducible problem with the public beta.
+title: "[Bug]: "
+labels:
+  - bug
+  - beta
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing. Remove private member information, unpublished content, credentials, and access tokens before submitting.
+  - type: input
+    id: theme-version
+    attributes:
+      label: Theme version
+      placeholder: 0.2.0-beta.1
+    validations:
+      required: true
+  - type: input
+    id: ghost-version
+    attributes:
+      label: Ghost version
+      description: Find this in Ghost Admin under About.
+      placeholder: 6.x.x
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Hosting, browser, and device
+      placeholder: Ghost(Pro), Safari 19, iPhone; or self-hosted, Firefox, Windows 11
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Public test URL
+      description: Optional. Do not share a private preview token.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Homepage or pagination
+        - Individual post
+        - Post format or archive
+        - Members or paid access
+        - Header, navigation, or search
+        - Newsletter or footer
+        - Typography, color, image, or media
+        - Build, ZIP, routes, or installation
+        - Accessibility
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Configure...
+        2. Open...
+        3. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Add screenshots or recordings here when useful.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I reproduced this with the current beta release ZIP.
+          required: true
+        - label: I removed private content, credentials, tokens, and member information.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true

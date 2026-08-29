@@ -16,7 +16,7 @@
 >
     <div class="mf-entry-meta">
         {{#if featuredCard}}
-            <span class="mf-featured-badge"><span aria-hidden="true">★</span> Featured</span>
+            <span class="mf-featured-badge"><span aria-hidden="true">★</span> {{t "Featured"}}</span>
         {{/if}}
 
         {{#has tag="#essay,#note,#micro,#photo,#image,#link,#media,#quote"}}
@@ -45,19 +45,19 @@
                     {{/has}}
                 </span>
                 <span class="mf-entry-kind-label">
-                    {{#has tag="#note,#micro"}}{{#if @custom.note_label}}{{@custom.note_label}}{{else}}Note{{/if}}
-                    {{else}}{{#has tag="#photo,#image"}}{{#if @custom.photo_label}}{{@custom.photo_label}}{{else}}Photo{{/if}}
-                    {{else}}{{#has tag="#link"}}{{#if @custom.link_label}}{{@custom.link_label}}{{else}}Link{{/if}}
-                    {{else}}{{#has tag="#media"}}{{#if @custom.media_label}}{{@custom.media_label}}{{else}}Media{{/if}}
-                    {{else}}{{#has tag="#quote"}}{{#if @custom.quote_label}}{{@custom.quote_label}}{{else}}Quote{{/if}}
-                    {{else}}{{#if @custom.essay_label}}{{@custom.essay_label}}{{else}}Essay{{/if}}{{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
+                    {{#has tag="#note,#micro"}}{{#if @custom.note_label}}{{@custom.note_label}}{{else}}{{t "Note"}}{{/if}}
+                    {{else}}{{#has tag="#photo,#image"}}{{#if @custom.photo_label}}{{@custom.photo_label}}{{else}}{{t "Photo"}}{{/if}}
+                    {{else}}{{#has tag="#link"}}{{#if @custom.link_label}}{{@custom.link_label}}{{else}}{{t "Link"}}{{/if}}
+                    {{else}}{{#has tag="#media"}}{{#if @custom.media_label}}{{@custom.media_label}}{{else}}{{t "Media"}}{{/if}}
+                    {{else}}{{#has tag="#quote"}}{{#if @custom.quote_label}}{{@custom.quote_label}}{{else}}{{t "Quote"}}{{/if}}
+                    {{else}}{{#if @custom.essay_label}}{{@custom.essay_label}}{{else}}{{t "Essay"}}{{/if}}{{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
                 </span>
             </span>
         {{else}}
             {{#if primary_tag}}
                 <span class="mf-entry-kind">
                     <span class="mf-entry-kind-icon" aria-hidden="true">
-                        {{> "post-type-icon" icon="Tag"}}
+                        {{> "post-type-icon" icon="tag"}}
                     </span>
                     <span class="mf-entry-kind-label">{{primary_tag.name}}</span>
                 </span>
@@ -126,21 +126,21 @@
 
             {{#has tag="#photo,#image,#essay"}}
                 {{#unless feature_image}}
-                    <a class="mf-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                    <a class="mf-entry-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
                         <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
                         {{#unless featuredCard}}
-                            {{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
+                            {{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/has}}
                         {{/unless}}
-                        {{#if featuredCard}}{{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}{{/if}}
+                        {{#if featuredCard}}{{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/has}}{{/if}}
                     </a>
                 {{/unless}}
             {{else}}
-                <a class="mf-entry-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                <a class="mf-entry-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
                     <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
                     {{#unless featuredCard}}
-                        {{#has tag="#note,#micro,#link,#media,#quote"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/has}}
+                        {{#has tag="#note,#micro,#link,#media,#quote"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/has}}
                     {{/unless}}
-                    {{#if featuredCard}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}{{/if}}
+                    {{#if featuredCard}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/if}}
                 </a>
             {{/has}}
         </div>
@@ -163,14 +163,14 @@
             </a>
 
             {{#has tag="#photo,#image"}}
-                <a class="mf-entry-time mf-entry-photo-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                <a class="mf-entry-time mf-entry-photo-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
                     <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
                 </a>
             {{else}}
                 {{#has tag="#essay"}}
-                    <a class="mf-entry-time mf-entry-essay-image-time" href="{{url}}" aria-label="Permalink to {{title}}">
+                    <a class="mf-entry-time mf-entry-essay-image-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
                         <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
-                        {{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute="1 min read" minutes="% min read"}}</span>{{/if}}
+                        {{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}
                     </a>
                 {{/has}}
             {{/has}}

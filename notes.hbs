@@ -4,23 +4,11 @@
     <section class="gh-archive gh-inner mf-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">{{#if @custom.note_label}}{{@custom.note_label}}{{else}}Notes{{/if}}</h1>
-                <p class="gh-article-excerpt is-body">Short thoughts, observations, and things that do not need to become full posts.</p>
+                <h1 class="gh-article-title is-title">{{#if @custom.note_label}}{{@custom.note_label}}{{else}}{{t "Notes"}}{{/if}}</h1>
+                <p class="gh-article-excerpt is-body">{{t "Short thoughts, observations, and things that do not need to become full posts."}}</p>
             </header>
         </div>
     </section>
 
-    <section class="gh-container mf-stream-container gh-outer">
-        <div class="gh-container-inner gh-inner">
-            <main class="gh-main mf-stream-main">
-                <div class="gh-feed mf-stream">
-                    {{#get "posts" filter="tag:[hash-note,hash-micro]" include="authors,tags" limit="100"}}
-                        {{#foreach posts}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    {{/get}}
-                </div>
-            </main>
-        </div>
-    </section>
+    {{> "channel-feed"}}
 </main>

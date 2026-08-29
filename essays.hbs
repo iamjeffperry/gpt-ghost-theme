@@ -4,23 +4,11 @@
     <section class="gh-archive gh-inner mf-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">{{#if @custom.essay_label}}{{@custom.essay_label}}{{else}}Essays{{/if}}</h1>
-                <p class="gh-article-excerpt is-body">Longer writing, ideas, and pieces worth spending a little more time with.</p>
+                <h1 class="gh-article-title is-title">{{#if @custom.essay_label}}{{@custom.essay_label}}{{else}}{{t "Essays"}}{{/if}}</h1>
+                <p class="gh-article-excerpt is-body">{{t "Longer writing, ideas, and pieces worth spending a little more time with."}}</p>
             </header>
         </div>
     </section>
 
-    <section class="gh-container mf-stream-container gh-outer">
-        <div class="gh-container-inner gh-inner">
-            <main class="gh-main mf-stream-main">
-                <div class="gh-feed mf-stream">
-                    {{#get "posts" filter="tag:hash-essay" include="authors,tags" limit="100"}}
-                        {{#foreach posts}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    {{/get}}
-                </div>
-            </main>
-        </div>
-    </section>
+    {{> "channel-feed"}}
 </main>

@@ -4,7 +4,7 @@ A responsive, mixed-format personal publishing theme for [Ghost](https://ghost.o
 
 The theme turns one chronological homepage into a flexible stream of essays, notes, links, photos, media, quotations, and ordinary tagged posts. Each format has its own presentation while sharing one typography system, color system, footer, responsive layout, and individual-post experience.
 
-> **Development status:** `main` preserves the imported personal-theme baseline. The maintained reusable theme is on `shareable-theme-v1`.
+> **Public beta:** `v0.2.0-beta.1` targets Ghost 6. It is suitable for staging and early adopters, but beta testers should keep a copy of their current theme and report problems through [GitHub Issues](https://github.com/iamjeffperry/gpt-ghost-theme/issues). The beta is translation-ready but officially supported in English only.
 
 ## Highlights
 
@@ -23,13 +23,13 @@ The theme turns one chronological homepage into a flexible stream of essays, not
 
 ## Requirements
 
-- Ghost 5.0 or newer
+- Ghost 6.0 or newer
 - Node.js 22.12 or newer for local development
 - pnpm 11.21 or a compatible newer pnpm release
 
 ## Install the theme
 
-1. Download or build `dist/gpt-ghost-theme.zip`.
+1. Download `gpt-ghost-theme.zip` from the latest [GitHub release](https://github.com/iamjeffperry/gpt-ghost-theme/releases), or build it locally.
 2. Open **Ghost Admin → Settings → Design & branding**.
 3. Select **Change theme → Upload theme**.
 4. Upload the ZIP and activate it.
@@ -152,9 +152,9 @@ Use Ghost's built-in **Feature this post** toggle.
 
 - The homepage displays the newest featured post in one prominent card.
 - Its feature image is prioritized for loading.
-- Featured posts are skipped in the chronological list beneath the card, preventing duplication.
-- If multiple posts are marked featured, only the newest one appears in the featured position because the query uses `featured:true` with `limit="1"`.
-- Other featured posts do not appear in the first homepage list while they remain featured.
+- Ghost orders featured posts before unfeatured posts, then orders each group newest first.
+- If multiple posts are featured, the newest becomes the prominent card and the remaining featured posts continue as ordinary cards directly beneath it.
+- Every post remains in Ghost's native paginated collection, so featured posts are neither duplicated nor lost from later pages.
 - If no post is featured, the normal chronological feed is shown.
 
 The featured card uses a slightly deeper version of the site background, a restrained border, rounded corners, and a subtle shadow.
@@ -307,8 +307,9 @@ The included `routes.yaml` defines:
 | `/photos/` | `photos.hbs` | `#photo`, `#image` |
 | `/media/` | `media.hbs` | `#media` |
 | `/quotes/` | `quotes.hbs` | `#quote` |
+| `/archive/` | `archive.hbs` | All posts, newest first |
 
-Each archive retrieves up to 100 matching posts. Add any archive URL you want exposed under **Ghost Admin → Settings → Navigation**.
+These routes use Ghost channels, so they have native pagination and RSS support instead of a fixed post limit. Add any archive URL you want exposed under **Ghost Admin → Settings → Navigation**.
 
 ## Development
 
@@ -344,32 +345,32 @@ Create `dist/gpt-ghost-theme.zip`:
 pnpm zip
 ```
 
-Run Ghost's compatibility scanner:
+Run Ghost's compatibility scanner against the source theme:
 
 ```sh
-pnpm test
+pnpm test:theme
 ```
 
-Run fatal-only CI validation with verbose output:
+Build the installable ZIP and validate both source and artifact:
 
 ```sh
-pnpm test:ci
+pnpm verify
 ```
 
-`pnpm test` runs `pnpm zip` first through the `pretest` script. This verifies that the uploadable artifact can be built before GScan checks the theme.
+The release ZIP is built from an explicit allowlist. Development files, source maps, package-manager files, and `node_modules` are excluded.
 
 ### Release checklist
 
 1. Start from the latest `shareable-theme-v1`.
 2. Make the source changes.
 3. Run `pnpm build`.
-4. Run `pnpm test:ci`.
+4. Run `pnpm verify`.
 5. Increment the `version` in `package.json`.
 6. Run `pnpm zip` again after the version change.
 7. Commit source files, generated files in `assets/built/`, and `package.json`.
-8. Push the commit to GitHub.
-9. Upload `dist/gpt-ghost-theme.zip` to Ghost Admin.
-10. Upload `routes.yaml` separately only when it changes or has not been installed.
+8. Push the commit and version tag to GitHub.
+9. Publish a GitHub prerelease with the ZIP, checksum, and `routes.yaml`.
+10. Test the release ZIP on a Ghost 6 staging site before promoting it.
 
 The `dist/` directory is intentionally ignored by Git. Release ZIPs are build artifacts rather than source files.
 
@@ -383,10 +384,12 @@ assets/
   js/stream.js           Link-post detection and bookmark behavior
 partials/
   components/            Navigation, footer, stream, and featured components
+  channel-feed.hbs       Native channel feed and pagination
   post-card.hbs          Mixed-format homepage/archive rendering
   post-type-icon.hbs     Lucide icon selection and legacy mappings
 default.hbs              Global document, typography, assets, header, and footer
 home.hbs                 Mixed-format homepage
+archive.hbs              Chronological archive channel
 post.hbs                 Individual post presentation
 essays.hbs               Essay archive
 notes.hbs                Note archive
@@ -432,14 +435,23 @@ Use the exact lowercase, kebab-case Lucide name. For example, use `check-check`,
 Run:
 
 ```sh
-pnpm test:ci
+pnpm verify
 ```
 
 Resolve fatal GScan errors, rebuild the ZIP, and verify that `package.json` is at the ZIP root rather than inside an extra parent directory.
 
+## Beta testing and support
+
+Before installing on a production publication, read [Beta testing](docs/BETA_TESTING.md) and [Known limitations](docs/KNOWN_LIMITATIONS.md). Bug reports should include the theme version, Ghost version, browser, hosting environment, public URL when possible, reproduction steps, and screenshots.
+
+This project is community-supported through [GitHub Issues](https://github.com/iamjeffperry/gpt-ghost-theme/issues). Security-sensitive reports should follow [SECURITY.md](SECURITY.md) instead of being posted publicly.
+
 ## Accessibility and performance
 
 - Semantic headings, navigation landmarks, article elements, figures, and time elements are retained.
+- A keyboard-visible skip link moves focus to the main content.
+- The mobile menu exposes its expanded state, supports Escape, and contains keyboard focus while open.
+- Newsletter email fields have programmatic labels, and interactive controls receive visible focus treatment.
 - Images preserve alt text and use responsive sources.
 - Decorative post-type icons are hidden from assistive technology.
 - External Link bookmarks use `noopener noreferrer` when opening a new tab.

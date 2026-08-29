@@ -4,23 +4,11 @@
     <section class="gh-archive gh-inner mf-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">{{#if @custom.quote_label}}{{@custom.quote_label}}{{else}}Quotes{{/if}}</h1>
-                <p class="gh-article-excerpt is-body">Words worth preserving, with room for context and response.</p>
+                <h1 class="gh-article-title is-title">{{#if @custom.quote_label}}{{@custom.quote_label}}{{else}}{{t "Quotes"}}{{/if}}</h1>
+                <p class="gh-article-excerpt is-body">{{t "Words worth preserving, with room for context and response."}}</p>
             </header>
         </div>
     </section>
 
-    <section class="gh-container mf-stream-container gh-outer">
-        <div class="gh-container-inner gh-inner">
-            <main class="gh-main mf-stream-main">
-                <div class="gh-feed mf-stream">
-                    {{#get "posts" filter="tag:hash-quote" include="authors,tags" limit="100"}}
-                        {{#foreach posts}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    {{/get}}
-                </div>
-            </main>
-        </div>
-    </section>
+    {{> "channel-feed"}}
 </main>

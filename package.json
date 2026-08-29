@@ -1,9 +1,9 @@
 {
     "name": "gpt-ghost-theme",
     "description": "A flexible mixed-format Ghost theme for essays, notes, links, photos, media, and quotes",
-    "version": "0.1.20",
+    "version": "0.2.0-beta.1",
     "engines": {
-        "ghost": ">=5.0.0",
+        "ghost": ">=6.0.0",
         "node": ">=22.12.0"
     },
     "license": "MIT",
@@ -11,15 +11,18 @@
         "dev": "gulp",
         "zip": "gulp zip",
         "build": "gulp build",
-        "test": "gscan .",
-        "test:ci": "gscan --fatal --verbose .",
-        "pretest": "pnpm zip",
-        "pretest:ci": "pnpm zip",
-        "preship": "pnpm test",
-        "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then pnpm version && git push --follow-tags; else echo \"Uncommitted changes found.\" && exit 1; fi",
-        "postship": "git fetch && gulp release"
+        "clean": "gulp clean",
+        "test": "gscan --fatal --verbose .",
+        "test:theme": "gscan --verbose .",
+        "test:zip": "gscan --zip --fatal --verbose dist/gpt-ghost-theme.zip",
+        "verify": "pnpm zip && pnpm test:theme && pnpm test:zip"
     },
     "packageManager": "pnpm@11.21.0",
+    "pnpm": {
+        "ignoredBuiltDependencies": [
+            "dtrace-provider"
+        ]
+    },
     "author": {
         "name": "Jeff Perry",
         "email": "jeff@jeffperry.me",

@@ -1,10 +1,10 @@
-<header id="gh-navigation" class="gh-navigation is-left-logo{{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}} gh-outer">
+<header id="gh-navigation" class="gh-navigation is-left-logo{{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}} gh-outer" data-more-label="{{t "More"}}">
     <div class="gh-navigation-inner gh-inner">
 
         <div class="gh-navigation-brand">
             <div class="mf-navigation-identity">
                 {{#if @site.icon}}
-                    <a class="mf-navigation-icon" href="{{@site.url}}" aria-label="{{@site.title}} home">
+                    <a class="mf-navigation-icon" href="{{@site.url}}" aria-label="{{t "Go to {site} home" site=@site.title}}">
                         <img src="{{@site.icon}}" alt="">
                     </a>
                 {{/if}}
@@ -16,17 +16,24 @@
                 {{/if}}
             </div>
             {{> "search-toggle"}}
-            <button class="gh-burger gh-icon-button" aria-label="{{t "Menu"}}">
+            <button
+                class="gh-burger gh-icon-button"
+                aria-label="{{t "Open menu"}}"
+                aria-expanded="false"
+                aria-controls="gh-navigation-menu gh-navigation-actions"
+                data-open-label="{{t "Open menu"}}"
+                data-close-label="{{t "Close menu"}}"
+            >
                 {{> "icons/burger"}}
                 {{> "icons/close"}}
             </button>
         </div>
 
-        <nav class="gh-navigation-menu" aria-label="Primary navigation">
+        <nav id="gh-navigation-menu" class="gh-navigation-menu" aria-label="{{t "Primary navigation"}}">
             {{navigation}}
         </nav>
 
-        <div class="gh-navigation-actions">
+        <div id="gh-navigation-actions" class="gh-navigation-actions">
             {{> "search-toggle"}}
             {{#if @site.members_enabled}}
                 <div class="gh-navigation-members">

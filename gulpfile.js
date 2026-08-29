@@ -18,6 +18,7 @@ const handleError = done => err => {
 
 function cleanBuilt(done) {
     [
+        'assets/built/screen.css',
         'assets/built/theme.css',
         'assets/built/theme.css.map',
         'assets/built/source.js',
@@ -41,10 +42,10 @@ function hbs(done) {
 
 function css(done) {
     pump([
-        src('assets/css/theme.css', {sourcemaps: true}),
+        src('assets/css/theme.css'),
         postcss([easyimport, autoprefixer(), cssnano()]),
         concat('theme.css'),
-        dest('assets/built/', {sourcemaps: '.'}),
+        dest('assets/built/'),
         livereload()
     ], handleError(done));
 }
@@ -56,12 +57,11 @@ function fullJs(done) {
             'assets/js/dropdown.js',
             'assets/js/lightbox.js',
             'assets/js/main.js',
-            'assets/js/pagination.js',
             'assets/js/stream.js'
-        ], {sourcemaps: true}),
+        ]),
         concat('source.js'),
         uglify(),
-        dest('assets/built/', {sourcemaps: '.'}),
+        dest('assets/built/'),
         livereload()
     ], handleError(done));
 }
@@ -70,13 +70,24 @@ function zipper(done) {
     const filename = require('./package.json').name + '.zip';
     pump([
         src([
-            '**',
-            '!node_modules', '!node_modules/**',
-            '!dist', '!dist/**',
-            '!*.log',
-            '!pnpm-lock.yaml',
-            '!gulpfile.js'
-        ]),
+            '*.hbs',
+            'partials/**/*.hbs',
+            'assets/built/theme.css',
+            'assets/built/source.js',
+            'assets/fonts/**',
+            'assets/icons/**',
+            'assets/images/**',
+            'locales/en.json',
+            'package.json',
+            'routes.yaml',
+            'README.md',
+            'CHANGELOG.md',
+            'CONTRIBUTING.md',
+            'SECURITY.md',
+            'docs/**/*.md',
+            'LICENSE',
+            'THIRD_PARTY_NOTICES.md'
+        ], {base: '.'}),
         zip(filename),
         dest('dist/')
     ], handleError(done));
@@ -84,6 +95,7 @@ function zipper(done) {
 
 const build = series(cleanBuilt, css, fullJs);
 
+exports.clean = cleanBuilt;
 exports.build = build;
 exports.zip = series(build, zipper);
 exports.default = series(

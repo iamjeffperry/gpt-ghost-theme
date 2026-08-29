@@ -1,13 +1,13 @@
-<aside class="mf-entry-access-cta" aria-label="Restricted post">
+<aside class="mf-entry-access-cta" aria-label="{{t "Restricted post"}}">
     <span class="mf-entry-access-icon" aria-hidden="true">{{> "icons/lock"}}</span>
     <div class="mf-entry-access-copy">
         {{#has visibility="members"}}
-            <strong>This post is for members</strong>
-            <span>Sign in or subscribe to read the full post.</span>
+            <strong>{{t "This post is for members"}}</strong>
+            <span>{{t "Sign in or subscribe to read the full post."}}</span>
         {{else}}
-            <strong>This post requires a subscription</strong>
-            <span>Open the post to see the membership options.</span>
+            <strong>{{t "This post requires a subscription"}}</strong>
+            <span>{{t "Open the post to see the membership options."}}</span>
         {{/has}}
     </div>
-    <a class="mf-entry-access-link" href="{{url}}">View post</a>
+    <a class="mf-entry-access-link" href="{{url}}">{{t "View post"}}</a>
 </aside>

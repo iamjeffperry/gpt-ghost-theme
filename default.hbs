@@ -46,11 +46,15 @@
 </head>
 <body class="{{body_class}} has-{{#match @custom.title_font "Elegant serif"}}serif{{else match @custom.title_font "Consistent mono"}}mono{{else}}sans{{/match}}-title has-{{#match @custom.body_font "Elegant serif"}}serif{{else}}sans{{/match}}-body">
 
+<a class="mf-skip-link" href="#gh-main">{{t "Skip to content"}}</a>
+
 <div class="gh-viewport">
 
     {{> "components/navigation"}}
 
-    {{{body}}}
+    <div id="gh-main" tabindex="-1">
+        {{{body}}}
+    </div>
 
     {{> "components/footer"}}
 
