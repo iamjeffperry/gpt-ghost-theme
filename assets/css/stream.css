@@ -3227,6 +3227,14 @@ body,
     background: var(--mf-paper-deep);
 }
 
+/* Standard feed cards should read like compact teasers. Featured cards keep
+   using the full width available beside their image. */
+.home-template .mf-entry:not(.is-featured) .mf-entry-access-cta,
+.mf-type-archive .mf-entry:not(.is-featured) .mf-entry-access-cta {
+    width: 100%;
+    max-width: 760px;
+}
+
 .mf-entry-access-icon,
 .mf-content-gate-icon {
     display: inline-flex;
