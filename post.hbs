@@ -107,10 +107,12 @@
 
     </article>
 
-    {{#if comments}}
-        <div class="gh-comments gh-canvas">
-            {{comments}}
-        </div>
+    {{#if access}}
+        {{#if comments}}
+            <div class="gh-comments gh-canvas">
+                {{comments}}
+            </div>
+        {{/if}}
     {{/if}}
 
 </main>
