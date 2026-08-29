@@ -368,8 +368,8 @@ The release ZIP is built from an explicit allowlist. Development files, source m
 5. Increment the `version` in `package.json`.
 6. Run `pnpm zip` again after the version change.
 7. Commit source files, generated files in `assets/built/`, and `package.json`.
-8. Push the commit and version tag to GitHub.
-9. Publish a GitHub prerelease with the ZIP, checksum, and `routes.yaml`.
+8. Push a commit whose message contains `[release beta]`, or manually run **Publish beta release** on the intended branch.
+9. GitHub Actions validates the theme, creates the version tag, and publishes a prerelease with the ZIP, checksum, and `routes.yaml`.
 10. Test the release ZIP on a Ghost 6 staging site before promoting it.
 
 The `dist/` directory is intentionally ignored by Git. Release ZIPs are build artifacts rather than source files.

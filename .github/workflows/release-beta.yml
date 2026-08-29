@@ -2,14 +2,16 @@ name: Publish beta release
 
 on:
   push:
-    tags:
-      - "v*-beta.*"
+    branches:
+      - shareable-theme-v1
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   release:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[release beta]')
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -39,15 +41,36 @@ jobs:
       - name: Create checksum
         run: sha256sum dist/gpt-ghost-theme.zip > dist/gpt-ghost-theme.zip.sha256
 
+      - name: Create version tag
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          case "$VERSION" in
+            *-beta.*) ;;
+            *) echo "package.json version is not a beta: $VERSION" >&2; exit 1 ;;
+          esac
+          TAG="v$VERSION"
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "Tag already exists: $TAG" >&2
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" -m "GPT Ghost Theme $TAG"
+          git push origin "$TAG"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
       - name: Publish GitHub prerelease
         env:
           GH_TOKEN: ${{ github.token }}
         run: >-
-          gh release create "$GITHUB_REF_NAME"
+          gh release create "${{ steps.version.outputs.tag }}"
           dist/gpt-ghost-theme.zip
           dist/gpt-ghost-theme.zip.sha256
           routes.yaml
           --prerelease
           --verify-tag
-          --title "GPT Ghost Theme $GITHUB_REF_NAME"
+          --title "GPT Ghost Theme ${{ steps.version.outputs.tag }}"
           --notes-file docs/RELEASE_NOTES.md
