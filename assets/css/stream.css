@@ -3162,16 +3162,17 @@ body,
     color: var(--mf-ink);
 }
 
-/* Use the individual-post blockquote treatment throughout the stream. */
+/* Use one neutral, tag-outlined blockquote treatment throughout the theme. */
 .home-template .mf-entry-content blockquote:not(.kg-blockquote-alt),
 .mf-type-archive .mf-entry-content blockquote:not(.kg-blockquote-alt),
 .post-template .gh-content > blockquote:not([class]) {
     margin: 1.2em 0;
     padding: 1.1em 1.25em;
-    border-left: 4px solid var(--post-type-color, var(--ghost-accent-color));
-    border-radius: 0 10px 10px 0;
+    border: 1px solid var(--post-type-color, var(--ghost-accent-color));
+    border-radius: 10px;
     color: inherit;
-    background: color-mix(in srgb, var(--background-color, #fbf8f1) 88%, var(--post-type-color, #777));
+    background: color-mix(in srgb, var(--background-color, #fbf8f1) 92%, #fff);
+    box-shadow: none;
 }
 
 .home-template .mf-entry-content > blockquote:first-child,
