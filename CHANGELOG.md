@@ -28,6 +28,7 @@ First public beta for Ghost 6.
 - Correct Photo/Image metadata placement
 - Essay metadata remaining in the text column
 - GitHub Actions and pnpm fixes
+- Change blockquote look
 
 ### Fixed
 
