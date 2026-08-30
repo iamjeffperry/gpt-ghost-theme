@@ -1,7 +1,7 @@
 {
     "name": "gpt-ghost-theme",
     "description": "A flexible mixed-format Ghost theme for essays, notes, links, photos, media, and quotes",
-    "version": "0.2.0-beta.4",
+    "version": "0.2.0-beta.5",
     "engines": {
         "ghost": ">=6.0.0",
         "node": ">=22.12.0"

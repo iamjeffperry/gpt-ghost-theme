@@ -2,6 +2,12 @@
 
 Notable changes are listed by release. This project follows [Semantic Versioning](https://semver.org/); beta releases may still include breaking changes.
 
+## [0.2.0-beta.5] - 2026-08-30
+
+### Changed
+
+- Updated documentation
+
 ## [0.2.0-beta.4] - 2026-08-30
 
 ### Changed

@@ -1,4 +1,4 @@
-# GPT Ghost Theme 0.2.0-beta.4
+# GPT Ghost Theme 0.2.0-beta.5
 
 This beta makes Ghost Signup cards feel native to the theme. Their background is now a light, desaturated tint derived from the publication's Ghost accent color rather than a fixed editor color.
 
