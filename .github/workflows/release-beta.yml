@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - .github/workflows/release-beta.yml
   workflow_dispatch:
 
 permissions:
@@ -18,10 +16,8 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: Check out maintained beta source
+      - name: Check out release source
         uses: actions/checkout@v7
-        with:
-          ref: shareable-theme-v1
 
       - name: Set up Node.js
         uses: actions/setup-node@v7

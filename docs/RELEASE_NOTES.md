@@ -13,4 +13,4 @@ The README and changelog have also been rewritten to make installation, post for
 
 This public beta supports Ghost 6 and should be tested before production use. Back up your active theme and merge custom routes carefully.
 
-See the [README](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/README.md), [beta testing guide](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/docs/BETA_TESTING.md), [known limitations](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/docs/KNOWN_LIMITATIONS.md), and [changelog](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/CHANGELOG.md).
+See the [README](https://github.com/iamjeffperry/gpt-ghost-theme/blob/main/README.md), [beta testing guide](https://github.com/iamjeffperry/gpt-ghost-theme/blob/main/docs/BETA_TESTING.md), [known limitations](https://github.com/iamjeffperry/gpt-ghost-theme/blob/main/docs/KNOWN_LIMITATIONS.md), and [changelog](https://github.com/iamjeffperry/gpt-ghost-theme/blob/main/CHANGELOG.md).

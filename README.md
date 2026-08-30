@@ -118,7 +118,7 @@ Add any archive you want readers to see under **Settings → Navigation**.
 ## Development
 
 ```sh
-git clone --branch shareable-theme-v1 https://github.com/iamjeffperry/gpt-ghost-theme.git
+git clone https://github.com/iamjeffperry/gpt-ghost-theme.git
 cd gpt-ghost-theme
 corepack enable
 pnpm install
