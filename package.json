@@ -15,7 +15,7 @@
         "test": "gscan --fatal --verbose .",
         "test:theme": "gscan --verbose .",
         "test:zip": "gscan --zip --fatal --verbose dist/gpt-ghost-theme.zip",
-        "verify": "pnpm zip && pnpm test:theme && pnpm test:zip"
+        "verify": "gulp zip && gscan --verbose . && gscan --zip --fatal --verbose dist/gpt-ghost-theme.zip"
     },
     "packageManager": "pnpm@11.21.0",
     "author": {
