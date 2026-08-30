@@ -1,16 +1,16 @@
-# GPT Ghost Theme 0.2.0-beta.1
+# GPT Ghost Theme 0.2.0-beta.4
 
-This is the first public beta of the mixed-format GPT Ghost Theme for Ghost 6.
+This beta makes Ghost Signup cards feel native to the theme. Their background is now a light, desaturated tint derived from the publication's Ghost accent color rather than a fixed editor color.
 
-The beta includes six post formats, flexible Lucide icons, configurable labels and tag colors, featured-post handling, protected-post teasers and gates, responsive image/media treatment, paginated format archives, Ghost typography and accent-color integration, and accessibility improvements.
+The README and changelog have also been rewritten to make installation, post formats, customization, membership, routes, and development easier to understand.
 
 ## Install
 
-1. Download `gpt-ghost-theme.zip` below.
-2. Optionally compare its SHA-256 digest with `gpt-ghost-theme.zip.sha256`.
-3. Upload the ZIP under **Ghost Admin → Settings → Design & branding → Change theme**.
-4. If you want `/essays/`, `/notes/`, `/links/`, `/photos/`, `/media/`, `/quotes/`, and `/archive/`, review and upload the separate `routes.yaml` asset under **Settings → Labs → Routes**.
+1. Download `gpt-ghost-theme.zip` from this release.
+2. In Ghost Admin, open **Settings → Design & branding → Change theme**.
+3. Upload the ZIP and activate it.
+4. To use the format archives, review and upload the separate `routes.yaml` under **Settings → Labs → Routes**.
 
-Back up your active theme and merge routes carefully. This beta targets Ghost 6, is officially supported in English only, and should be tested on staging before production use.
+This public beta supports Ghost 6 and should be tested before production use. Back up your active theme and merge custom routes carefully.
 
-See [the beta checklist](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/docs/BETA_TESTING.md), [known limitations](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/docs/KNOWN_LIMITATIONS.md), and the [full changelog](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/CHANGELOG.md). Report reproducible problems through GitHub Issues.
+See the [README](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/README.md), [beta testing guide](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/docs/BETA_TESTING.md), [known limitations](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/docs/KNOWN_LIMITATIONS.md), and [changelog](https://github.com/iamjeffperry/gpt-ghost-theme/blob/shareable-theme-v1/CHANGELOG.md).
