@@ -25,6 +25,9 @@ First public beta for Ghost 6.
 - Ghost heading and body font selections now apply throughout the theme.
 - Accent-dependent controls, including newsletter icons and Subscribe buttons, follow Ghost's accent color.
 - The release ZIP now contains only runtime, license, route, and user documentation files.
+- Correct Photo/Image metadata placement
+- Essay metadata remaining in the text column
+- GitHub Actions and pnpm fixes
 
 ### Fixed
 
