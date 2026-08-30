@@ -2084,7 +2084,7 @@ body,
 
 /* Footer band — slightly deeper paper, like a physical page ending. */
 .mf-footer-band {
-    background: var(--mf-paper-deep);
+    background: transparent;
     border-top: 1px solid rgba(74,63,45,.06);
 }
 
