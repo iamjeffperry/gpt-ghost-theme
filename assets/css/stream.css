@@ -1067,8 +1067,9 @@ body,
 .home-template .mf-entry.is-photo .mf-entry-photo-time,
 .mf-type-archive .mf-entry.is-photo .mf-entry-photo-time {
     display: inline-block;
+    justify-self: start;
     width: fit-content;
-    margin-top: 14px;
+    margin: 14px 0 0;
 }
 
 /* Essays place feature-image metadata directly beneath the image. */
@@ -1082,7 +1083,7 @@ body,
     grid-column: 2;
     justify-self: start;
     width: fit-content;
-    margin-top: 14px;
+    margin: 14px 0 0;
 }
 
 @media (max-width: 900px) {
