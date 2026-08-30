@@ -3288,15 +3288,15 @@ body,
     color: var(--mf-ink);
 }
 
-/* Use one tag-accented blockquote treatment throughout the theme. */
+/* Use one outlined, tag-accented blockquote treatment throughout the theme. */
 .home-template .mf-entry-content blockquote:not(.kg-blockquote-alt),
 .mf-type-archive .mf-entry-content blockquote:not(.kg-blockquote-alt),
 .post-template .gh-content > blockquote:not([class]) {
     margin: 1.2em 0;
-    padding: 1.1em 1.25em;
-    border: 0;
-    border-left: 5px solid var(--post-type-color, var(--ghost-accent-color));
-    border-radius: 0 14px 14px 0;
+    padding: 1.2em 1.4em;
+    border: 2px solid var(--post-type-color, var(--ghost-accent-color));
+    border-left-width: 5px;
+    border-radius: 11px;
     color: inherit;
     background: transparent;
     box-shadow: none;
