@@ -1053,6 +1053,48 @@ body,
     aspect-ratio: auto;
 }
 
+/* Featured-image Photo posts read as title, image, then permalink metadata. */
+.home-template .mf-entry.is-photo.has-feature-image .mf-entry-layout,
+.mf-type-archive .mf-entry.is-photo.has-feature-image .mf-entry-layout {
+    row-gap: 0;
+}
+
+.home-template .mf-entry.is-photo.has-feature-image .mf-entry-copy,
+.mf-type-archive .mf-entry.is-photo.has-feature-image .mf-entry-copy {
+    margin-bottom: 32px;
+}
+
+.home-template .mf-entry.is-photo .mf-entry-photo-time,
+.mf-type-archive .mf-entry.is-photo .mf-entry-photo-time {
+    display: inline-block;
+    grid-column: 1;
+    justify-self: start;
+    width: fit-content;
+    margin: 14px 0 0;
+}
+
+.home-template .mf-entry.is-photo.is-featured .mf-entry-photo-time {
+    grid-column: 2;
+}
+
+@media (max-width: 900px) {
+    .home-template .mf-entry.is-photo.has-feature-image .mf-entry-copy,
+    .mf-type-archive .mf-entry.is-photo.has-feature-image .mf-entry-copy {
+        margin-bottom: 22px;
+    }
+
+    .home-template .mf-entry.is-photo.is-featured .mf-entry-photo-time {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .home-template .mf-entry.is-photo.has-feature-image .mf-entry-copy,
+    .mf-type-archive .mf-entry.is-photo.has-feature-image .mf-entry-copy {
+        margin-bottom: 18px;
+    }
+}
+
 /* Featured entry gets the strongest hierarchy without breaking the stream. */
 .home-template .mf-entry.is-featured {
     padding: clamp(30px, 4vw, 42px);

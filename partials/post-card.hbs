@@ -124,22 +124,27 @@
                 {{> "feed-access-cta"}}
             {{/if}}
 
-            {{#has tag="#photo,#image,#essay"}}
-                <a class="mf-entry-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
-                    <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
-                    {{#unless featuredCard}}
-                        {{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/has}}
-                    {{/unless}}
-                    {{#if featuredCard}}{{#has tag="#photo,#image"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/has}}{{/if}}
-                </a>
+            {{#has tag="#photo,#image"}}
+                {{#unless feature_image}}
+                    <a class="mf-entry-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
+                        <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                    </a>
+                {{/unless}}
             {{else}}
-                <a class="mf-entry-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
-                    <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
-                    {{#unless featuredCard}}
-                        {{#has tag="#note,#micro,#link,#media,#quote"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/has}}
-                    {{/unless}}
-                    {{#if featuredCard}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/if}}
-                </a>
+                {{#has tag="#essay"}}
+                    <a class="mf-entry-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
+                        <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                        {{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}
+                    </a>
+                {{else}}
+                    <a class="mf-entry-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
+                        <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                        {{#unless featuredCard}}
+                            {{#has tag="#note,#micro,#link,#media,#quote"}}{{else}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/has}}
+                        {{/unless}}
+                        {{#if featuredCard}}{{#if reading_time}}<span class="mf-entry-reading-time"> · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}{{/if}}
+                    </a>
+                {{/has}}
             {{/has}}
         </div>
 
@@ -159,6 +164,12 @@
                     >
                 </figure>
             </a>
+
+            {{#has tag="#photo,#image"}}
+                <a class="mf-entry-time mf-entry-photo-time" href="{{url}}" aria-label="{{t "Permalink to {title}" title=title}}">
+                    <time datetime="{{date format="YYYY-MM-DDTHH:mm:ssZ"}}">{{date format="MMM D, YYYY"}}</time>
+                </a>
+            {{/has}}
 
         {{/if}}
     </div>
