@@ -3515,3 +3515,10 @@ body,
         max-height: min(520px, 72vh);
     }
 }
+
+/* Keep the compact subscribe field visually stable while entering an email. */
+.mf-footer-subscribe-actions .gh-form-input:focus,
+.mf-footer-subscribe-actions .gh-form-input:focus-visible {
+    outline: none;
+    outline-offset: 0;
+}
