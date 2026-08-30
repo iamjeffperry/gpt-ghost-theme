@@ -1,26 +1,14 @@
 {{!< default}}
 
-<main class="gh-main gh-outer jp-type-archive">
-    <section class="gh-archive gh-inner jp-type-archive-header">
+<main class="gh-main gh-outer mf-type-archive">
+    <section class="gh-archive gh-inner mf-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">Links</h1>
-                <p class="gh-article-excerpt is-body">Interesting things from around the web, with a little context from me.</p>
+                <h1 class="gh-article-title is-title">{{#if @custom.link_label}}{{@custom.link_label}}{{else}}{{t "Links"}}{{/if}}</h1>
+                <p class="gh-article-excerpt is-body">{{t "Interesting things from around the web, with context from this publication."}}</p>
             </header>
         </div>
     </section>
 
-    <section class="gh-container jp-stream-container gh-outer">
-        <div class="gh-container-inner gh-inner">
-            <main class="gh-main jp-stream-main">
-                <div class="gh-feed jp-stream">
-                    {{#get "posts" filter="tag:hash-link" include="authors,tags" limit="all"}}
-                        {{#foreach posts}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    {{/get}}
-                </div>
-            </main>
-        </div>
-    </section>
+    {{> "channel-feed"}}
 </main>

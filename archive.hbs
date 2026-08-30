@@ -1,0 +1,15 @@
+{{!< default}}
+
+<main class="gh-archive-page gh-outer">
+    <div class="gh-inner">
+        <header class="gh-archive-header">
+            <p class="gh-archive-kicker">{{t "Archive"}}</p>
+            <h1 class="gh-archive-title is-title">{{t "Everything, newest to oldest."}}</h1>
+            <p class="gh-archive-description is-body">
+                {{t "A chronological archive of everything published on {site}." site=@site.title}}
+            </p>
+        </header>
+    </div>
+
+    {{> "channel-feed"}}
+</main>

@@ -10,14 +10,14 @@
     {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
     {{> "typography/fonts"}}
 
-    {{!-- Production stylesheet: Source + JeffPerry.me overrides + post-type icons.
+    {{!-- Production stylesheet: Source + Mixed-format theme overrides + post-type icons.
           One request is noticeably kinder to slow mobile connections. --}}
-    <link rel="stylesheet" type="text/css" href="{{asset "built/jeffperry.css"}}">
+    <link rel="stylesheet" type="text/css" href="{{asset "built/theme.css"}}">
 
     {{!-- Custom background color --}}
     <style>
         :root {
-            --background-color: {{@custom.site_background_color}}
+            --background-color: {{#if @custom.site_background_color}}{{@custom.site_background_color}}{{else}}#fbf8f1{{/if}};
         }
     </style>
 
@@ -46,11 +46,15 @@
 </head>
 <body class="{{body_class}} has-{{#match @custom.title_font "Elegant serif"}}serif{{else match @custom.title_font "Consistent mono"}}mono{{else}}sans{{/match}}-title has-{{#match @custom.body_font "Elegant serif"}}serif{{else}}sans{{/match}}-body">
 
+<a class="mf-skip-link" href="#gh-main">{{t "Skip to content"}}</a>
+
 <div class="gh-viewport">
 
-    {{> "components/navigation" navigationLayout=@custom.navigation_layout}}
+    {{> "components/navigation"}}
 
-    {{{body}}}
+    <div id="gh-main" tabindex="-1">
+        {{{body}}}
+    </div>
 
     {{> "components/footer"}}
 
@@ -60,13 +64,8 @@
     {{> "lightbox"}}
 {{/is}}
 
-{{!-- Full Source JS is useful on individual posts/pages for lightbox and responsive embeds.
-      Stream/archive pages use a tiny purpose-built bundle instead. --}}
-{{#is "post, page"}}
-    <script src="{{asset "built/source.js"}}" defer></script>
-{{else}}
-    <script src="{{asset "built/jeffperry-ui.js"}}" defer></script>
-{{/is}}
+{{!-- Navigation, responsive media, pagination, and mixed-format link behavior --}}
+<script src="{{asset "built/source.js"}}" defer></script>
 
 {{!-- Ghost outputs required functional scripts with this tag --}}
 {{ghost_foot}}

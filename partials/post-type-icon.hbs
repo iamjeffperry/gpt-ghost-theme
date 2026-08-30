@@ -1,0 +1,35 @@
+{{!--
+    Use any kebab-case icon name from lucide.dev/icons.
+    The legacy matches keep saved choices from versions before 0.1.12 working.
+--}}
+{{#match icon "File text"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#file-text"></use></svg>
+{{else match icon "Pen line"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#pen-line"></use></svg>
+{{else match icon "Star"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#star"></use></svg>
+{{else match icon "Book open"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#book-open"></use></svg>
+{{else match icon "Message circle"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#message-circle"></use></svg>
+{{else match icon "Circle"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#circle"></use></svg>
+{{else match icon "Link"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#link"></use></svg>
+{{else match icon "Image"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#image"></use></svg>
+{{else match icon "Camera"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#camera"></use></svg>
+{{else match icon "Play"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#play"></use></svg>
+{{else match icon "Headphones"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#headphones"></use></svg>
+{{else match icon "Quote"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#quote"></use></svg>
+{{else match icon "Bookmark"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#bookmark"></use></svg>
+{{else match icon "Tag"}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#tag"></use></svg>
+{{else}}
+    <svg viewBox="0 0 24 24"><use href="{{asset "icons/lucide.svg"}}#{{icon}}"></use></svg>
+{{/match}}

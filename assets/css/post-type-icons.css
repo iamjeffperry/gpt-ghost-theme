@@ -1,9 +1,9 @@
 /*
- * JeffPerry.me post type icon override
- * Load this after jeffperry-stream.css.
+ * Mixed-format theme post type icon override
+ * Load this after stream.css.
  */
 
-.jp-entry-kind {
+.mf-entry-kind {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
@@ -13,15 +13,16 @@
     font-weight: 750;
 }
 
-.jp-entry-kind-icon {
+.mf-entry-kind-icon {
     display: inline-flex;
     width: 1.45rem;
     height: 1.45rem;
     flex: 0 0 1.45rem;
     color: var(--post-type-color, currentColor);
+    transform: translateY(-1px);
 }
 
-.jp-entry-kind-icon svg {
+.mf-entry-kind-icon svg {
     display: block;
     width: 100%;
     height: 100%;
@@ -32,21 +33,21 @@
     stroke-linejoin: round;
 }
 
-.jp-entry-kind-icon .jp-icon-fill {
+.mf-entry-kind-icon .mf-icon-fill {
     fill: currentColor;
     stroke: none;
 }
 
-.jp-entry-kind-label {
+.mf-entry-kind-label {
     color: inherit;
 }
 
 @media (max-width: 767px) {
-    .jp-entry-kind {
+    .mf-entry-kind {
         margin-top: 0;
     }
 
-    .jp-entry-kind-icon {
+    .mf-entry-kind-icon {
         width: 1.35rem;
         height: 1.35rem;
         flex-basis: 1.35rem;

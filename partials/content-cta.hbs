@@ -1,0 +1,28 @@
+{{{html}}}
+
+<aside class="gh-post-upgrade-cta mf-content-gate">
+    <div class="mf-content-gate-inner">
+        <span class="mf-content-gate-icon" aria-hidden="true">{{> "icons/lock"}}</span>
+
+        {{#has visibility="members"}}
+            <h2>{{t "This post is for members"}}</h2>
+            <p>{{t "Join the publication or sign in to continue reading."}}</p>
+        {{/has}}
+        {{#has visibility="paid"}}
+            <h2>{{t "This post is for paid members"}}</h2>
+            <p>{{t "Choose a paid plan or sign in with an account that has access."}}</p>
+        {{/has}}
+        {{#has visibility="tiers"}}
+            <h2>{{t "This post is for selected members"}}</h2>
+            <p>{{t "Choose an eligible plan or sign in with an account that has access."}}</p>
+        {{/has}}
+
+        {{#if @member}}
+            <a class="mf-content-gate-button" href="#/portal/account/plans" data-portal="account/plans">{{t "View plans"}}</a>
+            <p class="mf-content-gate-note">{{t "Signed in as {email}" email=@member.email}}</p>
+        {{else}}
+            <a class="mf-content-gate-button" href="#/portal/signup" data-portal="signup">{{t "Subscribe now"}}</a>
+            <p class="mf-content-gate-note">{{t "Already have an account?"}} <a href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a></p>
+        {{/if}}
+    </div>
+</aside>

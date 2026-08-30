@@ -1,0 +1,18 @@
+{{#has visibility="members"}}
+    <span class="mf-access-badge">
+        <span class="mf-access-badge-icon" aria-hidden="true">{{> "icons/lock"}}</span>
+        <span>{{t "Members only"}}</span>
+    </span>
+{{/has}}
+{{#has visibility="paid"}}
+    <span class="mf-access-badge">
+        <span class="mf-access-badge-icon" aria-hidden="true">{{> "icons/lock"}}</span>
+        <span>{{t "Paid members"}}</span>
+    </span>
+{{/has}}
+{{#has visibility="tiers"}}
+    <span class="mf-access-badge">
+        <span class="mf-access-badge-icon" aria-hidden="true">{{> "icons/lock"}}</span>
+        <span>{{t "Selected members"}}</span>
+    </span>
+{{/has}}

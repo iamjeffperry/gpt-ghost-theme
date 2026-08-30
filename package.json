@@ -1,10 +1,9 @@
 {
-    "name": "source-jeffperry",
-    "description": "JeffPerry.me custom Ghost theme, built on Ghost Source",
-    "demo": "https://source.ghost.io",
-    "version": "1.7.1-jeff48",
+    "name": "gpt-ghost-theme",
+    "description": "A flexible mixed-format Ghost theme for essays, notes, links, photos, media, and quotes",
+    "version": "0.2.0-beta.4",
     "engines": {
-        "ghost": ">=5.0.0",
+        "ghost": ">=6.0.0",
         "node": ">=22.12.0"
     },
     "license": "MIT",
@@ -12,19 +11,17 @@
         "dev": "gulp",
         "zip": "gulp zip",
         "build": "gulp build",
-        "test": "gscan .",
-        "test:ci": "gscan --fatal --verbose .",
-        "pretest": "pnpm zip",
-        "pretest:ci": "pnpm zip",
-        "preship": "pnpm test",
-        "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then pnpm version && git push --follow-tags; else echo \"Uncommitted changes found.\" && exit 1; fi",
-        "postship": "git fetch && gulp release"
+        "clean": "gulp clean",
+        "test": "gscan --fatal --verbose .",
+        "test:theme": "gscan --verbose .",
+        "test:zip": "gscan --zip --fatal --verbose dist/gpt-ghost-theme.zip",
+        "verify": "pnpm zip && pnpm test:theme && pnpm test:zip"
     },
     "packageManager": "pnpm@11.21.0",
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org/"
+        "name": "Jeff Perry",
+        "email": "jeff@jeffperry.me",
+        "url": "https://github.com/iamjeffperry"
     },
     "gpm": {
         "type": "theme",
@@ -40,10 +37,9 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/TryGhost/Source.git"
+        "url": "https://github.com/iamjeffperry/gpt-ghost-theme.git"
     },
-    "bugs": "https://github.com/TryGhost/Source/issues",
-    "contributors": "https://github.com/TryGhost/Source/graphs/contributors",
+    "bugs": "https://github.com/iamjeffperry/gpt-ghost-theme/issues",
     "devDependencies": {
         "@tryghost/release-utils": "0.9.1",
         "@tryghost/theme-translations": "0.0.22",
@@ -89,15 +85,6 @@
         },
         "card_assets": true,
         "custom": {
-            "navigation_layout": {
-                "type": "select",
-                "options": [
-                    "Logo in the middle",
-                    "Logo on the left",
-                    "Stacked"
-                ],
-                "default": "Logo in the middle"
-            },
             "site_background_color": {
                 "type": "color",
                 "default": "#fbf8f1"
@@ -127,29 +114,76 @@
                 ],
                 "default": "Modern sans-serif"
             },
-            "signup_subheading": {
-                "type": "text",
-                "description": "Defaults to site description when empty"
-            },
-            "post_feed_style": {
-                "type": "select",
-                "options": [
-                    "List",
-                    "Grid"
-                ],
-                "default": "List",
-                "group": "homepage"
-            },
             "show_images_in_feed": {
                 "type": "boolean",
                 "default": true,
-                "group": "homepage",
-                "visibility": "post_feed_style:List"
-            },
-            "show_publication_info_sidebar": {
-                "type": "boolean",
-                "default": false,
                 "group": "homepage"
+            },
+            "essay_label": {
+                "type": "text",
+                "default": "Essay",
+                "group": "homepage"
+            },
+            "essay_icon": {
+                "type": "text",
+                "default": "file-text",
+                "group": "homepage",
+                "description": "Lucide icon name, such as file-text. Browse icons at lucide.dev/icons"
+            },
+            "note_label": {
+                "type": "text",
+                "default": "Note",
+                "group": "homepage"
+            },
+            "note_icon": {
+                "type": "text",
+                "default": "message-circle",
+                "group": "homepage",
+                "description": "Lucide icon name, such as check-check. Browse icons at lucide.dev/icons"
+            },
+            "link_label": {
+                "type": "text",
+                "default": "Link",
+                "group": "homepage"
+            },
+            "link_icon": {
+                "type": "text",
+                "default": "link",
+                "group": "homepage",
+                "description": "Lucide icon name, such as link. Browse icons at lucide.dev/icons"
+            },
+            "photo_label": {
+                "type": "text",
+                "default": "Photo",
+                "group": "homepage"
+            },
+            "photo_icon": {
+                "type": "text",
+                "default": "image",
+                "group": "homepage",
+                "description": "Lucide icon name, such as camera. Browse icons at lucide.dev/icons"
+            },
+            "media_label": {
+                "type": "text",
+                "default": "Media",
+                "group": "homepage"
+            },
+            "media_icon": {
+                "type": "text",
+                "default": "play",
+                "group": "homepage",
+                "description": "Lucide icon name, such as headphones. Browse icons at lucide.dev/icons"
+            },
+            "quote_label": {
+                "type": "text",
+                "default": "Quote",
+                "group": "homepage"
+            },
+            "quote_icon": {
+                "type": "text",
+                "default": "quote",
+                "group": "homepage",
+                "description": "Lucide icon name, such as quote. Browse icons at lucide.dev/icons"
             },
             "show_post_metadata": {
                 "type": "boolean",

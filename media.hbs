@@ -1,26 +1,14 @@
 {{!< default}}
 
-<main class="gh-main gh-outer jp-type-archive">
-    <section class="gh-archive gh-inner jp-type-archive-header">
+<main class="gh-main gh-outer mf-type-archive">
+    <section class="gh-archive gh-inner mf-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">Media</h1>
-                <p class="gh-article-excerpt is-body">Podcasts, videos, and other things worth watching or listening to.</p>
+                <h1 class="gh-article-title is-title">{{#if @custom.media_label}}{{@custom.media_label}}{{else}}{{t "Media"}}{{/if}}</h1>
+                <p class="gh-article-excerpt is-body">{{t "Podcasts, videos, and other things worth watching or listening to."}}</p>
             </header>
         </div>
     </section>
 
-    <section class="gh-container jp-stream-container gh-outer">
-        <div class="gh-container-inner gh-inner">
-            <main class="gh-main jp-stream-main">
-                <div class="gh-feed jp-stream">
-                    {{#get "posts" filter="tag:hash-media" include="authors,tags" limit="all"}}
-                        {{#foreach posts}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    {{/get}}
-                </div>
-            </main>
-        </div>
-    </section>
+    {{> "channel-feed"}}
 </main>

@@ -1,17 +1,38 @@
 routes:
   /essays/:
+    controller: channel
+    filter: tag:hash-essay
     template: essays
   /notes/:
+    controller: channel
+    filter: tag:[hash-note,hash-micro]
     template: notes
   /links/:
+    controller: channel
+    filter: tag:hash-link
     template: links
   /media/:
+    controller: channel
+    filter: tag:hash-media
     template: media
+  /photos/:
+    controller: channel
+    filter: tag:[hash-photo,hash-image]
+    template: photos
+  /quotes/:
+    controller: channel
+    filter: tag:hash-quote
+    template: quotes
+  /archive/:
+    controller: channel
+    order: published_at desc
+    template: archive
 
 collections:
   /:
     permalink: /{slug}/
     template: index
+    order: featured desc, published_at desc
 
 taxonomies:
   tag: /tag/{slug}/

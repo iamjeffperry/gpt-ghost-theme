@@ -1,5 +1,5 @@
 {{!--
-    JeffPerry.me chronological stream.
+    Mixed-format theme chronological stream.
 
     Parameters:
     * feed (index, home, archive)
@@ -7,38 +7,30 @@
     * showSidebar (true, false)
 --}}
 
-<section class="gh-container jp-stream-container gh-outer">
+<section class="gh-container mf-stream-container gh-outer">
     <div class="gh-container-inner gh-inner">
 
-        <main class="gh-main jp-stream-main">
-            <div class="gh-feed jp-stream">
+        <div class="gh-main mf-stream-main">
+            <div class="gh-feed mf-stream">
 
                 {{!-- Homepage:
-                      - If a Featured post exists, show the newest Featured post first.
-                      - Then show the remaining posts chronologically, skipping Featured posts.
-                      - If no Featured post exists, show the normal chronological feed. --}}
+                      routes.yaml orders featured posts first, then all posts by date.
+                      The newest featured post becomes the hero; any additional featured
+                      posts remain ordinary cards in Ghost's native paginated collection. --}}
                 {{#match feed "home"}}
-                    {{#get "posts" filter="featured:true" include="authors,tags" limit="1" as |featuredPosts|}}
-                        {{#if featuredPosts}}
-                            {{#foreach featuredPosts}}
+                    {{#foreach posts}}
+                        {{#if @first}}
+                            {{#if featured}}
                                 {{> "post-card" lazyLoad=false featuredCard=true}}
-                            {{/foreach}}
-
-                            {{#get "posts" include="authors,tags" limit=@config.posts_per_page}}
-                                {{#foreach posts}}
-                                    {{#unless featured}}
-                                        {{> "post-card" lazyLoad=true}}
-                                    {{/unless}}
-                                {{/foreach}}
-                            {{/get}}
+                            {{else}}
+                                {{> "post-card" lazyLoad=false}}
+                            {{/if}}
                         {{else}}
-                            {{#get "posts" include="authors,tags" limit=@config.posts_per_page}}
-                                {{#foreach posts}}
-                                    {{> "post-card" lazyLoad=true}}
-                                {{/foreach}}
-                            {{/get}}
+                            {{> "post-card" lazyLoad=true}}
                         {{/if}}
-                    {{/get}}
+                    {{else}}
+                        <p class="mf-empty-state is-body">{{t "No posts have been published yet."}}</p>
+                    {{/foreach}}
                 {{/match}}
 
                 {{!-- Main index / paginated archive. --}}
@@ -58,11 +50,9 @@
             </div>
 
             {{#match pagination.pages ">" 1}}
-                <div class="gh-more jp-more-posts is-title">
-                    <a href="{{@site.url}}/page/2/">Older posts {{> "icons/arrow"}}</a>
-                </div>
+                {{pagination}}
             {{/match}}
-        </main>
+        </div>
 
     </div>
 </section>

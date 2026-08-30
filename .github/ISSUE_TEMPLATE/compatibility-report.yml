@@ -1,0 +1,48 @@
+name: Compatibility report
+description: Report a browser, host, Ghost configuration, or content-card compatibility problem.
+title: "[Compatibility]: "
+labels:
+  - compatibility
+  - beta
+body:
+  - type: input
+    id: versions
+    attributes:
+      label: Theme and Ghost versions
+      placeholder: Theme 0.2.0-beta.1; Ghost 6.x.x
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Include host, browser, operating system, and device.
+    validations:
+      required: true
+  - type: dropdown
+    id: content
+    attributes:
+      label: Content or feature
+      options:
+        - Ghost editor card or embed
+        - Theme design setting
+        - Custom routes or archive
+        - Membership, tier, or Portal
+        - Comments, search, or recommendations
+        - Browser or responsive layout
+        - Right-to-left or non-English content
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened?
+      description: Include setup, reproduction steps, expected behavior, and screenshots.
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Optional. Tell us if you found a temporary fix.

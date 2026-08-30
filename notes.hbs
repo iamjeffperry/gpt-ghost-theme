@@ -1,26 +1,14 @@
 {{!< default}}
 
-<main class="gh-main gh-outer jp-type-archive">
-    <section class="gh-archive gh-inner jp-type-archive-header">
+<main class="gh-main gh-outer mf-type-archive">
+    <section class="gh-archive gh-inner mf-type-archive-header">
         <div class="gh-archive-inner">
             <header class="gh-archive-wrapper">
-                <h1 class="gh-article-title is-title">Notes</h1>
-                <p class="gh-article-excerpt is-body">Short thoughts, observations, and things that do not need to become full posts.</p>
+                <h1 class="gh-article-title is-title">{{#if @custom.note_label}}{{@custom.note_label}}{{else}}{{t "Notes"}}{{/if}}</h1>
+                <p class="gh-article-excerpt is-body">{{t "Short thoughts, observations, and things that do not need to become full posts."}}</p>
             </header>
         </div>
     </section>
 
-    <section class="gh-container jp-stream-container gh-outer">
-        <div class="gh-container-inner gh-inner">
-            <main class="gh-main jp-stream-main">
-                <div class="gh-feed jp-stream">
-                    {{#get "posts" filter="tag:hash-micro" include="authors,tags" limit="all"}}
-                        {{#foreach posts}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    {{/get}}
-                </div>
-            </main>
-        </div>
-    </section>
+    {{> "channel-feed"}}
 </main>
