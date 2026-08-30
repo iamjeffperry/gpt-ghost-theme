@@ -3227,7 +3227,7 @@ body,
     padding: 1.1em 1.25em;
     border-left: 4px solid var(--post-type-color, var(--ghost-accent-color));
     border-radius: 0 10px 10px 0;
-    background: color-mix(in srgb, var(--background-color, #fbf8f1) 88%, var(--post-type-color, #777));
+    background: transparent;
 }
 
 .post-template .gh-content :is(.kg-image-card, .kg-gallery-card, .kg-video-card, .kg-embed-card) {
