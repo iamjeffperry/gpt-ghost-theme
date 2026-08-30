@@ -3235,6 +3235,15 @@ body,
     border-radius: 12px;
 }
 
+/* Ghost stores a fixed signup-card color inline. Keep it softly tied to the site accent instead. */
+.gh-content .kg-signup-card {
+    background-color: color-mix(
+        in srgb,
+        var(--ghost-accent-color) 9%,
+        var(--background-color, #fbf8f1)
+    ) !important;
+}
+
 /* Individual post controls and Photo presentation. */
 .post-template .gh-button-share {
     border-radius: 10px !important;
